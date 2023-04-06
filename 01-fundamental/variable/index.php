@@ -30,3 +30,5 @@ echo $title;
 $judul2 = "Ini adalah Judul 2";
 require("index.view.php");
 ?>
+
+
