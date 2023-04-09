@@ -108,3 +108,60 @@ Artinya, Anda harus berhati-hati saat membandingkan dua bilangan denan dibelakan
   2. kutipan ganda,
   3. heredoc, dan -> di pelajari berikutnya
   4. sintaks nowdoc . -> di pelajari berikutnya
+
+5. null
+
+- null adalah type data khusus di PHP.
+- type null hanya memiliki nilai null saja.
+- null adalah nilai kosong atau tidak ada nilai.
+  contoh :
+  ```
+  <?php
+  $email=null;
+  var_dump($email);
+  ```
+- null tidak case sensitive.
+
+6. casting
+
+- casting adalah proses untuk mengubah tipe data dari data satu ke data
+  lainnuya.
+  contoh :
+  ```
+  <?php
+  $nilai = 100;
+  $nilai = (string)$nilai;
+  var_dump($nilai);
+  ```
+
+7. Juggling
+
+- PHP menggunakan kata kunci "juggling" untuk mengubah tipe data dari data satu ke data lainnya.
+- Di PHP, "juggling type" atau "loose typing" merujuk pada fitur di mana tipe data variabel dapat secara otomatis diubah oleh bahasa pemrograman ketika operasi yang diberikan melibatkan tipe data yang berbeda. Ini terjadi ketika sebuah nilai dianggap sebagai tipe data tertentu, tetapi kemudian digunakan dalam konteks di mana tipe data yang berbeda diperlukan. Contohnya adalah jika string numerik "10" dioperasikan dengan integer 5, maka PHP akan mengubah string menjadi integer sebelum melakukan operasi matematika, sehingga menghasilkan hasil yang diharapkan yaitu 15. Namun, fitur ini juga dapat menyebabkan kesalahan tak terduga dan membuat kode sulit untuk dipahami, oleh karena itu sebaiknya kita selalu melakukan pemeriksaan tipe data yang tepat dan eksplisit agar dapat mengetahui dengan pasti bagaimana dan kapan konversi jenis terjadi.
+  Berikut contoh penggunaan juggling type di PHP:
+
+```php
+$var1 = "10"; // tipe data string
+$var2 = 5; // tipe data integer
+
+$result = $var1 + $var2; // menggunakan operator aritmatika (+)
+
+echo $result;
+// Output: 15 (hasil dari $var1 yang otomatis diubah ke integer sebelum operasi matematika dilakukan)
+```
+
+Dalam contoh di atas, meskipun $var1 adalah string dan $var2 adalah integer, PHP akan secara otomatis mengonversi $var1 menjadi integer ketika kedua nilai tersebut digabungkan dengan operator tambah +. Oleh karena itu, hasilnya adalah 15, yang merupakan hasil dari penjumlahan antara 10 (setelah dikonversi ke integer) dengan 5.
+
+Namun, jika kita tidak berhati-hati, hal ini dapat menyebabkan kesalahan dalam kode. Sebagai contoh:
+
+```php
+$var1 = "Hello"; // tipe data string
+$var2 = 5; // tipe data integer
+
+$result = $var1 + $var2; // menggunakan operator aritmatika (+)
+
+echo $result;
+// Output: 5 (karena variabel string tidak dapat dikonversi ke integer, maka nilainya dianggap 0)
+```
+
+Dalam contoh di atas, karena $var1 berisi nilai string "Hello", juggling type akan mencoba mengubahnya menjadi integer saat dioperasikan dengan $var2. Karena string "Hello" tidak dapat dikonversi ke integer, nilainya dianggap sebagai 0 oleh PHP, yang mengakibatkan hasil dari operasi adalah 5. Itulah mengapa sangat penting untuk selalu mengecek dan memeriksa tipe data variable secara eksplisit dalam kode.
