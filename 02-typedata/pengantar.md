@@ -74,8 +74,8 @@ Namun jika nilai dari $nilai kurang dari 70, variabel $hasil_ujian akan bernilai
 - int adalah bilangan bulat seperti -3, -2, -1, 0, 1, 2, 3…
 - Biasanya, bilangan bulat memiliki rentang dari -2.147.438.648 hingga 2.147.483.647. Ini setara dengan 32 bit
 - PHP_INT_SIZE digunakan mendapatkan ukuran bilangan bulat.
-- PHP_INT_MINdan PHP_INT_MAXuntuk mendapatkan nilai bilangan bulat minimum dan maksimum.
-- untuk sparator kita bisa mengunakan ( \_ ) contoh 1_000_000
+- PHP_INT_MIN dan PHP_INT_MAX untuk mendapatkan nilai bilangan bulat minimum dan maksimum.
+- untuk sparator kita bisa mengunakan ( _ ) contoh 1_000_000
 
 Bilangan oktal terdiri dari nol di depan dan urutan angka dari 0 sampai 7. Seperti bilangan desimal, bilangan oktal dapat memiliki tanda plus (+) atau minus (-). Misalnya:
 +010 // decimal 8
@@ -83,7 +83,7 @@ Bilangan heksadesimal terdiri dari awalan 0xdan urutan angka (0-9) atau huruf (A
 0x10 // decimal 16
 0xFF // decimal 255
 
-Fungsi is_int()bawaan mengembalikan truejika nilai (atau variabel ) adalah bilangan bulat.
+Fungsi is_int() bawaan mengembalikan truejika nilai (atau variabel ) adalah bilangan bulat.
 $amount = 100;
     echo is_int($amount);
 
@@ -124,8 +124,13 @@ Artinya, Anda harus berhati-hati saat membandingkan dua bilangan denan dibelakan
 
 6. casting
 
-- casting adalah proses untuk mengubah tipe data dari data satu ke data
-  lainnuya.
+Casting di PHP adalah konversi nilai dari satu tipe data ke tipe data lainnya. Casting dapat dilakukan untuk mengubah tipe data variabel sesuai dengan kebutuhan program.
+Ada beberapa jenis casting yang umum digunakan di PHP, yaitu:
+
+1. Implicit Casting: Jenis casting ini terjadi secara otomatis ketika PHP mengubah tipe data sebuah variabel secara implisit. Contohnya, ketika kita melakukan operasi aritmatika pada bilangan bulat dan bilangan desimal, PHP akan secara otomatis mengkonversi tipe data bilangan bulat menjadi bilangan desimal supaya hasil akhirnya tepat.
+
+2. Explicit Casting: Jenis casting ini dilakukan secara eksplisit oleh pengguna dengan menggunakan fungsi-fungsi khusus seperti (int), (float), (string), (bool), dll. Contohnya, jika kita ingin mengkonversi tipe data variabel $angka dari integer ke float, kita dapat menggunakan syntax (float) $angka.
+
   contoh :
   ```
   <?php
@@ -133,35 +138,21 @@ Artinya, Anda harus berhati-hati saat membandingkan dua bilangan denan dibelakan
   $nilai = (string)$nilai;
   var_dump($nilai);
   ```
+7. Juggling Type
+PHP adalah bahasa pemrograman yang diketik secara longgar. Ini berarti bahwa ketika Anda mendefinisikan variabel , Anda tidak perlu mendeklarasikan tipenya . Secara internal, PHP akan menentukan tipe berdasarkan konteks di mana Anda menggunakan variabel.
 
-7. Juggling
+Juggling type pada PHP adalah konversi otomatis dari tipe data dalam sebuah ekspresi menjadi tipe data yang berbeda. Contohnya adalah saat kita ingin menguji apakah variabel bernilai integer 0 atau string kosong, maka kita dapat menggunakan perbandingan == (loose equality) karena PHP akan secara otomatis membandingkan keduanya sebagai nilai boolean false.
 
-- PHP menggunakan kata kunci "juggling" untuk mengubah tipe data dari data satu ke data lainnya.
-- Di PHP, "juggling type" atau "loose typing" merujuk pada fitur di mana tipe data variabel dapat secara otomatis diubah oleh bahasa pemrograman ketika operasi yang diberikan melibatkan tipe data yang berbeda. Ini terjadi ketika sebuah nilai dianggap sebagai tipe data tertentu, tetapi kemudian digunakan dalam konteks di mana tipe data yang berbeda diperlukan. Contohnya adalah jika string numerik "10" dioperasikan dengan integer 5, maka PHP akan mengubah string menjadi integer sebelum melakukan operasi matematika, sehingga menghasilkan hasil yang diharapkan yaitu 15. Namun, fitur ini juga dapat menyebabkan kesalahan tak terduga dan membuat kode sulit untuk dipahami, oleh karena itu sebaiknya kita selalu melakukan pemeriksaan tipe data yang tepat dan eksplisit agar dapat mengetahui dengan pasti bagaimana dan kapan konversi jenis terjadi.
-  Berikut contoh penggunaan juggling type di PHP:
+Contoh kode:
+```
+$num = 0;
+$str = "";
 
-```php
-$var1 = "10"; // tipe data string
-$var2 = 5; // tipe data integer
-
-$result = $var1 + $var2; // menggunakan operator aritmatika (+)
-
-echo $result;
-// Output: 15 (hasil dari $var1 yang otomatis diubah ke integer sebelum operasi matematika dilakukan)
+if ($num == $str) {
+  echo "Equal";
+} else {
+  echo "Not equal";
+}
 ```
 
-Dalam contoh di atas, meskipun $var1 adalah string dan $var2 adalah integer, PHP akan secara otomatis mengonversi $var1 menjadi integer ketika kedua nilai tersebut digabungkan dengan operator tambah +. Oleh karena itu, hasilnya adalah 15, yang merupakan hasil dari penjumlahan antara 10 (setelah dikonversi ke integer) dengan 5.
-
-Namun, jika kita tidak berhati-hati, hal ini dapat menyebabkan kesalahan dalam kode. Sebagai contoh:
-
-```php
-$var1 = "Hello"; // tipe data string
-$var2 = 5; // tipe data integer
-
-$result = $var1 + $var2; // menggunakan operator aritmatika (+)
-
-echo $result;
-// Output: 5 (karena variabel string tidak dapat dikonversi ke integer, maka nilainya dianggap 0)
-```
-
-Dalam contoh di atas, karena $var1 berisi nilai string "Hello", juggling type akan mencoba mengubahnya menjadi integer saat dioperasikan dengan $var2. Karena string "Hello" tidak dapat dikonversi ke integer, nilainya dianggap sebagai 0 oleh PHP, yang mengakibatkan hasil dari operasi adalah 5. Itulah mengapa sangat penting untuk selalu mengecek dan memeriksa tipe data variable secara eksplisit dalam kode.
+Outputnya adalah "Equal", karena PHP secara otomatis mengkonversi 0 menjadi false dan string kosong juga dianggap sebagai false ketika dibandingkan dengan operator ==. Penting untuk dipahami bahwa penggunaan juggling type pada PHP dapat membingungkan dalam beberapa kasus dan sebaiknya digunakan dengan hati-hati.

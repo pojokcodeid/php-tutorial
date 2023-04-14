@@ -1,29 +1,26 @@
 <?php
-$contoh1 = 'Ini contoh string kutipan tunggal';
-$contoh2 = "Ini contoh string kutipan ganda";
-echo $contoh1 . '<br>';
-echo $contoh2 . '<br>';
+$contoh1 = 'INi contoh dengan kutipan tunggal';
+$contoh2 = "INi contoh dengan kutipan ganda";
+echo $contoh1;
+echo "<br>";
+echo $contoh2;
+echo "<br>";
 
-// penggabungan string
 $var1 = "Hello";
-$result = $var1 . " World<br>";
+$result = $var1 . " World";
 echo $result;
-
-$result2 = "$var1 World<br>";
+echo "<br>";
+$result2 = "$var1 WORLD<br>";
 echo $result2;
-
-$result3 = "{$var1} World<br>";
+echo "<br>";
+$result3 = "{$var1} WORLD<br>";
 echo $result3;
-
-// jika menggunkaan kutipan tunggal kurung kurawal diangap sebagai string
-$result4 = '{$var1} World<br>';
+echo "<br>";
+$result4 = 'Hello {$var1} World<br>';
 echo $result4;
-
-// mengaksess karakter dalam string 
+echo "<br>";
 echo $result3[0] . '<br>';
 
-//mendapatkan substring dari string
 echo substr($result3, 1, 5) . '<br>';
 
-// mendapatkan panjang string
-echo strlen($result3);
+echo strlen($result3) . '<br>';

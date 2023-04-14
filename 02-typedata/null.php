@@ -3,9 +3,8 @@
 $email = null;
 var_dump($email);
 
-// null tidak case sensitive 
-$email = null;
-$first_name = Null;
+$email = NULL;
+$first_name = null;
 $last_name = NULL;
 
 echo '<br>';
@@ -16,14 +15,11 @@ echo '<br>';
 var_dump($last_name);
 echo '<br>';
 
-// pengujian nilai null 
 $home = "pojokcode.com";
-var_dump(is_null($email));
 var_dump(is_null($home));
+var_dump(is_null($first_name));
 
-//menguji dengan operator identik 
-$result = ($email === null);
-var_dump($result);
-
-$result = ($home === null);
-var_dump($result);
+$resut = ($email === null);
+var_dump($resut);
+$result2 = ($home === null);
+var_dump($result2);
