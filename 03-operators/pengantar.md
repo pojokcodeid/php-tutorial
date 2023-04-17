@@ -61,3 +61,36 @@ Operator pembanding memungkinkan untuk membandingkan dua nilai dan mengembalikan
 | <        | Kurang dari                  | Kembalikan  truejika operan di sebelah kiri lebih kecil dari operan di sebelah kanan; jika tidak, ia mengembalikan  false.             |
 | <=       | Kurang dari atau sama dengan | Kembali  truejika operan di sebelah kiri kurang dari atau sama dengan operan di sebelah kanan; jika tidak, ia mengembalikan  false.    |
 
+# Operator Logika
+## Operator AND disimbolkan (&&)
+- operator and menerima dua operan dan mengmabalikan true jika semua operan tersebut benar, selainnya akan false.
+- perintah dasarnya 
+```php
+expresion1 and expresion2
+```
+true  and true  = true
+true  and false = fasle
+false and true  = false
+false and false = false
+
+## operator OR disimbolkan (||)
+- operator or menerima dua operan dan mengembalikan true jika salah satu operan tersebut benar, jika keduanya false baru menghasilkan false.
+- perintah dasarnya 
+```php
+expresion1 or expresion2
+```
+true  or true  = true
+true  or false = true
+false or true  = true
+false or false = false
+
+# operator NOT (!)
+- Berbeda dengan operator logika AND dan OR yang menerima dua operan, operator NOT logikal hanya menerima satu operan dan meniadakan operan tersebut.
+- akan berkebalikan dari nilai operannya.
+- not expression
+- ! expression
+
+true  -> false
+false -> true
+
+
