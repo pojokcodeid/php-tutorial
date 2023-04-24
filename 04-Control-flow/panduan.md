@@ -180,3 +180,14 @@ while (expression):
 	statement;
 endwhile;
 ```
+
+# DO WHILE
+`Do-while` adalah salah satu jenis loop pada PHP yang digunakan untuk mengulangi sebuah blok kode selama kondisi tertentu tetap benar. Perbedaan antara `do-while` dengan `while` adalah bahwa `do-while` akan mengeksekusi blok kode minimal satu kali, bahkan jika kondisi awal tidak terpenuhi, sementara `while` tidak akan mengeksekusi blok kode sama sekali jika kondisi awal tidak terpenuhi. Berikut adalah format umum dari penggunaan do-while di PHP:
+
+```php
+do {
+   // blok kode yang dieksekusi
+} while (kondisi);
+```
+
+Blok kode akan dieksekusi satu kali secara otomatis, kemudian kondisi akan dievaluasi. Jika kondisi masih benar, maka blok kode akan terus diulang sampai kondisi tidak lagi benar.
