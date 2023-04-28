@@ -191,3 +191,49 @@ do {
 ```
 
 Blok kode akan dieksekusi satu kali secara otomatis, kemudian kondisi akan dievaluasi. Jika kondisi masih benar, maka blok kode akan terus diulang sampai kondisi tidak lagi benar.
+
+# BREAK
+`break` adalah perintah khusus di PHP yang digunakan untuk menghentikan loop seperti `for`, `while`, dan `do-while` sebelum iterasi selesai. 
+
+Ketika `break` dieksekusi, loop akan segera berhenti dan kontrol akan diteruskan ke pernyataan setelah loop. Ini sangat berguna jika Anda ingin keluar dari loop secara prematur berdasarkan kondisi tertentu.
+
+Berikut adalah contoh sederhana menggunakan break di dalam loop for:
+
+```php
+for ($i = 1; $i <= 10; $i++) {
+    if ($i == 6) {
+        break;
+    }
+    echo $i . '<br>';
+}
+```
+
+Outputnya adalah:
+
+```
+1
+2
+3
+4
+5
+```
+
+Karena `break` dipanggil ketika `$i` sama dengan 6, output hanya mencetak nilai $i dari 1 hingga 5. Setelah `$i` bernilai 6, pernyataan `break` akan dieksekusi dan loop akan berakhir sebelum melanjutkan pengulangan seterusnya.
+
+# CONTINUE
+`continue` adalah sebuah perintah di PHP yang digunakan untuk melewati salah satu iterasi dalam loop (perulangan) dan melanjutkan ke iterasi berikutnya. 
+
+Ketika `continue` dipanggil di dalam loop, maka proses iterasi saat itu akan berhenti dan program akan langsung melompat ke iterasi berikutnya. Penggunaan `continue` biasanya digunakan ketika kita ingin melakukan pengecekan suatu kondisi dalam setiap iterasi, dan jika kondisi tersebut terpenuhi maka iterasi tersebut akan dilewati.
+
+Berikut adalah contoh penggunaan `continue` dalam loop `for`:
+
+```php
+for ($i = 1; $i <= 10; $i++) {
+    if ($i % 2 == 0) {
+        continue;
+    }
+    echo $i . " ";
+}
+```
+
+Pada contoh di atas, setiap kali nilai `$i` merupakan bilangan genap, perintah `continue` akan dipanggil dan iterasi saat itu akan dilewati. Oleh karena itu, pada output dari program di atas hanya akan menampilkan bilangan ganjil dari 1 sampai 10.
