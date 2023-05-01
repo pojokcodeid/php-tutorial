@@ -86,3 +86,6 @@ echo "Hasil penjumlahan dari $x dan $y adalah: $hasilTambah"; // Output: Hasil p
 Pada contoh di atas, kita menggunakan karakter `&` untuk menandai bahwa `$a` dan `$b` harus dikirimkan sebagai "pass by reference". Jika terjadi perubahan pada nilai `$a` dan `$b` di dalam fungsi, maka nilai asli dari variabel `$x` dan `$y` juga akan berubah.
 
 Namun, penggunaan "pass by reference" juga bisa menyebabkan masalah jika tidak digunakan dengan benar. Oleh karena itu, kita harus berhati-hati dalam menggunakan metode ini, terutama jika aplikasi yang kita bangun memiliki kompleksitas yang tinggi.
+
+# Argumenat Bernama
+Sejak PHP 8.0, Anda dapat menggunakan argumen bernama untuk fungsi. Argumen bernama memungkinkan Anda meneruskan argumen ke fungsi berdasarkan nama parameter daripada posisi parameter.
