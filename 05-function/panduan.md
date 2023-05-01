@@ -89,3 +89,76 @@ Namun, penggunaan "pass by reference" juga bisa menyebabkan masalah jika tidak d
 
 # Argumenat Bernama
 Sejak PHP 8.0, Anda dapat menggunakan argumen bernama untuk fungsi. Argumen bernama memungkinkan Anda meneruskan argumen ke fungsi berdasarkan nama parameter daripada posisi parameter.
+
+# LINGKUP VARIABLE
+## Local Variable
+Saat Anda mendefinisikan variabel di dalam suatu fungsi , Anda hanya dapat mengakses variabel itu di dalam fungsi. Dan dikatakan bahwa variabel tersebut bersifat lokal untuk fungsi tersebut.
+
+Contoh berikut mendefinisikan say()fungsi yang menampilkan 'Hi'pesan:
+```php
+<?php
+
+function say()
+{
+	$message = 'Hi';
+	echo $message;
+}
+```
+
+## Global Variable 
+Saat Anda mendeklarasikan variabel di luar fungsi, variabel tersebut bersifat global. Ini berarti Anda dapat mengakses variabel di mana saja di dalam skrip kecuali di dalam suatu fungsi. Misalnya:
+```php
+<?php
+
+$message = 'Hello';
+
+function say()
+{
+	$message = 'Hi';
+	echo $message;
+}
+
+echo $message; // Hello
+```
+
+## Variabel superglobal
+PHP memiliki daftar variabel bawaan, yang dikenal sebagai variabel superglobal. Variabel superglobal memberikan informasi tentang lingkungan skrip PHP.
+
+$GLOBAL 	Mengembalikan array yang berisi variabel global. Nama variabel digunakan untuk memilih bagian mana dari array yang akan diakses.
+$_SERVER 	Mengembalikan data tentang lingkungan server web.
+$_GET 	  Kembalikan data dari GETpermintaan.
+$_POST 	  Kembalikan data dari POSTpermintaan.
+$_COOKIE 	Kembalikan data dari cookie.
+$_FILES 	Kembalikan data dari file upload.
+DSB...
+
+## Variable Static
+Variabel static adalah variabel yang dapat diakses di dalam suatu fungsi tanpa menggunakan objek.
+```php
+<?php
+
+function get_counter() {
+    static $counter = 1;
+    return $counter++;
+}
+
+echo get_counter() .  '<br>'; // 1
+echo get_counter() .  '<br>'; // 2
+echo get_counter() .  '<br>'; // 3
+```
+## Parameter fungsi
+Parameter fungsi bersifat lokal untuk fungsi tersebut. Oleh karena itu, parameter fungsi hanya dapat diakses di dalam fungsi. Misalnya:
+```php
+<?php 
+
+function sum($items) {
+    $total = 0;
+    foreach($items as $item) {
+        $total += $item;
+    }
+    return $total;
+}
+
+// $items cannot be accessible here
+echo sum([10,20,30]);
+```
