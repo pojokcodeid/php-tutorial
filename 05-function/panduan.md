@@ -162,3 +162,74 @@ function sum($items) {
 // $items cannot be accessible here
 echo sum([10,20,30]);
 ```
+
+# PHP Type Hint
+Type Hint adalah cara untuk menentukan tipe data dari variabel.
+PHP adalah bahasa yang diketik secara dinamis. Saat Anda mendefinisikan suatu fungsi , Anda tidak perlu mendeklarasikan tipe untuk parameter
+```php
+<?php
+function add($x, $y)
+{
+    return $x + $y;
+}
+
+$result = add(1,2);
+echo $result; // 3
+```
+## Petunjuk type Php parameter fungsi
+digunakan untuk memastikan bahwa PHP memeriksa type nilai pada saat panggilan dan mengembalikan error jika tidak cocok
+```php
+<?php
+
+function my_function(type $param1, type param2, ...) {
+   // ...
+}
+```
+## Petunjuk type PHP untuk nilai return
+digunakan untuk memastikan type nilai kembalian
+```php
+<?php
+
+function my_function(type $param1, type $param2, ...) : type 
+{
+    // ..
+}
+```
+## mulai php 7.0 jika tidak mengembalikan sesuatu maka gunakan void
+
+# Variadic Functions
+Variadic function adalah fungsi yang dapat menerima jumlah parameter yang berubah-ubah. Anda dapat memanggilnya seperti fungsi lainnya, Anda tidak perlu tahu bahwa itu variadic1. 
+
+Sebelum PHP 5.6, Anda dapat menggunakan fungsi func_get_args() untuk mendapatkan array yang berisi semua argumen fungsi2. Contoh:
+```php
+<?php
+function sum(){
+    $numbers = func_get_args();
+    $total = 0;
+    for($i = 0; $i < count($numbers); $i++) {
+        $total += $numbers[$i];
+    }
+    return $total;
+}
+echo sum(1,2,3,4,5);
+```
+Mulai PHP 5.6, Anda dapat menggunakan operator … di depan parameter fungsi, dan parameter tersebut akan menjadi array di dalam fungsi2. Contoh:
+```php
+<?php
+function sum(...$numbers){
+    $total = 0;
+    for($i = 0; $i < count($numbers); $i++) {
+        $total += $numbers[$i];
+    }
+    return $total;
+}
+echo sum(1,2,3,4,5);
+```
+Mulai PHP 7, Anda dapat mendeklarasikan tipe untuk argumen variadic2. Contoh:
+```php
+<?php
+function sum(int ...$numbers): int{
+    return array_sum($numbers);
+}
+```
+
