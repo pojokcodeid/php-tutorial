@@ -101,4 +101,14 @@ foreach($age as $x => $x_value) {
 }
 ```
 
+# ARRAY FOREACH
+foreach adalah sebuah perintah yang bisa digunakan untuk mengulang eleent array.
+```php
+<?php
+
+foreach ($array_name as $element) {
+    // process element here
+}
+```
+
 

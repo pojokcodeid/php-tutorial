@@ -1,29 +1,29 @@
 <?php
-// Membuat array assosiative yang menyimpan nama dan email
+
 $contacts = array(
     "Ali" => "ali@gmail.com",
-    "Budi" => "budi@yahoo.com",
-    "Cici" => "cici@hotmail.com"
+    "Ahmed" => "ahmed@gmail.com",
+    "Sara" => "sara@gmail.com",
+    "Cici" => "cici@gmail.com"
 );
 
-// Menampilkan semua elemen array
 foreach ($contacts as $name => $email) {
-    echo "$name : $email <br>";
+    echo $name . " " . $email . "<br>";
 }
 
-// Menambahkan elemen baru ke array
-$contacts["Dedi"] = "dedi@outlook.com";
+$contacts["Dedi"] = "dedi@gmail.com";
 
-// Menghapus elemen dari array
-unset($contacts["Budi"]);
+# menghapus element
+unset($contacts["Ali"]);
 
-// Mengubah nilai elemen array
-$contacts["Ali"] = "ali@edu.com";
-
-// Mengurutkan array berdasarkan kunci secara menaik
-ksort($contacts);
-
-// Menampilkan semua elemen array setelah diubah
+echo "<br>";
 foreach ($contacts as $name => $email) {
-    echo "$name : $email <br>";
+    echo $name . " " . $email . "<br>";
+}
+
+#mengurutkan array
+ksort($contacts);
+echo '<br>';
+foreach ($contacts as $name => $email) {
+    echo $name . " " . $email . "<br>";
 }
