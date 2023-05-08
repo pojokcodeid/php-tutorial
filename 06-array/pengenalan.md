@@ -111,4 +111,37 @@ foreach ($array_name as $element) {
 }
 ```
 
+# ARRAY MULTIDIMENSI
+Array multidimensi adalah array yang memiliki lebih dari satu dimensi. Misalnya, array dua dimensi adalah array dari array. Ini seperti tabel baris dan kolom.
+
+Di PHP, elemen dalam array bisa menjadi array lain. Oleh karena itu, untuk mendefinisikan array multidimensi, Anda mendefinisikan array dari array.
+
+contoh array 1 dimensi
+```php
+<?php
+$scores = [1, 2, 3, 4, 5];
+```
+atau 
+```php
+<?php
+$rates = [
+	'Excellent' => 5,
+	'Good' => 4,
+	'OK' => 3,
+	'Bad' => 2,
+	'Very Bad' => 1
+];
+```
+
+- contoh array dua dimensi
+```php
+$tasks = [
+    ['Learn PHP programming', 2],
+    ['Practice PHP', 2],
+    ['Work', 8],
+    ['Do exercise' 1],
+];
+```
+
+
 
