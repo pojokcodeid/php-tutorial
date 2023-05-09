@@ -143,5 +143,39 @@ $tasks = [
 ];
 ```
 
+# FUNGSI-FUNGSI ARRAY
+## Array Unshift
+Fungsi array_unshift() di PHP digunakan untuk menambahkan satu atau lebih elemen ke awal array. Elemen yang sudah ada di dalam array akan bergeser ke posisi indeks yang lebih tinggi untuk memberi ruang bagi elemen baru. Fungsi ini tidak menggantikan elemen yang sudah ada di dalam array.
+```php
+<?php
+$buah = array("a" => "apel", "b" => "pisang");
+array_unshift($buah, "jeruk", "mangga");
+print_r($buah);
+```
+## Array Push
+Fungsi array_push() di PHP digunakan untuk menambahkan satu atau lebih elemen ke akhir array. Elemen yang ditambahkan akan memiliki kunci numerik, bahkan jika array memiliki kunci string. Fungsi ini mengembalikan panjang baru dari array
+```php
+<?php
+$warna = array("merah", "hijau");
+array_push($warna, "biru", "kuning");
+print_r($warna);
+```
 
-
+## array pop
+Fungsi array_pop() di PHP digunakan untuk menghapus elemen terakhir dari array dan mengembalikannya. Fungsi ini mengurangi panjang array sebanyak satu elemen. Fungsi ini hanya bekerja untuk array dengan kunci numerik
+```php
+<?php
+$buah = array("apel", "pisang", "jeruk", "mangga");
+$terakhir = array_pop($buah);
+print_r($buah);
+echo $terakhir;
+```
+## array shift
+Fungsi array_shift() di PHP digunakan untuk menghapus elemen pertama dari array dan mengembalikannya. Fungsi ini memendekkan array sebanyak satu elemen dan memindahkan semua elemen ke bawah.
+```php
+<?php
+$angka = array(10, 20, 30, 40);
+$pertama = array_shift($angka);
+print_r($angka);
+echo $pertama;
+```
