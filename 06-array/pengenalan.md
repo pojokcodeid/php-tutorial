@@ -179,3 +179,20 @@ $pertama = array_shift($angka);
 print_r($angka);
 echo $pertama;
 ```
+
+# ARRAY FUNCTION PART 2
+## array_keys
+Fungsi array_keys() di PHP mengembalikan kunci-kunci dari sebuah array atau sebagian kunci. Fungsi ini menerima sebuah array masukan, sebuah nilai pencarian opsional, dan sebuah parameter ketat opsional.
+```php
+<?php
+$angka = array(10, 20, 30, 40);
+$angka = array_keys($angka);
+print_r($angka);
+```
+## array_key_exists
+Fungsi array_key_exists() di PHP digunakan untuk memeriksa apakah sebuah kunci atau indeks tertentu ada dalam sebuah array atau tidak. Fungsi ini mengembalikan true jika kunci tersebut ditemukan dalam array dan false jika tidak
+ ```php
+ array_key_exists(string|int $key, array $array): bool
+ ```
+
+ 
