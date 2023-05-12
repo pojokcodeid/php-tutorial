@@ -9,36 +9,30 @@ function cetak($array)
 }
 
 $array1 = array("color" => "red", 2, 4);
-$array2 = array("a", "b", "color" => "green", "shape" => "trapezoid", 4);
+$array2 = array("a", "b", "color" => "green", "shape" => "square", 4);
 $result = array_merge($array1, $array2);
 cetak($result);
 
-# menggabungkan dengan key string
-# jika menemukan key yang sama akan diambil yang terakhir
+# penggabungan dengan key string
 $before = [
-    'PHP' => 5,
-    'JavaScript' => 4,
-    'HTML' => 4,
-    'CSS' => 3
+    "PHP" => 5,
+    "Javascript" => 4,
+    "HTML" => 3,
+    "CSS" => 2
 ];
-
 $after = [
-    'PHP' => 2,
-    'JavaScript' => 5,
-    'MySQL' => 4,
+    "PHP" => 2,
+    "Javascript" => 3,
+    "MySQL" => 4
 ];
-
-$skills = array_merge($before, $after);
-cetak($skills);
+$skil = array_merge($before, $after);
+cetak($skil);
 
 # spred operator
 $even = [2, 4, 6];
 $odd = [1, 3, 5];
-$all = [...$odd, ...$even];
+$all = [...$even, ...$odd];
 cetak($all);
-
-$hasil = [...$before, ...$after];
-cetak($hasil);
 
 function get_random_numbers()
 {
@@ -47,63 +41,58 @@ function get_random_numbers()
     }
     return $random_numbers;
 }
-
 $random_numbers = [...get_random_numbers()];
 cetak($random_numbers);
 
-# menggunakan generator function
+# generator function
 function even_number()
 {
     for ($i = 2; $i < 10; $i += 2) {
         yield $i;
     }
 }
-$even = [...even_number()];
-cetak($even);
+$generator = [...even_number()];
+cetak($generator);
 
 function format_name(string $first, string $middle, string $last): string
 {
-    return $middle ?
-        "$first $middle $last" :
-        "$first $last";
+    return $middle ? "$first $middle $last" : "{$first} {$last}";
 }
 $names = [
     'first' => 'Pojok',
-    'middle' => 'V.',
+    'middle' => 'v',
     'last' => 'Code'
 ];
-
 $nama = format_name(...$names);
 cetak($nama);
 
-# list 
+#list
 $info = array('kopi', 'coklat', 'kafein');
-// Menetapkan semua variabel
 list($minuman, $warna, $zat) = $info;
-echo "$minuman berwarna $warna dan $zat membuatnya spesial.\n";
-// Menetapkan beberapa variabel saja
-list($minuman, , $zat) = $info;
-echo "$minuman mengandung $zat.\n";
-// Atau hanya variabel ketiga saja
-list(, , $zat) = $info;
-echo "Saya butuh $zat!\n";
-// list() tidak dapat bekerja dengan string
-list($bar) = "abcde";
-var_dump($bar); // NULL
+echo "$minuman berwarna  $warna dan  $zat membuatnya spesial";
 
-# list bersarang untuk menempatkan variable
+list($minuman, , $zat) = $info;
+echo '<br>';
+echo "$minuman mengandung  $zat";
+
+list(, , $zat) = $info;
+echo '<br>';
+echo "saya butuh $zat";
+
+list($bar) = "abcd";
+echo '<br>';
+var_dump($bar);
+
 $elements = ['body', ['white', 'blue']];
 list($element, list($bgcolor, $color)) = $elements;
 echo '<br>';
 var_dump($element, $bgcolor, $color);
 
-# menggunaakn list dengan array assosiatif
 $person = [
-    'first_name' => 'John',
-    'last_name' => 'Doe',
-    'age' => 25
+    'first_name' => 'Pojok',
+    'last_name' => 'Code',
+    'age' => 20
 ];
-
 list(
     'first_name' => $first_name,
     'last_name' => $last_name,
@@ -112,31 +101,28 @@ list(
 echo '<br>';
 var_dump($first_name, $last_name, $age);
 
-# array destructuring
+#array destrukturing
 list($a, $b, $c) = [1, 2, 3];
 echo '<br>';
-echo "$a $b $c"; // 1 2 3
+var_dump($a, $b, $c);
 
 [$a, $b, $c] = [1, 2, 3];
 echo '<br>';
-echo "$a $b $c"; // 1 2 3
+var_dump($a, $b, $c);
 
 list(
-    'scheme' => $scheme,
+    'scheme' => $schema,
     'host' => $host,
     'path' => $path
-) = parse_url('https://www.phptutorial.net/');
+) = parse_url('https://www.php.com/');
 echo '<br>';
 echo '<pre>';
-var_dump($scheme, $host, $path);
+var_dump($schema, $host, $path);
 echo '</pre>';
 
 [
     'dirname' => $dirname,
     'basename' => $basename
 ] = pathinfo('c:\temp\readme.txt');
-
 echo '<br>';
-echo '<pre>';
 var_dump($dirname, $basename);
-echo '</pre>';
