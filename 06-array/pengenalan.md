@@ -317,3 +317,30 @@ echo "$a $b $c\n"; // 1 2 3
 echo "$a $b $c\n"; // 1 2 3
 ?>
 ```
+
+# Array Sort
+Array sort di PHP adalah fungsi untuk mengurutkan elemen-elemen dalam array berdasarkan kriteria tertentu, seperti abjad, angka, atau urutan yang ditentukan oleh pengguna. Ada beberapa fungsi array sort di PHP yang dapat digunakan, antara lain¹²:
+
+- **sort()** - mengurutkan array berdasarkan nilai (value) dari kecil ke besar (ascending) dan mengubah kunci (key) menjadi numerik (0, 1, 2, ...).
+
+- **rsort()** - mengurutkan array berdasarkan nilai dari besar ke kecil (descending) dan mengubah kunci menjadi numerik.
+
+- **asort()** - mengurutkan array berdasarkan nilai secara ascending dan mempertahankan kunci asli.
+
+- **arsort()** - mengurutkan array berdasarkan nilai secara descending dan mempertahankan kunci asli.
+
+- **ksort()** - mengurutkan array berdasarkan kunci secara ascending dan mempertahankan nilai asli.
+
+- **krsort()** - mengurutkan array berdasarkan kunci secara descending dan mempertahankan nilai asli.
+
+- **natsort()** - mengurutkan array berdasarkan nilai secara alami (natural), yaitu sesuai dengan cara manusia mengurutkan data, misalnya "img1", "img2", "img10", bukan "img1", "img10", "img2". Fungsi ini juga mempertahankan kunci asli.
+- **natcasesort()** - sama dengan natsort(), tetapi tidak membedakan huruf besar dan kecil (case insensitive).
+
+- **usort()** - mengurutkan array berdasarkan nilai dengan menggunakan fungsi perbandingan yang ditentukan oleh pengguna (user-defined) dan mengubah kunci menjadi numerik.
+
+- **uasort()** - sama dengan usort(), tetapi mempertahankan kunci asli.
+- **uksort()** - mengurutkan array berdasarkan kunci dengan menggunakan fungsi perbandingan yang ditentukan oleh pengguna dan mempertahankan nilai asli.
+
+- **array_multisort()** - mengurutkan satu atau lebih array sekaligus dengan menggunakan kriteria yang dapat disesuaikan.
+
+Semua fungsi array sort di PHP akan langsung memodifikasi array yang diberikan sebagai argumen, bukan mengembalikan array baru yang sudah terurut. Jika ada dua elemen yang memiliki nilai atau kunci yang sama, maka urutan awal mereka akan dipertahankan. Sebelum PHP 8.0.0, urutan mereka tidak ditentukan (pengurutan tidak stabil).
