@@ -35,3 +35,35 @@ PHP require_once adalah mitra dari include_once, require_once mengeluarkan kesal
 ```php
 require_once 'path_to_file';
 ```
+
+# PHP __DIR__
+PHP DIR adalah sebuah konstanta ajaib yang mengembalikan direktori dari file yang sedang dijalankan. Konstanta ini tersedia sejak PHP versi 5.3, dan sama dengan menggunakan dirname (FILE).1 Dalam banyak kasus, DIR digunakan untuk menyertakan file lain dari file yang disertakan.
+
+.
+├── inc
+│   ├── footer.php
+│   └── header.php
+└── index.php
+
+Anda bisa menggunakan DIR di dalam file header.php untuk menyertakan file footer.php seperti ini:
+```php
+<?php include __DIR__ . "/footer.php"; ?>
+```
+Keuntungan menggunakan DIR adalah Anda tidak perlu menyesuaikan jalur relatif dari file yang disertakan setiap kali Anda menyertakan file header.php di file lain. Misalnya, jika Anda memiliki file index.php di dalam subdirektori admin, Anda bisa menyertakan file header.php seperti ini:
+```php
+<?php include "../inc/header.php"; ?>
+```
+Tanpa perlu mengubah kode di dalam file header.php
+
+-- contoh 2
+.
+├── admin
+│   └── dashboard
+│       └── index.php
+├── config
+│   └── app.php
+├── inc
+│   ├── footer.php
+│   └── header.php
+└── public
+    └── index.php
