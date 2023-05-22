@@ -67,3 +67,13 @@ Tanpa perlu mengubah kode di dalam file header.php
 │   └── header.php
 └── public
     └── index.php
+
+# Membuat Variable dari Variable Lainnya
+PHP Variable Variables adalah fitur PHP yang memungkinkan kita untuk menggunakan nilai dari sebuah variabel sebagai nama dari variabel lain
+```php
+<?php
+$my_var= 'title';
+$$my_var = 'PHP variable variables';
+
+echo $title;
+```
