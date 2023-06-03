@@ -1,0 +1,441 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --error: #dc3545;
+    --success: #198754;
+    --primary: #7952b3;
+    --secondary: #61428f;
+    --border-color: #61428f;
+    --button-text: #fff;
+    --button-focus: 0 0 0 3px rgb(121, 82, 179, 0.25);
+    /* link color */
+    --link-color: #7952b3;
+    /* text */
+    --text-main: #363636;
+    --text-bright: #000;
+    /* background */
+    --background-body: #f9fafb;
+    --main-bg: #fff;
+    --main-border: transparent;
+
+    /* input */
+    --input-text-color: #000;
+    --input-placeholder-color: #c2c2c2;
+    --input-border-color: #ccc;
+    --input-background-color: #fff;
+    --input-disabled: #f5f5f5;
+    --input-focus: 0 0 0 3px rgb(121, 82, 179, 0.25);
+    --box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* error & success */
+    --error: #dc3545;
+    --success: #198754;
+    /* button */
+    --primary: #444c56;
+    --secondary: #212529;
+    --border-color: #1c1f23;
+    --button-text: #fff;
+    --button-focus: 0 0 0 0.25rem rgb(66 70 73 / 50%);
+
+    /* link color */
+    --link-color: #0d6efd;
+
+    /* text */
+    --text-main: #adbac7;
+    --text-bright: #adbac7;
+
+    /* background */
+    --background-body: #22272e;
+    --main-bg: #22272e;
+    --main-border: 1px solid #444c56;
+
+    /* input */
+    --input-text-color: #adbac7;
+    --input-placeholder-color: #4c545e;
+    --input-background-color: #22272e;
+    --input-border-color: #373e47;
+    --input-disabled: #373e47;
+    --input-focus: 0 0 0 2pt rgb(49, 132, 253, 0.5);
+    --box-shadow: none;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  padding: 0 1rem;
+  word-wrap: break-word;
+  color: var(--text-main);
+  background: var(--background-body);
+  text-rendering: optimizeLegibility;
+
+  /* center by default */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+li {
+  margin-left: 1.5rem;
+}
+
+main {
+  background-color: var(--main-bg);
+  border: var(--main-border);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  max-width: 450px;
+  min-width: 400px;
+  padding: 1rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+}
+
+/*  Links
+--------------------------------------------------------------------------*/
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  box-shadow: var(--button-focus);
+  border-radius: 3px;
+  outline: none;
+}
+
+/*  Forms
+--------------------------------------------------------------------------*/
+form {
+  max-width: 400px;
+}
+
+form h1 {
+  padding: 5px 0;
+  font-size: 1.4rem;
+  font-weight: normal;
+  text-align: center;
+  color: var(--text-bright);
+}
+
+form i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+form p {
+  margin-bottom: 0.5rem;
+}
+
+/* 
+	if the form has more than one button, 
+	wrap the buttons in the menu
+*/
+form > menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+/*
+	if the form has one button that span across 
+	wrap it in a div
+*/
+form > div > button {
+  width: 100%;
+}
+/*
+	Use the form footer if the form has 
+	additional control or notes
+*/
+form > footer {
+  text-align: center;
+  border-top: solid 1px var(--input-border-color);
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+/* wrap the label & input  */
+form > div {
+  margin-bottom: 0.75rem;
+}
+/* show an error message that follows an input  */
+input + small,
+textarea + small,
+label + small {
+  color: var(--error);
+}
+/* show a label on the form */
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+  vertical-align: top;
+  width: 100%;
+}
+
+/* input, textarea */
+input,
+textarea,
+select {
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: var(--input-focus);
+}
+
+input[disabled],
+textarea[disabled] {
+  background-color: var(--input-disabled);
+  border: solid 1px var(--input-border-color);
+  box-shadow: none;
+  color: #7a7a7a;
+  cursor: not-allowed;
+}
+
+/* input error & success */
+input.error,
+textarea.error,
+select.error {
+  border-color: var(--error);
+}
+
+input.error:focus,
+textarea.error:focus,
+select.error:focus {
+  box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+}
+
+input.success,
+textarea.success,
+select.success {
+  border-color: var(--success);
+}
+
+input.success:focus,
+textarea.success:focus {
+  box-shadow: 0 0 0 0.25rem rgb(25 135 84 / 25%);
+}
+
+/* buttons DO NOT USE input with type submit or button */
+
+button,
+a[rel="prev"],
+a[rel="next"] {
+  background: var(--primary);
+  color: var(--button-text);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid var(--primary);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-align: center;
+  padding: 0.375rem 0.75rem;
+}
+
+button:hover,
+a[rel="prev"]:hover,
+a[rel="next"]:hover {
+  background: var(--secondary);
+  border-color: var(--border-color);
+  cursor: pointer;
+}
+
+button:focus,
+a[rel="prev"]:focus,
+a[rel="next"]:focus {
+  outline: none;
+  color: var(--button-text);
+  background-color: var(--secondary);
+  border-color: var(--border-color);
+  box-shadow: var(--button-focus);
+}
+
+a[rel="prev"],
+a[rel="next"] {
+  appearance: button;
+  text-decoration: none;
+  user-select: none;
+  width: 100%;
+}
+
+form > button {
+  display: block;
+  width: 100%;
+}
+
+/* labels for radio  & checkbox*/
+form > div > div > label {
+  width: auto;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* 
+	Place multiple checkbox or radibo button inside a label and wrap
+ 	them with a <p> tag to make them stacked 
+*/
+form > div > p > label {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 0.75rem;
+}
+
+/* 
+	Add margin to the checkbox or radio button 
+	if they're placed next to each other
+*/
+label + label {
+  margin-left: 1rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  vertical-align: baseline;
+  width: auto;
+}
+
+/* alerts */
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.alert-error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.alert-warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+/* Utility classes*/
+.half {
+  width: 50%;
+}
+.quarter {
+  width: 25%;
+}
+
+.full {
+  width: 100%;
+}
+
+.error {
+  color: var(--error);
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* specific to CSRF */
+
+.circle {
+  --height: 24px;
+  --width: 12px;
+  --border-color: #78b13f;
+  --border-width: 2px;
+
+  border: var(--border-width) solid var(--border-color);
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+.message {
+  font-weight: 300;
+}
+
+.amount {
+  font-size: 4rem;
+  font-weight: 300;
+  color: #78b13f;
+}
