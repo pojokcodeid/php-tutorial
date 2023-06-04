@@ -19,7 +19,7 @@ require __DIR__ . '/inc/flash.php';
   <main>
     <form action="upload.php" method="post" enctype="multipart/form-data">
       <div>
-        <label for="file">Pilih file :</label>
+        <label for="file">Pilih File :</label>
         <input type="file" name="file" id="file">
       </div>
       <div>
