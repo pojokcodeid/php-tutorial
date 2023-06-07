@@ -18,8 +18,8 @@ try {
   $mail->isSMTP();
   $mail->Host = 'smtp.gmail.com';
   $mail->SMTPAuth = true;
-  $mail->Username = 'asep.010801503125082@gmail.com';
-  $mail->Password = 'nlenhpkyzlasxobz';
+  $mail->Username = 'asep.xxxxxxxxxxx@gmail.com';
+  $mail->Password = 'xxxxxxxxxxxxxxxx';
   $mail->SMTPSecure = 'tls';
   $mail->Port = 587;
 
