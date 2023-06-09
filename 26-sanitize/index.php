@@ -1,21 +1,21 @@
 <?php
 
-require __DIR__ . '/sanitization.php';
+require __DIR__ . '/sanitaize.php';
 
 $inputs = [
-  'name' => 'joe<script>',
-  'email' => 'joe@example.com</>',
-  'age' => '18abc',
+  'name' => 'Pojok Code<script>',
+  'email' => 'pcode@gmail.com</>',
+  'age' => '20abc',
   'weight' => '100.12lb',
-  'github' => 'https://github.com/joe',
+  'github' => 'https://github.com/pojokcodeid',
   'hobbies' => [
-    ' Reading',
-    'Running ',
-    ' Programming '
+    ' coding',
+    'football',
+    ' hiking '
   ]
 ];
 
-$fields = [
+$fiels = [
   'name' => 'string',
   'email' => 'email',
   'age' => 'int',
@@ -24,7 +24,7 @@ $fields = [
   'hobbies' => 'string[]'
 ];
 
-$data = sanitize($inputs, $fields);
+$data = sanitize($inputs, $fiels);
 
 echo '<pre>';
 var_dump($data);
