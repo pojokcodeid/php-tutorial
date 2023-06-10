@@ -4,59 +4,41 @@ require __DIR__ . '/database.php';
 
 const DEFAULT_VALIDATION_ERRORS = [
   'required' => 'Please enter the %s',
-  'email' => 'The %s is not a valid email address',
-  'min' => 'The %s must have at least %s characters',
-  'max' => 'The %s must have at most %s characters',
-  'between' => 'The %s must have between %d and %d characters',
-  'same' => 'The %s must match with %s',
-  'alphanumeric' => 'The %s should have only letters and numbers',
+  'email' => 'The %s must be a valid email address',
+  'min' => 'The %s must be at least %d characters long',
+  'max' => 'The %s must be at most %d characters long',
+  'between' => 'The %s must be between %d and %d characters long',
+  'same' => 'The %s and %s must match',
+  'alphanumeric' => 'The %s must only contain letters and numbers',
   'secure' => 'The %s must have between 8 and 64 characters and contain at least one number, one upper case letter, one lower case letter and one special character',
   'unique' => 'The %s already exists',
 ];
 
-
-/**
- * Validate
- * @param array $data
- * @param array $fields
- * @param array $messages
- * @return array
- */
+//validation
 function validate(array $data, array $fields, array $messages = []): array
 {
-  // Split the array by a separator, trim each element
-  // and return the array
-  $split = fn($str, $separator) => array_map('trim', explode($separator, $str));
+  $split = fn($str, $sparator) => array_map('trim', explode($sparator, $str));
 
-  // get the message rules
-  $rule_messages = array_filter($messages, fn($message) => is_string($message));
-  // overwrite the default message
+  //get the message rules
+  $rule_messages = array_filter($messages, fn($massage) => is_string($massage));
+  //overtite default message
   $validation_errors = array_merge(DEFAULT_VALIDATION_ERRORS, $rule_messages);
-
   $errors = [];
-
   foreach ($fields as $field => $option) {
-
     $rules = $split($option, '|');
-
     foreach ($rules as $rule) {
-      // get rule name params
       $params = [];
-      // if the rule has parameters e.g., min: 1
       if (strpos($rule, ':')) {
         [$rule_name, $param_str] = $split($rule, ':');
         $params = $split($param_str, ',');
       } else {
         $rule_name = trim($rule);
       }
-      // by convention, the callback should be is_<rule> e.g.,is_required
-      $fn = 'is_' . $rule_name;
 
+      $fn = 'is_' . $rule_name;
       if (is_callable($fn)) {
         $pass = $fn($data, $field, ...$params);
         if (!$pass) {
-          // get the error message for a specific field and rule if exists
-          // otherwise get the error message from the $validation_errors
           $errors[$field] = sprintf(
             $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
             $field,
@@ -70,23 +52,13 @@ function validate(array $data, array $fields, array $messages = []): array
   return $errors;
 }
 
-/**
- * Return true if a string is not empty
- * @param array $data
- * @param string $field
- * @return bool
- */
+//wajib diisi
 function is_required(array $data, string $field): bool
 {
-  return isset($data[$field]) && trim($data[$field]) !== '';
+  return isset($data[$field]) && $data[$field] !== '';
 }
 
-/**
- * Return true if the value is a valid email
- * @param array $data
- * @param string $field
- * @return bool
- */
+//valid email
 function is_email(array $data, string $field): bool
 {
   if (empty($data[$field])) {
@@ -96,13 +68,7 @@ function is_email(array $data, string $field): bool
   return filter_var($data[$field], FILTER_VALIDATE_EMAIL);
 }
 
-/**
- * Return true if a string has at least min length
- * @param array $data
- * @param string $field
- * @param int $min
- * @return bool
- */
+//valid minimum
 function is_min(array $data, string $field, int $min): bool
 {
   if (!isset($data[$field])) {
@@ -112,46 +78,26 @@ function is_min(array $data, string $field, int $min): bool
   return mb_strlen($data[$field]) >= $min;
 }
 
-/**
- * Return true if a string cannot exceed max length
- * @param array $data
- * @param string $field
- * @param int $max
- * @return bool
- */
+//valid maximum
 function is_max(array $data, string $field, int $max): bool
 {
   if (!isset($data[$field])) {
     return true;
   }
-
   return mb_strlen($data[$field]) <= $max;
 }
 
-/**
- * @param array $data
- * @param string $field
- * @param int $min
- * @param int $max
- * @return bool
- */
+//valid between
 function is_between(array $data, string $field, int $min, int $max): bool
 {
   if (!isset($data[$field])) {
     return true;
   }
-
   $len = mb_strlen($data[$field]);
   return $len >= $min && $len <= $max;
 }
 
-/**
- * Return true if a string equals the other
- * @param array $data
- * @param string $field
- * @param string $other
- * @return bool
- */
+//valid same
 function is_same(array $data, string $field, string $other): bool
 {
   if (isset($data[$field], $data[$other])) {
@@ -165,12 +111,7 @@ function is_same(array $data, string $field, string $other): bool
   return false;
 }
 
-/**
- * Return true if a string is alphanumeric
- * @param array $data
- * @param string $field
- * @return bool
- */
+//valid alphanumeric
 function is_alphanumeric(array $data, string $field): bool
 {
   if (!isset($data[$field])) {
@@ -180,29 +121,17 @@ function is_alphanumeric(array $data, string $field): bool
   return ctype_alnum($data[$field]);
 }
 
-/**
- * Return true if a password is secure
- * @param array $data
- * @param string $field
- * @return bool
- */
+//vaid scure
 function is_secure(array $data, string $field): bool
 {
   if (!isset($data[$field])) {
-    return false;
+    return true;
   }
-
   $pattern = "#.*^(?=.{8,64})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#";
   return preg_match($pattern, $data[$field]);
 }
 
-
-/**
- * Connect to the database and returns an instance of PDO class
- * or false if the connection fails
- *
- * @return PDO
- */
+//db connection
 function db(): PDO
 {
   static $pdo;
@@ -210,7 +139,6 @@ function db(): PDO
   $db_name = DB_NAME;
   $username = DB_USER;
   $password = DB_PASSWORD;
-
   if (!$pdo) {
     $pdo = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -219,26 +147,15 @@ function db(): PDO
   return $pdo;
 }
 
-/**
- * Return true if the $value is unique in the column of a table
- * @param array $data
- * @param string $field
- * @param string $table
- * @param string $column
- * @return bool
- */
+//valid unique
 function is_unique(array $data, string $field, string $table, string $column): bool
 {
   if (!isset($data[$field])) {
     return true;
   }
-
-  $sql = "SELECT $column FROM $table WHERE $column = :value";
-
+  $sql = "SELECT * FROM $table WHERE $column=:value";
   $stmt = db()->prepare($sql);
-  $stmt->bindValue(":value", $data[$field]);
-
+  $stmt->bindValue(':value', $data[$field]);
   $stmt->execute();
-
   return $stmt->fetchColumn() === false;
 }
