@@ -8,14 +8,13 @@ $inputs = [];
 $errors = [];
 
 if (is_post_request()) {
-
-  // sanitize & validate user inputs
+  //sanitize dan validation
   [$inputs, $errors] = filter($_POST, [
     'username' => 'string | required',
-    'password' => 'string | required'
+    'password' => 'string | required',
   ]);
 
-  // if validation error
+  //if validation error
   if ($errors) {
     redirect_with('login.php', [
       'errors' => $errors,
@@ -23,20 +22,17 @@ if (is_post_request()) {
     ]);
   }
 
-  // if login fails
+  //if login fails
   if (!login($inputs['username'], $inputs['password'])) {
-
-    $errors['login'] = 'Invalid username or password';
-
+    $errors['login'] = 'Username atau password salah';
     redirect_with('login.php', [
       'errors' => $errors,
       'inputs' => $inputs
     ]);
   }
 
-  // login successfully
+  //login berhasil
   redirect_to('index.php');
-
-} else if (is_get_request()) {
+} else {
   [$errors, $inputs] = session_flash('errors', 'inputs');
 }
