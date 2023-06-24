@@ -2,9 +2,9 @@
 
 class Mobil
 {
-  public $merk;
-  protected $warna;
-  private $harga;
+  public $merk; // dapat diacess dari manapun
+  protected $warna; //dapat diacess dari class itu sendiri atau turuannya
+  private $harga; // hanya bisa diacess kelas itu saja
 
   public function __construct($merk, $warna, $harga)
   {
@@ -13,57 +13,39 @@ class Mobil
     $this->harga = $harga;
   }
 
-  public function getMerk()
+  public function getWarna()
   {
-    return $this->merk;
+    return $this->warna;
+  }
+
+  public function getHarga()
+  {
+    return $this->harga;
+  }
+}
+
+$mobil = new Mobil("Toyota", "Hitam", 100000);
+$mobil->merk = "Toyota";
+echo $mobil->merk;
+
+//$mobil->harga = 100000;
+//$mobil->warna = "Hitam";
+echo $mobil->getWarna();
+echo $mobil->getHarga();
+
+class Mobil2 extends Mobil
+{
+  public function __construct($merk, $warna, $harga)
+  {
+    parent::__construct($merk, $warna, $harga);
   }
 
   public function getWarna()
   {
     return $this->warna;
   }
-
-  protected function getHarga()
-  {
-    $this->cek();
-    return $this->harga;
-  }
-
-  private function cek(): void
-  {
-    echo  "testing";
-  }
 }
 
-$mobil = new Mobil("Toyota", "Hitam", 5000000);
-echo $mobil->merk;   // dapat diacess dari mana saja karena public 
-echo $mobil->getMerk();
 
-//$mobil->warna; tidak dapat diacess karena protected (hanya bisa diacess
-//turunannya)
-//$mobil->harga; tidak dapat diacess karena private hanya bisa diacess class itu
-//sendiri
-
-class Toyota extends Mobil
-{
-  private $country;
-  public function __construct($merk, $warna, $harga)
-  {
-    parent::__construct($merk, $warna, $harga);
-  }
-
-  public function getCountry()
-  {
-    $var = parent::getHarga();
-    return $this->country . ' ' . $var;
-  }
-
-  public function setCountry($country)
-  {
-    $this->country = $country;
-  }
-}
-
-$toyota = new Toyota("Toyota", "Hitam", 5000000);
-$toyota->setCountry("Indonesia");
-echo $toyota->getCountry();
+$mobil2 = new Mobil2("Toyota", "Hitam 2", 100000);
+echo $mobil2->getWarna();
