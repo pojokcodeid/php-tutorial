@@ -1,17 +1,21 @@
-<?php 
+<?php
 
-class BarangModel extends Database{
+class BarangModel extends Database
+{
 
-  public function __construct(){
+  public function __construct()
+  {
     parent::__construct();
   }
 
-  public function getAll(){
+  public function getAll()
+  {
     $query = "SELECT * FROM barang";
     return $this->get($query)->fetchAll();
   }
 
-  public function getById($id){
+  public function getById($id)
+  {
     $query = "SELECT * FROM barang WHERE barang_id = ?";
     return $this->qry($query, [$id])->fetch();
   }
@@ -26,23 +30,30 @@ class BarangModel extends Database{
       harga_satuan, 
       expire_date) 
     VALUES (?, ?, ?, ?)";
-    return $this->qry($query, [$data['nama_barang'], $data['jumlah'], $data['harga_satuan'], $data['kadaluarsa']]);
+    return $this->qry($query, [
+      $data['nama_barang'], $data['jumlah'],
+      $data['harga_satuan'], $data['kadaluarsa']
+    ]);
   }
 
   // update data
-  public function update(array $data){
+  public function update(array $data)
+  {
     $query = "UPDATE barang SET 
       nama_barang = ?, 
       jumlah = ?, 
       harga_satuan = ?, 
       expire_date = ? 
       WHERE barang_id = ?";
-    return $this->qry($query, [$data['nama_barang'], $data['jumlah'], 
-    $data['harga_satuan'], $data['kadaluarsa'], $data['id']]);
+    return $this->qry($query, [
+      $data['nama_barang'], $data['jumlah'],
+      $data['harga_satuan'], $data['kadaluarsa'], $data['id']
+    ]);
   }
 
   // delete data
-  public function delete($id){
+  public function delete($id)
+  {
     $query = "DELETE FROM barang WHERE barang_id = ?";
     return $this->qry($query, [$id]);
   }

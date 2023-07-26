@@ -1,34 +1,34 @@
-<?php 
+<?php
 
-class Database{
-  private $host= DB_HOST;
-  private $user= DB_USER;
-  private $pass= DB_PASS;
-  private $dbname= DB_NAME;
-
+class Database
+{
   private $conn;
 
-  public function __construct(){
+  public function __construct()
+  {
     $this->conn = $this->setConnection();
   }
 
-  protected function setConnection(){
-    try{
-      $conn = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->user, $this->pass);
+  protected function setConnection()
+  {
+    try {
+      $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $conn;
-    }catch(PDOException $e){
-      die('Koneksi error : '.$e->getMessage());
+    } catch (PDOException $e) {
+      die('Koneksi error : ' . $e->getMessage());
     }
   }
 
-  public function get($query){
+  public function get($query)
+  {
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;
   }
 
-  public function qry($query, $params = array()){
+  public function qry($query, $params = array())
+  {
     $stmt = $this->conn->prepare($query);
     $stmt->execute($params);
     return $stmt;
