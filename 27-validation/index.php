@@ -13,8 +13,8 @@ $data = [
 ];
 
 $fields = [
-  'firstname' => 'required, max:255',
-  'lastname' => 'required, max:255',
+  'firstname' => 'required',
+  'lastname' => 'required',
   'address' => 'required | min: 10, max:255',
   'zipcode' => 'between:5,5',
   'username' => 'required | alphanumeric | between: 3,255 | unique: users,username',
@@ -23,7 +23,9 @@ $fields = [
   'password2' => 'required | same:password'
 ];
 
-$errors = validate(
+$validate = new Validation();
+
+$errors = $validate->validate(
   $data,
   $fields,
   [

@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* ini untuk form */
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type="submit"],
+button[type="button"],
+button[type="submit"],
+input[type="button"] {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+
+.primary {
+  background-color: #04aa6d;
+  color: white;
+}
+.primary:hover {
+  background-color: #45a049;
+}
+.danger {
+  background-color: #f44336;
+  color: white;
+}
+.danger:hover {
+  background-color: #d4b1b1;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .col-25,
+  .col-50,
+  .col-75,
+  input[type="submit"],
+  button[type="button"],
+  input[type="button"] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.container {
+  border-radius: 5px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.btn {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.header {
+  text-align: center;
+}
+
+/* ini untuk style home */
+.row-home {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  width: 250px;
+  padding: 15px 10px;
+  background-color: #90aa99;
+}
+
+.left h2 {
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.right {
+  flex: auto;
+  padding: 25px;
+  background-color: #c7d1c8;
+}
+
+#mySearch {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #d6d1d1;
+  border-radius: 7px;
+}
+
+#myMenu {
+  list-style-type: none;
+  padding: 3px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+#myMenu li a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+#myMenu li a:hover {
+  background-color: #c7d1c8;
+  border-radius: 7px;
+}

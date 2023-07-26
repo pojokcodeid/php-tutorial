@@ -1,0 +1,17 @@
+# Disable directory browsing
+Options -Indexes
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	RewriteEngine On    #untuk menjalankan process rewrite
+
+	# menghindari nama folder dan nama file sama dengan controller
+	# jika request berupa folder kita abaikan
+	# pndahkan semua yang ditulis di url ke $i, dan [L] jangan tulis kembali jika rule terpenuhi
+	RewriteCond %{REQUEST_FILENAME} !-f     
+	RewriteCond %{REQUEST_FILENAME} !-d     
+  RewriteRule ^([\s\S]*)$ index.php?$1 [L] 
+</IfModule>
+
+# Disable server signature start
+	ServerSignature Off
+# Disable server signature end
