@@ -1,20 +1,20 @@
 <?php 
 
 class Database{
-  private static $host= DB_HOST;
-  private static $user= DB_USER;
-  private static $pass= DB_PASS;
-  private static $dbname= DB_NAME;
+  private $host= DB_HOST;
+  private $user= DB_USER;
+  private $pass= DB_PASS;
+  private $dbname= DB_NAME;
 
   private $conn;
 
   public function __construct(){
-    $this->conn = self::setConnection();
+    $this->conn = $this->setConnection();
   }
 
-  private static function setConnection(){
+  protected function setConnection(){
     try{
-      $conn = new PDO("mysql:host=".self::$host.";dbname=".self::$dbname, self::$user, self::$pass);
+      $conn = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->user, $this->pass);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $conn;
     }catch(PDOException $e){
@@ -22,7 +22,15 @@ class Database{
     }
   }
 
-  public function getConnection(){
-    return $this->conn;
+  public function get($query){
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    return $stmt;
+  }
+
+  public function qry($query, $params = array()){
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute($params);
+    return $stmt;
   }
 }

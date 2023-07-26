@@ -1,57 +1,49 @@
 <?php 
 
-class BarangModel{
-  private $db;
+class BarangModel extends Database{
 
   public function __construct(){
-    $db = new Database();
-    $this->db = $db->getConnection();
+    parent::__construct();
   }
 
   public function getAll(){
     $query = "SELECT * FROM barang";
-    $stmt = $this->db->query($query);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $this->get($query)->fetchAll();
   }
 
   public function getById($id){
-    $query = "SELECT * FROM barang WHERE barang_id = :id";
-    $stmt = $this->db->prepare($query);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $query = "SELECT * FROM barang WHERE barang_id = ?";
+    return $this->qry($query, [$id])->fetch();
   }
 
   // insert data
   public function insert(array $data)
   {
-    $query = "INSERT INTO barang (nama_barang, jumlah, harga_satuan, expire_date) VALUES (:nama_barang, :jumlah, :harga, :kadaluarsa)";
-    $stmt = $this->db->prepare($query);
-    $stmt->bindParam(':nama_barang', $data['nama_barang'],PDO::PARAM_STR);
-    $stmt->bindParam(':jumlah', $data['jumlah'],PDO::PARAM_INT);
-    $stmt->bindParam(':harga', $data['harga_satuan'],PDO::PARAM_INT);
-    $stmt->bindParam(':kadaluarsa', $data['kadaluarsa'],PDO::PARAM_STR);
-    return $stmt->execute();
+    $query = "
+    INSERT INTO barang (
+      nama_barang, 
+      jumlah, 
+      harga_satuan, 
+      expire_date) 
+    VALUES (?, ?, ?, ?)";
+    return $this->qry($query, [$data['nama_barang'], $data['jumlah'], $data['harga_satuan'], $data['kadaluarsa']]);
   }
 
   // update data
   public function update(array $data){
-    $query = "UPDATE barang SET nama_barang = :nama_barang, jumlah = :jumlah, harga_satuan = :harga, expire_date = :kadaluarsa WHERE barang_id = :id";
-    $stmt = $this->db->prepare($query);
-    $stmt->bindParam(':nama_barang', $data['nama_barang'],PDO::PARAM_STR);
-    $stmt->bindParam(':jumlah', $data['jumlah'],PDO::PARAM_INT);
-    $stmt->bindParam(':harga', $data['harga_satuan'],PDO::PARAM_INT);
-    $stmt->bindParam(':kadaluarsa', $data['kadaluarsa'],PDO::PARAM_STR);
-    $stmt->bindParam(':id', $data['id'],PDO::PARAM_INT);
-    return $stmt->execute();
+    $query = "UPDATE barang SET 
+      nama_barang = ?, 
+      jumlah = ?, 
+      harga_satuan = ?, 
+      expire_date = ? 
+      WHERE barang_id = ?";
+    return $this->qry($query, [$data['nama_barang'], $data['jumlah'], 
+    $data['harga_satuan'], $data['kadaluarsa'], $data['id']]);
   }
 
   // delete data
   public function delete($id){
-    $query = "DELETE FROM barang WHERE barang_id = :id";
-    $stmt = $this->db->prepare($query);
-    $stmt->bindParam(':id', $id);
-    return $stmt->execute();
+    $query = "DELETE FROM barang WHERE barang_id = ?";
+    return $this->qry($query, [$id]);
   }
 }
