@@ -1,0 +1,1 @@
+<h1>Hello From Barang View</h1>

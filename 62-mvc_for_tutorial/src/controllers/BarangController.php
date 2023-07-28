@@ -1,9 +1,14 @@
 <?php 
 
-class BarangController{
+class BarangController extends BaseController{
 
   public function index(){
-    echo 'Hello World from Barang index';
+    $data=[
+      'title' => 'Barang',
+    ];
+    $this->view('template/header', $data);
+    $this->view('barang/index');
+    $this->view('template/footer');
   }
 
   public function edit($id1=0, $id2=""){

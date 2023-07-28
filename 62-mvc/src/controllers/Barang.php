@@ -73,15 +73,13 @@ class Barang extends BaseController
 
     if ($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
-      header('Location: ' . BASEURL . '/barang/insert');
-      exit;
+      $this->redirect(BASEURL . '/barang/insert');
     }
 
     $proc = $this->barang->insert($inputs);
     if ($proc) {
       Message::setFlash('success', 'Berhasil !', 'Data Berhasil Disimpan');
-      header('Location: ' . BASEURL . '/barang');
-      exit;
+      $this->redirect(BASEURL . '/barang');
     }
   }
 
@@ -115,23 +113,20 @@ class Barang extends BaseController
 
     if ($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
-      header('Location: ' . BASEURL . '/barang/edit/' . $inputs['id']);
-      exit;
+      $this->redirect(BASEURL . '/barang/edit/' . $inputs['id']);
     }
 
     if ($inputs['mode'] == "update") {
       $updated = $this->barang->update($inputs);
       if ($updated) {
         Message::setFlash('success', 'Berhasil !', 'Data Berhasil Diubah');
-        header('Location: ' . BASEURL . '/barang');
-        exit;
+        $this->redirect(BASEURL . '/barang');
       }
     } else if ($inputs['mode'] == "delete") {
       $deleted = $this->barang->delete($inputs['id']);
       if ($deleted) {
         Message::setFlash('success', 'Berhasil !', 'Data Berhasil Dihapus');
-        header('Location: ' . BASEURL . '/barang');
-        exit;
+        $this->redirect(BASEURL . '/barang');
       }
     }
 

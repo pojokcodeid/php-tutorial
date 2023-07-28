@@ -10,6 +10,11 @@ class BaseController extends Filter
     require_once '../src/views/' . $view . '.php';
   }
 
+  public function redirect($url){
+    header('Location: ' . $url);
+    exit;
+  }
+
   public function model($model)
   {
     require_once '../src/models/' . $model . '.php';
