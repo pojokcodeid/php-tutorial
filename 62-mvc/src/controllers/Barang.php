@@ -73,13 +73,13 @@ class Barang extends BaseController
 
     if ($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
-      $this->redirect(BASEURL . '/barang/insert');
+      $this->redirect('barang/insert');
     }
 
     $proc = $this->barang->insert($inputs);
     if ($proc) {
       Message::setFlash('success', 'Berhasil !', 'Data Berhasil Disimpan');
-      $this->redirect(BASEURL . '/barang');
+      $this->redirect('barang');
     }
   }
 
@@ -113,20 +113,20 @@ class Barang extends BaseController
 
     if ($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
-      $this->redirect(BASEURL . '/barang/edit/' . $inputs['id']);
+      $this->redirect('barang/edit/' . $inputs['id']);
     }
 
     if ($inputs['mode'] == "update") {
       $updated = $this->barang->update($inputs);
       if ($updated) {
         Message::setFlash('success', 'Berhasil !', 'Data Berhasil Diubah');
-        $this->redirect(BASEURL . '/barang');
+        $this->redirect('barang');
       }
     } else if ($inputs['mode'] == "delete") {
       $deleted = $this->barang->delete($inputs['id']);
       if ($deleted) {
         Message::setFlash('success', 'Berhasil !', 'Data Berhasil Dihapus');
-        $this->redirect(BASEURL . '/barang');
+        $this->redirect('barang');
       }
     }
 
