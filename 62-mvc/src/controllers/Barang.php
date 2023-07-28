@@ -66,7 +66,7 @@ class Barang extends BaseController
         'required' => 'Harga barang harus diisi',
       ]
     ];
-    [$inputs, $errors] = Filter::filter($_POST, $fields, $messages);
+    [$inputs, $errors] = $this->filter($_POST, $fields, $messages);
     if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }
@@ -108,7 +108,7 @@ class Barang extends BaseController
         'required' => 'Harga barang harus diisi',
       ]
     ];
-    [$inputs, $errors] = Filter::filter($_POST, $fields, $messages);
+    [$inputs, $errors] = $this->filter($_POST, $fields, $messages);
     if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }

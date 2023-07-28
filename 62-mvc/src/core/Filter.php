@@ -1,7 +1,7 @@
 <?php 
 
 class Filter{
-  public static function filter(array $data, array $fields, array $messages = []): array
+  public function filter(array $data, array $fields, array $messages = []): array
   {
     $sanitization = [];
     $validation = [];
