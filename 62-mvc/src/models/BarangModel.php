@@ -19,8 +19,9 @@ class BarangModel extends Database
 
   public function getById($id)
   {
-    $query = "SELECT * FROM barang WHERE barang_id = ?";
-    return $this->qry($query, [$id])->fetch();
+    // $query = "SELECT * FROM barang WHERE barang_id = ?";
+    // return $this->qry($query, [$id])->fetch();
+    return $this->get(['barang_id'=>$id])->fetch();
   }
 
   // insert data
