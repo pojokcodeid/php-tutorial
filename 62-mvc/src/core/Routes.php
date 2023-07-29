@@ -13,6 +13,8 @@ class Routes{
     $router->post('/barang/insert_barang',['Barang','insert_barang']);
     $router->post('/barang/edit_barang',['Barang','edit_barang2']);
 
+    $router->get('/setting-access',['SettingController','index']);
+
     $router->run();
   }
 }

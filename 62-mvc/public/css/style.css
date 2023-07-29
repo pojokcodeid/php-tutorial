@@ -154,9 +154,41 @@ input[type="button"] {
   text-decoration: none;
   color: black;
   display: block;
+  margin-top: 2px;
 }
 
 #myMenu li a:hover {
   background-color: #c7d1c8;
   border-radius: 7px;
+  margin-top: 2px;
 }
+
+/* for drop down menu */
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #c7d1c8;
+  border-radius: 7px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 7px;
+  margin-left: 20px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}

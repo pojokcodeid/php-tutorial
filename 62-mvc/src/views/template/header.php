@@ -30,6 +30,14 @@
         <li>
           <a href="<?= BASEURL . '/barang' ?>"><i class="fa-solid fa-table"></i> Kategori</a>
         </li>
+        <li class="dropdown">
+          <a onclick="myFunction()" class="dropbtn" href="javascript:void(0)"><i class="fa-solid fa-gears"></i> Setting</a>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="<?= BASEURL . '/setting-access' ?>">Acess Menu</a>
+            <a href="#about">Access Data</a>
+            <a href="#contact">Multi language</a>
+          </div>
+        </li>
       </ul>
     </div>
     <div class="right">
