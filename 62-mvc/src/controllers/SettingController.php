@@ -3,7 +3,7 @@
 class SettingController extends BaseController{
   public function index(){
     $data=[
-      'title'=>'Setting',
+      'judul'=>'Setting',
     ];
     $this->view('template/header',$data);
     $this->view('setting/index');

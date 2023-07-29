@@ -33,9 +33,9 @@
         <li class="dropdown">
           <a onclick="myFunction()" class="dropbtn" href="javascript:void(0)"><i class="fa-solid fa-gears"></i> Setting</a>
           <div id="myDropdown" class="dropdown-content">
-            <a href="<?= BASEURL . '/setting-access' ?>">Acess Menu</a>
-            <a href="#about">Access Data</a>
-            <a href="#contact">Multi language</a>
+            <a href="<?= BASEURL . '/setting-access' ?>"><i class="fa-solid fa-grip"></i> Acess Menu</a>
+            <a href="#about"><i class="fa-solid fa-server"></i> Access Data</a>
+            <a href="#contact"><i class="fa-solid fa-language"></i> Multi language</a>
           </div>
         </li>
       </ul>
