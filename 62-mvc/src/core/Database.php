@@ -4,25 +4,32 @@ class Database
 {
   private $conn;
   private $tableName;
-  private $column=[];
+  private $column = [];
 
   public function __construct()
   {
     $this->conn = $this->setConnection();
   }
 
-  public function setTableName($tableName){
+  public function setTableName($tableName)
+  {
     $this->tableName = $tableName;
   }
 
-  public function setColumn($column){
+  public function setColumn($column)
+  {
     $this->column = $column;
   }
 
   protected function setConnection()
   {
     try {
-      $conn = new PDO("mysql:host=" . DB_HOST . "; port=" . DB_PORT . "; dbname=" . DB_NAME, DB_USER, DB_PASS);
+      $host = DB_HOST;
+      $user = DB_USER;
+      $pass = DB_PASS;
+      $db = DB_NAME;
+      $port = DB_PORT;
+      $conn = new PDO("mysql:host=$host; port=$port; dbname=$db", $user, $pass);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $conn;
     } catch (PDOException $e) {
@@ -37,74 +44,78 @@ class Database
     return $stmt;
   }
 
-  public function get($params=array()){
-    $column=implode(', ',$this->column);
+  public function get($params = array())
+  {
+    $column = implode(', ', $this->column);
     $query = "SELECT $column FROM {$this->tableName}";
-    $paramValue=[];
-    if(!empty($params)){
+    $paramValue = [];
+    if (!empty($params)) {
       $query .= " WHERE 1=1 ";
-      foreach($params as $key => $value){
+      foreach ($params as $key => $value) {
         $query .= "AND {$key} = ? ";
-        array_push($paramValue,$value);
+        array_push($paramValue, $value);
       }
     }
     return $this->qry($query, $paramValue);
   }
 
-  public function insertData($data=array()){
-    if(empty($data)){
+  public function insertData($data = array())
+  {
+    if (empty($data)) {
       return false;
     }
-    $columnValue=[];
-    $kolom=[];
-    $param=[];
-    foreach($data as $key => $value){
-      array_push($kolom,$key);
+    $columnValue = [];
+    $kolom = [];
+    $param = [];
+    foreach ($data as $key => $value) {
+      array_push($kolom, $key);
       array_push($columnValue, $value);
       array_push($param, "?");
     }
-    $kolom=implode(', ',$kolom);
-    $param=implode(', ',$param);
+    $kolom = implode(', ', $kolom);
+    $param = implode(', ', $param);
     $query = "INSERT INTO {$this->tableName} ($kolom) VALUES ($param)";
     return $this->qry($query, $columnValue);
   }
 
-  public function updateData($data=array(),$param=array()){
-    if(empty($data)){
+  public function updateData($data = array(), $param = array())
+  {
+    if (empty($data)) {
       return false;
     }
-    $columnValue=[];
-    $kolom=[];
-    $query="UPDATE {$this->tableName} ";
-    foreach($data as $key => $value){
-      array_push($kolom,$key." = ?");
+    $columnValue = [];
+    $kolom = [];
+    $query = "UPDATE {$this->tableName} ";
+    foreach ($data as $key => $value) {
+      array_push($kolom, $key . " = ?");
       array_push($columnValue, $value);
     }
-    $kolom=implode(', ',$kolom);
-    $query = $query. "SET $kolom WHERE 1=1 ";
-    $whereColumn=[];
-    foreach($param as $key => $value){
+    $kolom = implode(', ', $kolom);
+    $query = $query . "SET $kolom WHERE 1=1 ";
+    $whereColumn = [];
+    foreach ($param as $key => $value) {
       array_push($whereColumn, "AND {$key} = ?");
       array_push($columnValue, $value);
     }
-    $whereColumn=implode(', ',$whereColumn);
-    $query = $query.$whereColumn;
+    $whereColumn = implode(', ', $whereColumn);
+    $query = $query . $whereColumn;
     return $this->qry($query, $columnValue);
   }
 
-  public function deleteData($param=array()){
-    if(empty($param)){
+  public function deleteData($param = array())
+  {
+    if (empty($param)) {
       return false;
     }
     $query = "DELETE FROM {$this->tableName} WHERE 1=1 ";
-    $whereColumn=[];
-    $columnValue=[];
-    foreach($param as $key => $value){
+    $whereColumn = [];
+    $columnValue = [];
+    foreach ($param as $key => $value) {
       array_push($whereColumn, "AND {$key} = ?");
       array_push($columnValue, $value);
     }
-    $whereColumn=implode(', ',$whereColumn);
-    $query = $query.$whereColumn;
+    $whereColumn = implode(', ', $whereColumn);
+    $query = $query . $whereColumn;
     return $this->qry($query, $columnValue);
   }
 }
