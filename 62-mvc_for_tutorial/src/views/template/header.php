@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="<?= BASEURL . '/css/style.css' ?>">
 </head>
 
@@ -25,10 +26,10 @@
           <a href="<?= BASEURL ?>"><i class="fa-solid fa-house"></i> Home</a>
         </li>
         <li>
-          <a href="<?= BASEURL.'/barang' ?>"><i class="fa-solid fa-list"></i> Barang</a>
+          <a href="<?= BASEURL . '/barang' ?>"><i class="fa-solid fa-list"></i> Barang</a>
         </li>
         <li>
-          <a href="<?= BASEURL.'/kategori' ?>"><i class="fa-regular fa-object-group"></i> Kategori</a>
+          <a href="<?= BASEURL . '/kategori' ?>"><i class="fa-regular fa-object-group"></i> Kategori</a>
         </li>
       </ul>
     </div>
