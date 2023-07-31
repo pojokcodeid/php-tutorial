@@ -12,5 +12,16 @@ CREATE TABLE `barang` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=16
+AUTO_INCREMENT=44
+;
+
+INSERT INTO latihan.barang
+(barang_id, nama_barang, jumlah, harga_satuan, expire_date, tanggal_dibuat)
+VALUES(1, 'Sarung', 2, 15000, NULL, '2023-07-21');
+INSERT INTO latihan.barang
+(barang_id, nama_barang, jumlah, harga_satuan, expire_date, tanggal_dibuat)
+VALUES(9, 'Keyboard', 3, 10000, NULL, NULL);
+INSERT INTO latihan.barang
+(barang_id, nama_barang, jumlah, harga_satuan, expire_date, tanggal_dibuat)
+VALUES(42, 'aa', 2, 1, '2023-07-29', NULL);
 ```
