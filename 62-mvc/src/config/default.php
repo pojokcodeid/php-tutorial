@@ -1,21 +1,15 @@
-<?php 
+<?php
 
-// read from file properties
-$file="../src/config/config.properties";
-if (!file_exists($file)) {
-  echo "Config file tidak ada, silahkan isi config src/config/config.properties";
-  exit;
-}
-$properties = parse_ini_file($file);
+(new DotEnv(__DIR__ . '../../.env'))->load();
 
-define('BASEURL', $properties['base_url']);
+define('BASEURL', getenv('BASE_URL'));
 
-define('DB_HOST', $properties['db_host']);
-define('DB_USER', $properties['db_user']);
-define('DB_PASS', $properties['db_pass']);
-define('DB_NAME', $properties['db_name']);
-define('DB_PORT', $properties['db_port']);
+define('DB_HOST', getenv('DB_HOST'));
+define('DB_USER', getenv('DB_USER'));
+define('DB_PASS', getenv('DB_PASSWORD'));
+define('DB_NAME', getenv('DB_NAME'));
+define('DB_PORT', getenv('DB_PORT'));
 
-if($properties['migrate']){
+if (getenv('MIGRATE')) {
   require_once '../src/config/migrate.php';
 }
