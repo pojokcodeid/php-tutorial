@@ -1,5 +1,6 @@
 <?php
-class Sanitization{
+class Sanitization
+{
 
   const FILTERS = [
     'string' => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -26,7 +27,7 @@ class Sanitization{
     ],
     'url' => FILTER_SANITIZE_URL,
   ];
-  
+
   private function array_trim(array $items): array
   {
     return array_map(function ($item) {
@@ -38,7 +39,7 @@ class Sanitization{
         return $item;
     }, $items);
   }
-  
+
   public function sanitize(array $inputs, array $fields = [], int $default_filter = FILTER_SANITIZE_SPECIAL_CHARS, array $filters = self::FILTERS, bool $trim = true): array
   {
     if ($fields) {
@@ -54,7 +55,7 @@ class Sanitization{
     } else {
       $data = filter_var_array($inputs, $default_filter);
     }
-  
+
     return $trim ? $this->array_trim($data) : $data;
   }
 }

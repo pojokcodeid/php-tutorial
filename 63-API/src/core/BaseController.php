@@ -4,15 +4,14 @@ class BaseController extends Filter
 {
   public function view($view, $data = [])
   {
-    if (count($data)) {
+    if(count($data)){
       extract($data);
     }
     require_once '../src/views/' . $view . '.php';
   }
 
-  public function redirect($url)
-  {
-    header('Location: ' . BASEURL . '/' . $url);
+  public function redirect($url){
+    header('Location: ' . BASEURL .'/'.$url);
     exit;
   }
 

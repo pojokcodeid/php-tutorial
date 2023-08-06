@@ -48,7 +48,7 @@ class Barang extends BaseController
   {
     $fields = [
       // 'nama_barang' => 'string | required | alphanumeric | between: 3, 25',  -> ini untk contoh between
-      'nama_barang' => 'string | required | alphanumeric',
+      'nama_barang' => 'string | required',
       'jumlah' => 'int | required',
       'harga_satuan' => 'float | required',
       'kadaluarsa' => 'string'
@@ -86,7 +86,7 @@ class Barang extends BaseController
   public function edit_barang2()
   {
     $fields = [
-      'nama_barang' => 'string | required | alphanumeric',
+      'nama_barang' => 'string | required',
       'jumlah' => 'int | required',
       'harga_satuan' => 'float | required',
       'kadaluarsa' => 'string',

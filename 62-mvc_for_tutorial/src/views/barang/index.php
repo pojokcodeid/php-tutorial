@@ -1,3 +1,6 @@
+<?php
+Message::flash();
+?>
 <div class="container">
   <div class="header">
     <h2>Data Barang</h2>
@@ -39,7 +42,8 @@
             <td>
               <?= $row['expire_date'] ?>
             </td>
-            <td><a href=""><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
+            <td><a href="<?= BASEURL . '/barang/edit/' . $row['barang_id'] ?>"><i class="fa-solid fa-pen-to-square"></i>
+                Edit</a></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
