@@ -1,4 +1,5 @@
 <?php
+namespace MyApp\Core;
 
 class Message
 {
@@ -6,8 +7,8 @@ class Message
 	{
 		$_SESSION['flash'] = [
 			'icon' => $icon,
-			'title'  => $title,
-			'text'  => $text,
+			'title' => $title,
+			'text' => $text,
 			'data' => $data
 		];
 	}

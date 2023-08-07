@@ -1,5 +1,7 @@
-<?=
-  Message::flash();
+<?
+use MyApp\Core\Message;
+
+echo Message::flash();
 ?>
 <div class="container">
   <div class="header">

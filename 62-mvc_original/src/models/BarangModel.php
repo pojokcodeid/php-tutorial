@@ -1,4 +1,5 @@
 <?php
+use MyApp\Core\Database;
 
 class BarangModel extends Database
 {
@@ -7,7 +8,7 @@ class BarangModel extends Database
   {
     parent::__construct();
     $this->setTableName('barang');
-    $this->setColumn(['barang_id','nama_barang', 'jumlah', 'harga_satuan', 'expire_date']);
+    $this->setColumn(['barang_id', 'nama_barang', 'jumlah', 'harga_satuan', 'expire_date']);
   }
 
 
@@ -21,7 +22,7 @@ class BarangModel extends Database
   {
     // $query = "SELECT * FROM barang WHERE barang_id = ?";
     // return $this->qry($query, [$id])->fetch();
-    return $this->get(['barang_id'=>$id])->fetch();
+    return $this->get(['barang_id' => $id])->fetch();
   }
 
   // insert data
@@ -39,11 +40,11 @@ class BarangModel extends Database
     //   $data['nama_barang'], $data['jumlah'],
     //   $data['harga_satuan'], $data['kadaluarsa']
     // ]);
-    $table=[
-      'nama_barang'=>$data['nama_barang'],
-      'jumlah'=>$data['jumlah'],
-      'harga_satuan'=>$data['harga_satuan'],
-      'expire_date'=>$data['kadaluarsa']
+    $table = [
+      'nama_barang' => $data['nama_barang'],
+      'jumlah' => $data['jumlah'],
+      'harga_satuan' => $data['harga_satuan'],
+      'expire_date' => $data['kadaluarsa']
     ];
     return $this->insertData($table);
   }
@@ -62,16 +63,16 @@ class BarangModel extends Database
     //   $data['nama_barang'], $data['jumlah'],
     //   $data['harga_satuan'], $data['kadaluarsa'], $data['id']
     // ]);
-    $table=[
-      'nama_barang'=>$data['nama_barang'],
-      'jumlah'=>$data['jumlah'],
-      'harga_satuan'=>$data['harga_satuan'],
-      'expire_date'=>$data['kadaluarsa']
+    $table = [
+      'nama_barang' => $data['nama_barang'],
+      'jumlah' => $data['jumlah'],
+      'harga_satuan' => $data['harga_satuan'],
+      'expire_date' => $data['kadaluarsa']
     ];
-    $key=[
-      'barang_id'=>$data['id']
+    $key = [
+      'barang_id' => $data['id']
     ];
-    return $this->updateData($table,$key);
+    return $this->updateData($table, $key);
   }
 
   // delete data
@@ -79,6 +80,6 @@ class BarangModel extends Database
   {
     // $query = "DELETE FROM barang WHERE barang_id = ?";
     // return $this->qry($query, [$id]);
-    return $this->deleteData(['barang_id'=>$id]);
+    return $this->deleteData(['barang_id' => $id]);
   }
 }

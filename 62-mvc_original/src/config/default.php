@@ -1,4 +1,5 @@
 <?php
+use MyApp\Core\DotEnv;
 
 (new DotEnv(__DIR__ . '../../.env'))->load();
 

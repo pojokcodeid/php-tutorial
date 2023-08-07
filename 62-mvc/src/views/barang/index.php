@@ -1,4 +1,6 @@
 <?php
+use MyApp\Core\Message;
+
 Message::flash();
 ?>
 <div class="container">

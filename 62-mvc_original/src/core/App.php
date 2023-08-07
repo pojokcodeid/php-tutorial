@@ -1,5 +1,5 @@
 <?php
-
+namespace MyApp\Core;
 
 class App
 {
@@ -42,7 +42,7 @@ class App
 
   public function run()
   {
-    $execute=0;
+    $execute = 0;
     $url = $this->getUrl();
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     foreach ($this->handlers as $handler) {
@@ -59,7 +59,7 @@ class App
         // create objeknya
         require_once __DIR__ . '/../controllers/' . $this->controllerFile . '.php';
         $this->controllerFile = new $this->controllerFile;
-        $execute=1;
+        $execute = 1;
         if (isset($handler['handler'][1]) && method_exists($this->controllerFile, $handler['handler'][1])) {
           $this->contollerMethod = $handler['handler'][1];
           unset($url[1]);

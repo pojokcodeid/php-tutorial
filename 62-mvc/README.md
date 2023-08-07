@@ -1,6 +1,6 @@
-# Table
-
+# restore table
 ```sql
+
 CREATE TABLE `barang` (
 	`barang_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`nama_barang` VARCHAR(225) NOT NULL COLLATE 'latin1_swedish_ci',
@@ -26,8 +26,7 @@ INSERT INTO latihan.barang
 VALUES(42, 'aa', 2, 1, '2023-07-29', NULL);
 ```
 
-## Run Composer
-
+## install composer
 ```
 composer dump-autoload -o
 ```

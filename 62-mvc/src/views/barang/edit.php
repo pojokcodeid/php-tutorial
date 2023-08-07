@@ -1,4 +1,6 @@
 <?php
+use MyApp\Core\Message;
+
 $data = Message::getData();
 if ($data) {
   $barang['nama_barang'] = $data['nama_barang'];

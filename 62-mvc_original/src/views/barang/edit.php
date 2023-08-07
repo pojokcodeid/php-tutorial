@@ -1,11 +1,13 @@
-<?php 
-  $dataEdit=Message::getData();
-  if($dataEdit){
-    $data=$dataEdit;
-    $data['barang_id']=$dataEdit['id'];
-    $data['expire_date']=$dataEdit['kadaluarsa'];
-  }
-  Message::flash();
+<?php
+use MyApp\Core\Message;
+
+$dataEdit = Message::getData();
+if ($dataEdit) {
+  $data = $dataEdit;
+  $data['barang_id'] = $dataEdit['id'];
+  $data['expire_date'] = $dataEdit['kadaluarsa'];
+}
+Message::flash();
 ?>
 <div class="row">
   <div class="container col-50">
@@ -48,8 +50,10 @@
       <div class="row">
         <div class="col-25">&nbsp;</div>
         <div class="col-75">
-          <button onclick="edit('update')" class="btn primary" type="button"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-          <button onclick="edit('delete')" class="btn danger" type="button"><i class="fa-solid fa-trash"></i> Hapus</button>
+          <button onclick="edit('update')" class="btn primary" type="button"><i class="fa-solid fa-pen-to-square"></i>
+            Edit</button>
+          <button onclick="edit('delete')" class="btn danger" type="button"><i class="fa-solid fa-trash"></i>
+            Hapus</button>
         </div>
       </div>
     </form>

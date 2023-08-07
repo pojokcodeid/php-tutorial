@@ -1,4 +1,6 @@
 <?php
+namespace MyApp\Core;
+
 class DotEnv
 {
   /**

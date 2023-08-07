@@ -1,5 +1,9 @@
 <?php
 
+namespace MyApp\Core;
+
+use MyApp\Core\App;
+
 class Routes
 {
   public function run()
@@ -11,7 +15,7 @@ class Routes
     $router->get('/barang', ['BarangController', 'index']);
     $router->get('/barang/index', ['BarangController', 'index']);
     $router->get('/barang/insert', ['BarangController', 'insert']);
-    $router->get('/barang/edit', ['BarangController', 'edit']);
+    $router->get('/barang/edit/:id', ['BarangController', 'edit']);
     $router->post('/barang/insert_barang', ['BarangController', 'insert_barang']);
     $router->post('/barang/edit_barang', ['BarangController', 'edit_barang']);
 
