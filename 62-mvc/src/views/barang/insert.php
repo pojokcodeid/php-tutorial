@@ -1,27 +1,27 @@
-<?php 
-  $data=Message::getData();
-  $namaBarang="";
-  $jumlah="";
-  $harga="";
-	$kadaluarsa = "";
-  if($data){
-    $namaBarang=$data['nama_barang'];
-    $jumlah=$data['jumlah'];
-    $harga=$data['harga_satuan'];
-		$kadaluarsa = $data['kadaluarsa'];
-  }
-  Message::flash();
+<?php
+$data = Message::getData();
+$namaBarang = "";
+$jumlah = "";
+$harga = "";
+$kadaluarsa = "";
+if ($data) {
+  $namaBarang = $data['nama_barang'];
+  $jumlah = $data['jumlah'];
+  $harga = $data['harga_satuan'];
+  $kadaluarsa = $data['kadaluarsa'];
+}
+Message::flash();
 ?>
 <div class="row">
   <div class="container col-50">
     <h2 class="header">Input Barang</h2>
-    <form id="form" action="<?= BASEURL . '/barang/insert_barang' ?>" method="post">
+    <form action="<?= BASEURL . '/barang/insert_barang' ?>" method="post">
       <div class="row">
         <div class="col-25">
           <label for="nama_barang">Nama Barang</label>
         </div>
         <div class="col-50">
-          <input type="text" id="nama_barang" name="nama_barang" value="<?= $namaBarang ?>"">
+          <input type="text" id="nama_barang" name="nama_barang" value="<?= $namaBarang ?>">
         </div>
       </div>
       <div class="row">
@@ -51,8 +51,9 @@
       <div class="row">
         <div class="col-25">&nbsp;</div>
         <div class="col-75">
-          <!-- <button onclick="insert()" class="btn primary" type="button"><i class="fa-solid fa-floppy-disk"></i> Submit</button> -->
-          <button type="submit" class="btn primary"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+          <button type="submit" class="btn primary">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan
+          </button>
         </div>
       </div>
     </form>

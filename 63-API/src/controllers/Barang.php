@@ -11,31 +11,13 @@ class Barang extends BaseController
     $this->barang = $this->model('BarangModel');
   }
 
-  public function index()
+  public function index($id = null)
   {
-    $allBarang = $this->barang->getAll();
-    if ($allBarang) {
-      $data = [
-        'status' => 'ok',
-        'data' => $allBarang
-      ];
-      $this->view('template/header');
-      header('HTTP/1.1 200 OK');
-      echo json_encode($data);
+    if ($id == null) {
+      $data = $this->barang->getAll();
     } else {
-      $data = [
-        'status' => 'Error',
-        'message' => 'Data tidak ditemukan'
-      ];
-      $this->view('template/header');
-      header('HTTP/1.1 404 Not Found');
-      echo json_encode($data);
+      $data = $this->barang->getById($id);
     }
-  }
-
-  public function getById($id)
-  {
-    $data = $this->barang->getById($id);
     if ($data) {
       $data = [
         'status' => 'ok',
@@ -55,6 +37,28 @@ class Barang extends BaseController
     }
   }
 
+  // public function getById($id)
+  // {
+  //   $data = $this->barang->getById($id);
+  //   if ($data) {
+  //     $data = [
+  //       'status' => 'ok',
+  //       'data' => $data
+  //     ];
+  //     $this->view('template/header');
+  //     header('HTTP/1.1 200 OK');
+  //     echo json_encode($data);
+  //   } else {
+  //     $data = [
+  //       'status' => 'Error',
+  //       'message' => 'Data tidak ditemukan'
+  //     ];
+  //     $this->view('template/header');
+  //     header('HTTP/1.1 404 Not Found');
+  //     echo json_encode($data);
+  //   }
+  // }
+
   public function edit($id = null)
   {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -63,7 +67,6 @@ class Barang extends BaseController
       'jumlah' => 'int | required',
       'harga_satuan' => 'float | required',
       'kadaluarsa' => 'string',
-      'id' => 'int | required'
     ];
 
     $messages = [
@@ -81,6 +84,7 @@ class Barang extends BaseController
     if (isset($inputs['kadaluarsa']) && $inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }
+    $inputs['id'] = $id;
 
     if ($errors) {
       $data = [
@@ -106,7 +110,7 @@ class Barang extends BaseController
       } else {
         $data = [
           'status' => 'Error',
-          'message' => 'Data gagal di ubah',
+          'message' => 'Data gagal di ubah coba lah',
           'errors' => "Data diubah " . $proc->rowCount() . " baris"
         ];
         $this->view('template/header');

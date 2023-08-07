@@ -8,14 +8,15 @@ class Routes
     $router->setDefaultController('DefaultApp');
     $router->setDefaultMethod('index');
 
-    // $router->get('/',['DefaultApp','index']);
-    $router->get('/barang', ['Barang', 'index']);
-    $router->get('/barang/insert', ['Barang', 'insert']);
-    $router->get('/barang/edit', ['Barang', 'edit']);
-    $router->post('/barang/insert_barang', ['Barang', 'insert_barang']);
-    $router->post('/barang/edit_barang', ['Barang', 'edit_barang2']);
+    $router->get('/barang', ['BarangController', 'index']);
+    $router->get('/barang/index', ['BarangController', 'index']);
+    $router->get('/barang/insert', ['BarangController', 'insert']);
+    $router->get('/barang/edit', ['BarangController', 'edit']);
+    $router->post('/barang/insert_barang', ['BarangController', 'insert_barang']);
+    $router->post('/barang/edit_barang', ['BarangController', 'edit_barang']);
 
-    $router->get('/setting-access', ['SettingController', 'index']);
+    $router->get('/kategori', ['KategoriController', 'index']);
+
 
     $router->run();
   }
