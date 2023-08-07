@@ -1,7 +1,7 @@
-<?
+<?php
 use MyApp\Core\Message;
 
-echo Message::flash();
+Message::flash();
 ?>
 <div class="container">
   <div class="header">
