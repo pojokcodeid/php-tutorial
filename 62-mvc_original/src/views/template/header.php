@@ -28,10 +28,11 @@
           <a href="<?= BASEURL . '/barang' ?>"><i class="fa-solid fa-sliders"></i> Barang</a>
         </li>
         <li>
-          <a href="<?= BASEURL . '/barang' ?>"><i class="fa-solid fa-table"></i> Kategori</a>
+          <a href="<?= BASEURL . '/kategori' ?>"><i class="fa-solid fa-table"></i> Kategori</a>
         </li>
         <li class="dropdown">
-          <a onclick="myFunction()" class="dropbtn" href="javascript:void(0)"><i class="fa-solid fa-gears"></i> Setting</a>
+          <a onclick="myFunction()" class="dropbtn" href="javascript:void(0)"><i class="fa-solid fa-gears"></i>
+            Setting</a>
           <div id="myDropdown" class="dropdown-content">
             <a href="<?= BASEURL . '/setting-access' ?>"><i class="fa-solid fa-grip"></i> Acess Menu</a>
             <a href="#about"><i class="fa-solid fa-server"></i> Access Data</a>
