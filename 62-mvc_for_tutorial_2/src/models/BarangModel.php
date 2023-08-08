@@ -1,4 +1,5 @@
 <?php
+use MyApp\Core\Database;
 
 class BarangModel extends Database
 {

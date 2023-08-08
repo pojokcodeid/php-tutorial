@@ -1,5 +1,11 @@
 <?php
 
+namespace MyApp\Core;
+
+use PDO;
+use PDOException;
+
+
 class Database
 {
   private $conn;
@@ -24,11 +30,11 @@ class Database
   protected function setConnection()
   {
     try {
-      $host = getenv('DB_HOST');
-      $user = getenv('DB_USER');
-      $pass = getenv('DB_PASSWORD');
-      $db = getenv('DB_NAME');
-      $port = getenv('DB_PORT');
+      $host = DB_HOST;
+      $user = DB_USER;
+      $pass = DB_PASS;
+      $db = DB_NAME;
+      $port = DB_PORT;
       $conn = new PDO("mysql:host=$host;dbname=$db;port=$port", $user, $pass);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $conn;
