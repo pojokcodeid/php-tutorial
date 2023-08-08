@@ -8,6 +8,5 @@ if (!session_id())
 require_once '../vendor/autoload.php';
 
 Config::run();
-
 $routes = new Routes();
 $routes->run();
