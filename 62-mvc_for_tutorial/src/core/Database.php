@@ -1,5 +1,11 @@
 <?php
 
+namespace MyApp\Core;
+
+use PDO;
+use PDOException;
+
+
 class Database
 {
   private $conn;

@@ -1,4 +1,7 @@
 <?php
+namespace MyApp\Core;
+
+use MyApp\Core\Filter;
 
 class BaseController extends Filter
 {

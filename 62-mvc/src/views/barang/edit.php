@@ -1,4 +1,6 @@
 <?php
+use MyApp\Core\Message;
+
 $data = Message::getData();
 if ($data) {
   $barang['nama_barang'] = $data['nama_barang'];
@@ -11,7 +13,7 @@ Message::flash();
 <div class="row">
   <div class="container col-50">
     <h2 class="header">Input Barang</h2>
-    <form id="form" action="<?= BASEURL . '/barang/edit_barang' ?>" method="post">
+    <form id="form" action="<?= BASEURL . '/barang/edit' ?>" method="post">
       <input type="hidden" name="id" value="<?= $barang['barang_id'] ?>">
       <input type="hidden" id="mode" name="mode" value="update">
       <div class="row">

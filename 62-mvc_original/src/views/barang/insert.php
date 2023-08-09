@@ -17,7 +17,7 @@ Message::flash();
 <div class="row">
   <div class="container col-50">
     <h2 class="header">Input Barang</h2>
-    <form id="form" action="<?= BASEURL . '/barang/insert_barang' ?>" method="post">
+    <form id="form" action="<?= BASEURL . '/barang/insert' ?>" method="post">
       <div class="row">
         <div class="col-25">
           <label for="nama_barang">Nama Barang</label>

@@ -12,7 +12,7 @@ Message::flash();
 <div class="row">
   <div class="container col-50">
     <h2 class="header">Edit Barang</h2>
-    <form id="form" action="<?= BASEURL . '/barang/edit_barang' ?>" method="post">
+    <form id="form" action="<?= BASEURL . '/barang/edit' ?>" method="post">
       <input type="hidden" name="id" value="<?= $data['barang_id'] ?>">
       <input type="hidden" id="mode" name="mode" value="update">
       <div class="row">

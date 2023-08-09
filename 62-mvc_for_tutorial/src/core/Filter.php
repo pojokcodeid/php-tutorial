@@ -1,5 +1,10 @@
 <?php
 
+namespace MyApp\Core;
+
+use MyApp\Core\Sanitization;
+use MyApp\Core\Validation;
+
 class Filter
 {
   public function filter(array $data, array $fields, array $messages = []): array

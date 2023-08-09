@@ -1,0 +1,24 @@
+{
+  "name": "font-awesome",
+  "repo": "components/font-awesome",
+  "version": "6.4.2",
+  "description": "Font Awesome, the iconic SVG, font, and CSS framework.",
+  "styles": [
+    "css/all.css"
+  ],
+  "files": [
+    "webfonts/fa-brands-400.woff2",
+    "webfonts/fa-brands-400.ttf",
+    "webfonts/fa-regular-400.woff2",
+    "webfonts/fa-regular-400.ttf",
+    "webfonts/fa-solid-900.woff2",
+    "webfonts/fa-solid-900.ttf",
+    "webfonts/fa-v4compatibility.woff2",
+    "webfonts/fa-v4compatibility.ttf",
+  ],
+  "license": [
+    "CC-BY-4.0",
+    "MIT",
+    "OFL-1.1"
+  ]
+}

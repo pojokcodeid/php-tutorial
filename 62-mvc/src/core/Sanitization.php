@@ -1,4 +1,5 @@
 <?php
+namespace MyApp\Core;
 
 class Sanitization
 {

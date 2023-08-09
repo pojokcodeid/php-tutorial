@@ -1,5 +1,4 @@
 <?php
-
 namespace MyApp\Core;
 
 class Validation

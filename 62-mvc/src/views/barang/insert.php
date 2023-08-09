@@ -1,4 +1,6 @@
 <?php
+use MyApp\Core\Message;
+
 $data = Message::getData();
 $namaBarang = "";
 $jumlah = "";
@@ -15,7 +17,7 @@ Message::flash();
 <div class="row">
   <div class="container col-50">
     <h2 class="header">Input Barang</h2>
-    <form action="<?= BASEURL . '/barang/insert_barang' ?>" method="post">
+    <form action="<?= BASEURL . '/barang/insert' ?>" method="post">
       <div class="row">
         <div class="col-25">
           <label for="nama_barang">Nama Barang</label>
