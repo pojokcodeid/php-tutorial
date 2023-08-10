@@ -1,4 +1,8 @@
 <?php
+namespace MyApp\Core;
+
+use PDO;
+use PDOException;
 
 class Database
 {
@@ -29,11 +33,11 @@ class Database
       $pass = getenv('DB_PASSWORD');
       $db = getenv('DB_NAME');
       $port = getenv('DB_PORT');
-      $conn = new PDO("mysql:host=$host; port=$port; dbname=$db", $user, $pass);
+      $conn = new PDO("mysql:host=$host;dbname=$db;port=$port", $user, $pass);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $conn;
     } catch (PDOException $e) {
-      die('Koneksi error : ' . $e->getMessage());
+      die($e->getMessage());
     }
   }
 
@@ -46,13 +50,13 @@ class Database
 
   public function get($params = array())
   {
-    $column = implode(', ', $this->column);
+    $column = implode(",", $this->column);
     $query = "SELECT $column FROM {$this->tableName}";
     $paramValue = [];
     if (!empty($params)) {
       $query .= " WHERE 1=1 ";
       foreach ($params as $key => $value) {
-        $query .= "AND {$key} = ? ";
+        $query .= " AND {$key} = ? ";
         array_push($paramValue, $value);
       }
     }
@@ -72,8 +76,8 @@ class Database
       array_push($columnValue, $value);
       array_push($param, "?");
     }
-    $kolom = implode(', ', $kolom);
-    $param = implode(', ', $param);
+    $kolom = implode(", ", $kolom);
+    $param = implode(", ", $param);
     $query = "INSERT INTO {$this->tableName} ($kolom) VALUES ($param)";
     return $this->qry($query, $columnValue);
   }
@@ -87,17 +91,17 @@ class Database
     $kolom = [];
     $query = "UPDATE {$this->tableName} ";
     foreach ($data as $key => $value) {
-      array_push($kolom, $key . " = ?");
+      array_push($kolom, $key . "= ? ");
       array_push($columnValue, $value);
     }
-    $kolom = implode(', ', $kolom);
-    $query = $query . "SET $kolom WHERE 1=1 ";
+    $kolom = implode(", ", $kolom);
+    $query = $query . " SET $kolom WHERE 1=1 ";
     $whereColumn = [];
     foreach ($param as $key => $value) {
       array_push($whereColumn, "AND {$key} = ?");
       array_push($columnValue, $value);
     }
-    $whereColumn = implode(', ', $whereColumn);
+    $whereColumn = implode(", ", $whereColumn);
     $query = $query . $whereColumn;
     return $this->qry($query, $columnValue);
   }
@@ -114,7 +118,7 @@ class Database
       array_push($whereColumn, "AND {$key} = ?");
       array_push($columnValue, $value);
     }
-    $whereColumn = implode(', ', $whereColumn);
+    $whereColumn = implode(",", $whereColumn);
     $query = $query . $whereColumn;
     return $this->qry($query, $columnValue);
   }

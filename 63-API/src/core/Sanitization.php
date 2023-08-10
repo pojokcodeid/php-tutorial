@@ -1,7 +1,8 @@
 <?php
+namespace MyApp\Core;
+
 class Sanitization
 {
-
   const FILTERS = [
     'string' => FILTER_SANITIZE_SPECIAL_CHARS,
     'string[]' => [
@@ -35,18 +36,23 @@ class Sanitization
         return trim($item);
       } elseif (is_array($item)) {
         return $this->array_trim($item);
-      } else
+      } else {
         return $item;
+      }
     }, $items);
   }
 
-  public function sanitize(array $inputs, array $fields = [], int $default_filter = FILTER_SANITIZE_SPECIAL_CHARS, array $filters = self::FILTERS, bool $trim = true): array
-  {
+  public function sanitize(
+    array $inputs,
+    array $fields = [],
+    int $default_filter = FILTER_SANITIZE_SPECIAL_CHARS,
+    array $filters = self::FILTERS,
+    bool $trim = true
+  ): array {
     if ($fields) {
       foreach ($fields as $key => $field) {
         if ($field == "string" && isset($inputs[$key])) {
           $tempvar = strip_tags($inputs[$key]);
-          //$tempvar = trim(preg_replace('/[^A-Za-z0-9 ]/', '', $tempvar));
           $inputs[$key] = $tempvar;
         }
       }

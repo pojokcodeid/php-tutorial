@@ -1,14 +1,9 @@
 <?php
+namespace MyApp\Core;
+
 class DotEnv
 {
-  /**
-   * The directory where the .env file can be located.
-   *
-   * @var string
-   */
   protected $path;
-
-
   public function __construct(string $path)
   {
     if (!file_exists($path)) {
@@ -16,16 +11,14 @@ class DotEnv
     }
     $this->path = $path;
   }
-
   public function load(): void
   {
     if (!is_readable($this->path)) {
-      throw new \RuntimeException(sprintf('%s file is not readable', $this->path));
+      throw new \InvalidArgumentException(printf('"%s" is not readable', $this->path));
     }
 
     $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-
       if (strpos(trim($line), '#') === 0) {
         continue;
       }

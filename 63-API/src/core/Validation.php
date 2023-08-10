@@ -1,6 +1,8 @@
-<?php 
+<?php
+namespace MyApp\Core;
 
-class Validation{
+class Validation
+{
   const DEFAULT_VALIDATION_ERRORS = [
     'required' => 'Data %s harus diisi',
     'email' => ' %s email tidak valid',
@@ -16,10 +18,7 @@ class Validation{
   public function validate(array $data, array $fields, array $messages = []): array
   {
     $split = fn($str, $sparator) => array_map('trim', explode($sparator, $str));
-  
-    //get the message rules
     $rule_messages = array_filter($messages, fn($massage) => is_string($massage));
-    //overtite default message
     $validation_errors = array_merge(self::DEFAULT_VALIDATION_ERRORS, $rule_messages);
     $errors = [];
     foreach ($fields as $field => $option) {
@@ -32,21 +31,23 @@ class Validation{
         } else {
           $rule_name = trim($rule);
         }
-        
+
         $fn = 'is_' . $rule_name;
-        if(method_exists(new Validation(), $fn)){
+        if (method_exists(new Validation(), $fn)) {
           $pass = $this->$fn($data, $field, ...$params);
           if (!$pass) {
-            array_push($errors,sprintf(
-              $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
-              str_replace("_"," ",$field),
-              ...$params
-            ));
+            array_push(
+              $errors,
+              sprintf(
+                $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
+                str_replace("_", " ", $field),
+                ...$params
+              )
+            );
           }
         }
       }
     }
-  
     return $errors;
   }
 
@@ -60,7 +61,7 @@ class Validation{
     if (empty($data[$field])) {
       return true;
     }
-  
+
     return filter_var($data[$field], FILTER_VALIDATE_EMAIL);
   }
 
@@ -69,7 +70,7 @@ class Validation{
     if (!isset($data[$field])) {
       return true;
     }
-  
+
     return mb_strlen($data[$field]) >= $min;
   }
 
@@ -95,11 +96,11 @@ class Validation{
     if (isset($data[$field], $data[$other])) {
       return $data[$field] === $data[$other];
     }
-  
+
     if (!isset($data[$field]) && !isset($data[$other])) {
       return true;
     }
-  
+
     return false;
   }
 
@@ -108,7 +109,7 @@ class Validation{
     if (!isset($data[$field])) {
       return true;
     }
-  
+
     return ctype_alnum($data[$field]);
   }
 
@@ -129,4 +130,5 @@ class Validation{
     // disini cek ke database
     return false;
   }
+
 }

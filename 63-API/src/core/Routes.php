@@ -1,4 +1,5 @@
 <?php
+namespace MyApp\Core;
 
 class Routes
 {
@@ -7,12 +8,14 @@ class Routes
     $router = new App();
     $router->setDefaultController('DefaultApp');
     $router->setDefaultMethod('index');
+    $router->setNamespace('MyApp\Controllers');
 
-    $router->get('/barang', ['Barang', 'index']);
-    $router->get('/barang/:id', ['Barang', 'index']);
-    $router->patch('/barang/:id', ['Barang', 'edit']);
-    $router->post('/barang', ['Barang', 'insert']);
-    $router->delete('/barang/:id', ['Barang', 'delete']);
+    $router->get('/barang', ['BarangController', 'index']);
+    $router->get('/barang/(:id)', ['BarangController', 'index']);
+    $router->patch('/barang/(:id)', ['BarangController', 'edit']);
+    $router->post('/barang', ['BarangController', 'insert']);
+    $router->delete('/barang/(:id)', ['BarangController', 'delete']);
+
 
     $router->run();
   }

@@ -1,7 +1,5 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine on
-		# pndahkan semua yang ditulis di url ke $i, dan [L] jangan tulis kembali jika rule terpenuhi
-    RewriteRule ^$ public/ [L]
-		# pindahkan semua setelah base url kedepan dari public 
-    RewriteRule (.*) public/$1 [L]
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
 </IfModule>

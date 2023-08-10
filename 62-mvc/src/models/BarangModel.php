@@ -20,7 +20,7 @@ class BarangModel extends Database
   {
     // $query = "SELECT * FROM barang";
     // return $this->qry($query)->fetchAll();
-    return $this->get()->fetchAll();
+    return $this->get()->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function insert($data)
@@ -47,7 +47,7 @@ class BarangModel extends Database
   {
     // $query = "SELECT * FROM barang WHERE barang_id = ?";
     // return $this->qry($query, [$id])->fetch();
-    return $this->get(['barang_id' => $id])->fetch();
+    return $this->get(['barang_id' => $id])->fetch(PDO::FETCH_ASSOC);
   }
 
   public function update($data)
