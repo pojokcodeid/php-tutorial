@@ -2,7 +2,6 @@
 namespace MyApp\Controllers;
 
 use MyApp\Core\BaseController;
-use MyApp\Core\Message;
 
 class BarangController extends BaseController
 {
@@ -10,7 +9,7 @@ class BarangController extends BaseController
   private $barangModel;
   public function __construct()
   {
-    $this->barangModel = $this->model('BarangModel');
+    $this->barangModel = $this->model('MyApp\Models\BarangModel');
   }
 
   public function index($id = null)
