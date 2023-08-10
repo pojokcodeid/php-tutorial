@@ -1,4 +1,6 @@
 <?php
+namespace MyApp\Controllers;
+
 use MyApp\Core\BaseController;
 
 class KategoriController extends BaseController

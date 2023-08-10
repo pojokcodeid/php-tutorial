@@ -3,16 +3,16 @@ namespace MyApp\Core;
 
 class App
 {
-
   private $controllerFile = 'DefaultApp';
-  private $controllerMethod = 'index';
-  private $parameter = [];
+  private $contollerMethod = 'index';
+  private $namespace = 'MyApp\Controllers';
+  private $parametr = [];
 
-  private const DEFAULT_GET = 'GET';
-  private const DEFAULT_POST = 'POST';
-  private const DEFAULT_PUT = 'PUT';
-  private const DEFAULT_DELETE = 'DELETE';
-  private const DEFAULT_PATCH = 'PATCH';
+  private const DEFULT_GET = 'GET';
+  private const DEFULT_POST = 'POST';
+  private const DEFULT_PUT = 'PUT';
+  private const DEFULT_DELETE = 'DELETE';
+  private const DEFULT_PATCH = 'PATCH';
   private $handlers = [];
 
   public function setDefaultController($controller)
@@ -22,29 +22,35 @@ class App
 
   public function setDefaultMethod($method)
   {
-    $this->controllerMethod = $method;
+    $this->contollerMethod = $method;
+  }
+
+  public function setNamespace($namespace)
+  {
+    $this->namespace = $namespace;
   }
 
   public function get($uri, $callback)
   {
-    $this->setHandler(self::DEFAULT_GET, $uri, $callback);
+    $this->setHandler(self::DEFULT_GET, $uri, $callback);
   }
 
   public function post($uri, $callback)
   {
-    $this->setHandler(self::DEFAULT_POST, $uri, $callback);
+    $this->setHandler(self::DEFULT_POST, $uri, $callback);
   }
+
   public function put($uri, $callback)
   {
-    $this->setHandler(self::DEFAULT_PUT, $uri, $callback);
+    $this->setHandler(self::DEFULT_PUT, $uri, $callback);
   }
   public function delete($uri, $callback)
   {
-    $this->setHandler(self::DEFAULT_DELETE, $uri, $callback);
+    $this->setHandler(self::DEFULT_DELETE, $uri, $callback);
   }
   public function patch($uri, $callback)
   {
-    $this->setHandler(self::DEFAULT_PATCH, $uri, $callback);
+    $this->setHandler(self::DEFULT_PATCH, $uri, $callback);
   }
 
   private function setHandler(string $method, string $path, $handler)
@@ -58,24 +64,28 @@ class App
 
   public function run()
   {
-    $excecute = 0;
+    $execute = 0;
     $url = $this->getUrl();
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     foreach ($this->handlers as $handler) {
-      $path = explode('/', ltrim(rtrim($handler['path'], '/'), '/'));
+      // cek url dengan route
+      $path = explode('/', rtrim(ltrim($handler['path'], '/'), '/'));
       $new_path = [];
       $new_url = [];
       $param = [];
       $paramURL = [];
+      $objVariable = [];
       if (count($path) == count($url)) {
         foreach ($path as $value) {
-          if (!str_contains($value, ":")) {
+          if (!str_contains($value, ':')) {
             array_push($new_path, $value);
           } else {
-            array_push($param, $value);
+            array_push($param, str_replace(')', '', str_replace('(', '', str_replace(':', '', $value))));
           }
         }
+
         if (str_contains(implode("/", $url), implode("/", $new_path))) {
+
           for ($i = 0; $i < count($url); $i++) {
             if ($i < count($new_path)) {
               array_push($new_url, $url[$i]);
@@ -85,65 +95,57 @@ class App
           }
 
           if (
-            implode(
-              '/',
-              $new_path
-            ) == implode(
-              '/',
-              $new_url
-            ) &&
+            implode('/', $new_path) == implode('/', $new_url) &&
             count($param) == count($paramURL) &&
             $requestMethod == $handler['method']
           ) {
-            if (isset($handler['handler'][0]) && file_exists(__DIR__ . '/../controllers/' . $handler['handler'][0] . '.php')) {
+
+            for ($i = 0; $i < count($param); $i++) {
+              if (str_contains(implode('/', $param), 'segment')) {
+                $objVariable[] = $paramURL[$i];
+              } else {
+                $objVariable[$param[$i]] = $paramURL[$i];
+              }
+            }
+
+            if (isset($handler['handler'][0]) && class_exists($this->namespace . '\\' . $handler['handler'][0])) {
               $this->controllerFile = $handler['handler'][0];
             }
-            require_once __DIR__ . '/../controllers/' . $this->controllerFile . '.php';
-            $this->controllerFile = new $this->controllerFile;
-            $excecute = 1;
-
+            // create objeknya
+            $fn = $this->namespace . '\\' . $this->controllerFile;
+            $this->controllerFile = new $fn();
+            // $this->controllerFile = new $this->controllerFile;
+            $execute = 1;
             if (isset($handler['handler'][1]) && method_exists($this->controllerFile, $handler['handler'][1])) {
-              $this->controllerMethod = $handler['handler'][1];
+              $this->contollerMethod = $handler['handler'][1];
             }
-            $url = $paramURL;
+            // $url = $paramURL;
+            $url = $objVariable;
           }
         }
       }
-
-      // $path = explode('/', ltrim(rtrim($handler['path'], '/'), '/'));
-      // $kurl = (isset($url[0]) ? $url[0] : '') . (isset($url[1]) ? $url[1] : '');
-      // $kpath = (isset($path[0]) ? $path[0] : '') . (isset($path[1]) ? $path[1] : '');
-      // if ($kurl != "" && $kurl == $kpath && $requestMethod == $handler['method']) {
-      //   if (isset($handler['handler'][0]) && file_exists(__DIR__ . '/../controllers/' . $handler['handler'][0] . '.php')) {
-      //     $this->controllerFile = $handler['handler'][0];
-      //     unset($url[0]);
-      //   }
-      //   require_once __DIR__ . '/../controllers/' . $this->controllerFile . '.php';
-      //   $this->controllerFile = new $this->controllerFile;
-      //   $excecute = 1;
-
-      //   if (isset($handler['handler'][1]) && method_exists($this->controllerFile, $handler['handler'][1])) {
-      //     $this->controllerMethod = $handler['handler'][1];
-      //     unset($url[1]);
-      //   }
-      // }
     }
 
-    if ($excecute == 0) {
-      require_once __DIR__ . '/../controllers/' . $this->controllerFile . '.php';
-      $this->controllerFile = new $this->controllerFile;
+    // buat objeknya
+    if ($execute == 0) {
+      // require_once __DIR__ . '/../controllers/' . $this->controllerFile . '.php';
+      $fn = $this->namespace . '\\' . $this->controllerFile;
+      $this->controllerFile = new $fn();
     }
 
+    // paremter sisanya
     if (!empty($url)) {
-      $this->parameter = array_values($url);
+      // $this->parametr = array_values($url);
+      $this->parametr = $url;
     }
 
-    call_user_func_array([$this->controllerFile, $this->controllerMethod], $this->parameter);
-  }
 
+    // jalankan contoller dan param
+    call_user_func_array([$this->controllerFile, $this->contollerMethod], $this->parametr);
+  }
   private function getUrl()
   {
-    $url = rtrim($_SERVER['QUERY_STRING'], '/');
+    $url = rtrim($_SERVER['QUERY_STRING'], "/");
     $url = filter_var($url, FILTER_SANITIZE_URL);
     $url = explode('/', $url);
     return $url;
