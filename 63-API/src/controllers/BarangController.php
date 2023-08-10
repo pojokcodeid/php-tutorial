@@ -2,21 +2,22 @@
 namespace MyApp\Controllers;
 
 use MyApp\Core\BaseController;
+use MyApp\Core\Message;
 
 class BarangController extends BaseController
 {
 
-  private $barang;
+  private $barangModel;
   public function __construct()
   {
-    $this->barang = $this->model('BarangModel');
+    $this->barangModel = $this->model('BarangModel');
   }
 
   public function index($id = null)
   {
     if ($id == null) {
       try {
-        $data = $this->barang->getAll();
+        $data = $this->barangModel->getAll();
       } catch (\Exception $e) {
         $data = [
           'status' => '500',
@@ -25,13 +26,13 @@ class BarangController extends BaseController
           'data' => null
         ];
         $this->view('template/header');
-        header('HTTP/1.1 500 Internal Server Error');
+        header('HTTP/1.0 500 Internal Server Error');
         echo json_encode($data);
-        exit;
+        exit();
       }
     } else {
       try {
-        $data = $this->barang->getById($id);
+        $data = $this->barangModel->getById($id);
       } catch (\Exception $e) {
         $data = [
           'status' => '500',
@@ -40,9 +41,9 @@ class BarangController extends BaseController
           'data' => null
         ];
         $this->view('template/header');
-        header('HTTP/1.1 500 Internal Server Error');
+        header('HTTP/1.0 500 Internal Server Error');
         echo json_encode($data);
-        exit;
+        exit();
       }
     }
     if ($data) {
@@ -53,7 +54,7 @@ class BarangController extends BaseController
         'data' => $data
       ];
       $this->view('template/header');
-      header('HTTP/1.1 200 OK');
+      header('HTTP/1.0 200 OK');
       echo json_encode($data);
     } else {
       $data = [
@@ -63,34 +64,35 @@ class BarangController extends BaseController
         'data' => null
       ];
       $this->view('template/header');
-      header('HTTP/1.1 404 Not Found');
+      header('HTTP/1.0 404 Not Found');
       echo json_encode($data);
     }
   }
 
   public function insert()
   {
-    $data = json_decode(file_get_contents("php://input"), true);
+    $data = json_decode(file_get_contents('php://input'), true);
     $fields = [
       'nama_barang' => 'string | required',
       'jumlah' => 'int | required',
       'harga_satuan' => 'float | required',
       'kadaluarsa' => 'string'
     ];
-
-    $messages = [
+    $message = [
       'nama_barang' => [
-        'required' => 'Nama barang harus diisi',
-        'alphanumeric' => 'Masukan Huruf dan angka saja',
+        'required' => 'Nama Barang harus diisi!',
+        'alphanumeric' => 'Masukan huruf dan angka',
+        'between' => 'Nama Barang harus diantara 3 dan 25 karakter',
       ],
       'jumlah' => [
-        'required' => 'Jumlah barang harus diisi',
+        'required' => 'Jumlah harus diisi!',
       ],
       'harga_satuan' => [
-        'required' => 'Harga barang harus diisi',
+        'required' => 'Harga Satuan harus diisi!',
       ]
     ];
-    [$inputs, $errors] = $this->filter($data, $fields, $messages);
+    [$inputs, $errors] = $this->filter($data, $fields, $message);
+
     if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }
@@ -98,62 +100,65 @@ class BarangController extends BaseController
     if ($errors) {
       $data = [
         'status' => '400',
-        'errors' => '400',
+        'error' => '400',
         'message' => $errors,
         'data' => $inputs
       ];
       $this->view('template/header');
-      header('HTTP/1.1 400 Bad Request');
+      header('HTTP/1.0 400 Bad Request');
       echo json_encode($data);
+      exit();
     } else {
-      $proc = $this->barang->insert($inputs);
+      $proc = $this->barangModel->insert($inputs);
       if ($proc->rowCount() > 0) {
         $data = [
           'status' => '201',
-          'errors' => null,
+          'error' => null,
           'message' => "Data ditambahkan " . $proc->rowCount() . " baris",
           'data' => $inputs
         ];
         $this->view('template/header');
-        header('HTTP/1.1 201 OK');
+        header('HTTP/1.0 201 OK');
         echo json_encode($data);
       } else {
         $data = [
           'status' => '400',
-          'errors' => '400',
-          'message' => 'Data gagal di tambahkan',
+          'error' => '400',
+          'message' => 'Data gagal ditambahkan',
+          'data' => null
         ];
         $this->view('template/header');
-        header('HTTP/1.1 400 Bad Request');
+        header('HTTP/1.0 400 Bad Request');
         echo json_encode($data);
       }
     }
-
   }
 
   public function edit($id = null)
   {
-    $data = json_decode(file_get_contents("php://input"), true);
+    $data = json_decode(file_get_contents('php://input'), true);
     $fields = [
       'nama_barang' => 'string | required',
       'jumlah' => 'int | required',
       'harga_satuan' => 'float | required',
-      'kadaluarsa' => 'string',
+      'kadaluarsa' => 'string'
     ];
-
-    $messages = [
+    $message = [
       'nama_barang' => [
-        'required' => 'Nama barang harus diisi',
+        'required' => 'Nama Barang harus diisi!',
+        'alphanumeric' => 'Masukan huruf dan angka',
+        'between' => 'Nama Barang harus diantara 3 dan 25 karakter',
       ],
       'jumlah' => [
-        'required' => 'Jumlah barang harus diisi',
+        'required' => 'Jumlah harus diisi!',
       ],
       'harga_satuan' => [
-        'required' => 'Harga barang harus diisi',
+        'required' => 'Harga Satuan harus diisi!',
       ]
     ];
-    [$inputs, $errors] = $this->filter($data, $fields, $messages);
-    if (isset($inputs['kadaluarsa']) && $inputs['kadaluarsa'] == "") {
+    [$inputs, $errors] = $this->filter($data, $fields, $message);
+
+    if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }
     $inputs['id'] = $id;
@@ -161,35 +166,38 @@ class BarangController extends BaseController
     if ($errors) {
       $data = [
         'status' => '400',
-        'error' => 'Data tidak valid',
+        'error' => '400',
         'message' => $errors,
         'data' => $inputs
       ];
       $this->view('template/header');
-      header('HTTP/1.1 400 Bad Request');
+      header('HTTP/1.0 400 Bad Request');
       echo json_encode($data);
+      exit();
     } else {
-      $proc = $this->barang->update($inputs);
+      $proc = $this->barangModel->update($inputs);
       if ($proc->rowCount() > 0) {
         $data = [
-          'status' => '200',
+          'status' => '201',
           'error' => null,
-          'message' => "Data diubah " . $proc->rowCount() . " baris",
+          'message' => "Data diperbarui " . $proc->rowCount() . " baris",
           'data' => $inputs
         ];
         $this->view('template/header');
-        header('HTTP/1.1 200 OK');
+        header('HTTP/1.0 201 OK');
         echo json_encode($data);
+        exit();
       } else {
         $data = [
           'status' => '400',
           'error' => '400',
-          'message' => 'Data gagal di ubah',
+          'message' => 'Data gagal diperbarui',
           'data' => null
         ];
         $this->view('template/header');
-        header('HTTP/1.1 400 Bad Request');
+        header('HTTP/1.0 400 Bad Request');
         echo json_encode($data);
+        exit();
       }
     }
   }
@@ -198,35 +206,43 @@ class BarangController extends BaseController
   {
     if ($id == null) {
       $data = [
-        'status' => 'Error',
-        'message' => 'Id tidak ditemukan'
+        'status' => '404',
+        'error' => '404',
+        'message' => 'Data tidak ditemukan',
+        'data' => null
       ];
       $this->view('template/header');
-      header('HTTP/1.1 404 Not Found');
+      header('HTTP/1.0 404 Not Found');
       echo json_encode($data);
+      exit();
     } else {
-      $proc = $this->barang->delete($id);
+      $proc = $this->barangModel->delete($id);
       if ($proc->rowCount() > 0) {
         $data = [
           'status' => '200',
           'error' => null,
-          'message' => "Data dihapus " . $proc->rowCount() . " baris",
+          'message' => 'Data berhasil dihapus',
           'data' => [
             'barang_id' => $id
           ]
         ];
         $this->view('template/header');
-        header('HTTP/1.1 200 OK');
+        header('HTTP/1.0 200 OK');
         echo json_encode($data);
+        exit();
       } else {
         $data = [
-          'status' => '422',
-          'error' => '422',
-          'message' => "Data dihapus " . $proc->rowCount() . " baris"
+          'status' => '404',
+          'error' => '404',
+          'message' => 'Data tidak ditemukan',
+          'data' => [
+            'barang_id' => $id
+          ]
         ];
         $this->view('template/header');
-        header('HTTP/1.1 422 Unprocessable Entity');
+        header('HTTP/1.0 404 Not Found');
         echo json_encode($data);
+        exit();
       }
     }
   }

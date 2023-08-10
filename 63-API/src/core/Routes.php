@@ -16,6 +16,8 @@ class Routes
     $router->post('/barang', ['BarangController', 'insert']);
     $router->delete('/barang/(:id)', ['BarangController', 'delete']);
 
+    $router->get('/kategori', ['KategoriController', 'index']);
+
 
     $router->run();
   }

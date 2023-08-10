@@ -1,5 +1,8 @@
 <?php
+namespace MyApp\Models;
+
 use MyApp\Core\Database;
+use PDO;
 
 class BarangModel extends Database
 {
