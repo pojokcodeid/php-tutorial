@@ -1,7 +1,7 @@
 <?php
 namespace MyApp\Core;
 
-use MyApp\Models\uniqueModel;
+use MyApp\Models\UniqueModel;
 
 class Validation
 {
@@ -129,7 +129,7 @@ class Validation
     if (!isset($data[$field])) {
       return true;
     }
-    $uniqueMOdel = new uniqueModel();
+    $uniqueMOdel = new UniqueModel();
     $stmt = $uniqueMOdel->check($table, $column, $data[$field]);
     return $stmt->fetchColumn() === false;
   }

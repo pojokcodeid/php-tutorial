@@ -3,7 +3,7 @@ namespace MyApp\Models;
 
 use MyApp\Core\Database;
 
-class uniqueModel extends Database
+class UniqueModel extends Database
 {
   public function __construct()
   {
