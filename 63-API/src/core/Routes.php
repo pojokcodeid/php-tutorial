@@ -16,7 +16,8 @@ class Routes
     $router->post('/barang', ['BarangController', 'insert']);
     $router->delete('/barang/(:id)', ['BarangController', 'delete']);
 
-    $router->get('/kategori', ['KategoriController', 'index']);
+    $router->post('/register', ['AutentikasiController', 'register']);
+    $router->post('/login', ['AutentikasiController', 'login']);
 
 
     $router->run();

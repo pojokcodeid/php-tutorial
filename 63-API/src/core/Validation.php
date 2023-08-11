@@ -1,6 +1,8 @@
 <?php
 namespace MyApp\Core;
 
+use MyApp\Models\uniqueModel;
+
 class Validation
 {
   const DEFAULT_VALIDATION_ERRORS = [
@@ -122,13 +124,14 @@ class Validation
     return preg_match($pattern, $data[$field]);
   }
 
-  public function is_unique(array $data, string $field, string $table, string $column): bool
+  function is_unique(array $data, string $field, string $table, string $column): bool
   {
     if (!isset($data[$field])) {
       return true;
     }
-    // disini cek ke database
-    return false;
+    $uniqueMOdel = new uniqueModel();
+    $stmt = $uniqueMOdel->check($table, $column, $data[$field]);
+    return $stmt->fetchColumn() === false;
   }
 
 }

@@ -3,5 +3,8 @@
     "psr-4": {
       "MyApp\\": "src/"
     }
+  },
+  "require": {
+    "firebase/php-jwt": "^6.8"
   }
 }
