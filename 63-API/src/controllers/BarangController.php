@@ -4,6 +4,7 @@ namespace MyApp\Controllers;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use MyApp\Core\BaseController;
+use MyApp\Models\AutentikasiModel;
 
 class BarangController extends BaseController
 {
@@ -14,7 +15,7 @@ class BarangController extends BaseController
     $this->barangModel = $this->model('MyApp\Models\BarangModel');
   }
 
-  public function index($id = null)
+  private function getToken()
   {
     $headers = getallheaders();
     if (!isset($headers['Authorization']) || $headers['Authorization'] == "") {
@@ -34,7 +35,27 @@ class BarangController extends BaseController
     list(, $token) = explode(' ', $headers['Authorization']);
     try {
       // Men-decode token. Dalam library ini juga sudah sekaligus memverfikasinya
-      JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
+      $decodedToken = JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
+      $authModel = new AutentikasiModel();
+      $data = $authModel->getByEmail($decodedToken->email);
+      return $data;
+    } catch (\Exception $e) {
+      $data = [
+        'status' => '401',
+        'error' => '401',
+        'message' => 'Token tidak valid',
+        'data' => null
+      ];
+      $this->view('template/header');
+      header('HTTP/1.0 401 Unauthorized');
+      echo json_encode($data);
+      return null;
+    }
+  }
+
+  public function index($id = null)
+  {
+    if ($this->getToken()) {
       if ($id == null) {
         try {
           $data = $this->barangModel->getAll();
@@ -87,41 +108,12 @@ class BarangController extends BaseController
         header('HTTP/1.0 404 Not Found');
         echo json_encode($data);
       }
-    } catch (\Exception $e) {
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Token tidak valid',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
     }
   }
 
   public function insert()
   {
-    $headers = getallheaders();
-    if (!isset($headers['Authorization']) || $headers['Authorization'] == "") {
-      http_response_code(401);
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Access tidak di berikan',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
-    }
-    // Mengambil token
-    list(, $token) = explode(' ', $headers['Authorization']);
-    try {
-      // Men-decode token. Dalam library ini juga sudah sekaligus memverfikasinya
-      JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
+    if ($this->getToken()) {
       $data = json_decode(file_get_contents('php://input'), true);
       $fields = [
         'nama_barang' => 'string | required',
@@ -183,41 +175,12 @@ class BarangController extends BaseController
           echo json_encode($data);
         }
       }
-    } catch (\Exception $e) {
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Token tidak valid',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
     }
   }
 
   public function edit($id = null)
   {
-    $headers = getallheaders();
-    if (!isset($headers['Authorization']) || $headers['Authorization'] == "") {
-      http_response_code(401);
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Access tidak di berikan',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
-    }
-    // Mengambil token
-    list(, $token) = explode(' ', $headers['Authorization']);
-    try {
-      // Men-decode token. Dalam library ini juga sudah sekaligus memverfikasinya
-      JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
+    if ($this->getToken()) {
       $data = json_decode(file_get_contents('php://input'), true);
       $fields = [
         'nama_barang' => 'string | required',
@@ -282,41 +245,12 @@ class BarangController extends BaseController
           exit();
         }
       }
-    } catch (\Exception $e) {
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Token tidak valid',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
     }
   }
 
   public function delete($id = null)
   {
-    $headers = getallheaders();
-    if (!isset($headers['Authorization']) || $headers['Authorization'] == "") {
-      http_response_code(401);
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Access tidak di berikan',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
-    }
-    // Mengambil token
-    list(, $token) = explode(' ', $headers['Authorization']);
-    try {
-      // Men-decode token. Dalam library ini juga sudah sekaligus memverfikasinya
-      JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
+    if ($this->getToken()) {
       if ($id == null) {
         $data = [
           'status' => '404',
@@ -358,17 +292,6 @@ class BarangController extends BaseController
           exit();
         }
       }
-    } catch (\Exception $e) {
-      $data = [
-        'status' => '401',
-        'error' => '401',
-        'message' => 'Token tidak valid',
-        'data' => null
-      ];
-      $this->view('template/header');
-      header('HTTP/1.0 401 Unauthorized');
-      echo json_encode($data);
-      exit();
     }
   }
 }

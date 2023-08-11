@@ -2,7 +2,6 @@
 namespace MyApp\Models;
 
 use MyApp\Core\Database;
-use PDO;
 
 class uniqueModel extends Database
 {
