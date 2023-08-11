@@ -1,0 +1,20 @@
+{
+  "autoload": {
+    "psr-4": {
+      "MyApp\\": "src/"
+    }
+  },
+  "require": {
+    "twbs/bootstrap": "5.3.1",
+    "components/font-awesome": "^6.4"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "post-update-cmd": [
+      "rm -rf public/bootstrap",
+      "cp -R vendor/twbs/bootstrap/dist public/bootstrap",
+      "rm -rf public/font-awesome",
+      "cp -R vendor/components/font-awesome public/font-awesome"
+    ]
+  }
+}
