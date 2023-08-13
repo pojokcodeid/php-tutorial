@@ -1,7 +1,7 @@
 <?php
 
 // install composer
-// composer require paragonie/paseto
+// composer require paragonie/paseto^3.1.1
 
 require_once '../vendor/autoload.php';
 
