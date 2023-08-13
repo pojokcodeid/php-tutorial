@@ -8,10 +8,16 @@ $header = [
   $token,
 ];
 
+$nama = isset($_POST['nama_barang']) ? $_POST['nama_barang'] : '';
+$jumlah = isset($_POST['jumlah']) ? $_POST['jumlah'] : '';
+$harga = isset($_POST['harga']) ? $_POST['harga'] : '';
+$kadaluarsa = isset($_POST['kadaluarsa']) ? $_POST['kadaluarsa'] : '';
+
 $data = '{
-  "nama_barang":"ini testing saja",
-  "jumlah":"10",
-  "harga_satuan":30000
+  "nama_barang":"' . $nama . '",
+  "jumlah":"' . $jumlah . '",
+  "harga_satuan":"' . $harga . '",
+  "kadaluarsa":"' . $kadaluarsa . '"
 }';
 
 
@@ -35,5 +41,12 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+  $response = json_decode($response, true);
+  if ($response['error'] == null) {
+    echo 'Data berhasil ditambahkan<br>';
+    echo '<a href="index.php">Kembali</a>';
+  } else {
+    echo $response['message'] . '<br>';
+    echo '<a href="index.php">Kembali</a>';
+  }
 }

@@ -1,5 +1,5 @@
 <?php
-
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 include 'validate.php';
 
 $curl = curl_init();
@@ -9,7 +9,7 @@ $header = [
 ];
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "http://localhost/php-tutorial/63-API/barang/1",
+  CURLOPT_URL => "http://localhost/php-tutorial/63-API/barang/$id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -34,6 +34,7 @@ if ($err) {
     echo json_encode($data);
     unset($_COOKIE['myToken']);
   } else {
-    echo $response;
+    $response = json_decode($response, true);
+    $data = $response['data'];
   }
 }

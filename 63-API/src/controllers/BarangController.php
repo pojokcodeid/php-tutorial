@@ -236,7 +236,7 @@ class BarangController extends BaseController
           $data = [
             'status' => '400',
             'error' => '400',
-            'message' => 'Data gagal diperbarui',
+            'message' => 'Tidak ada data yang diperbarui',
             'data' => null
           ];
           $this->view('template/header');

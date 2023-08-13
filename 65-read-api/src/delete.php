@@ -28,5 +28,12 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+  $response = json_decode($response, true);
+  if ($response['error'] == null) {
+    echo 'Data berhasil dihapus<br>';
+    echo '<a href="index.php">Kembali</a>';
+  } else {
+    echo $response['message'] . '<br>';
+    echo '<a href="index.php">Kembali</a>';
+  }
 }

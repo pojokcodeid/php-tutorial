@@ -48,7 +48,8 @@ if ($err) {
     $exp = strtotime($data->data->expiry);
 
     // Simpan token di http-only cookie
-    setcookie("myToken", $data->data->accessToken, $exp + (60 * 60 * 24), "/", "", 0);
-    echo "login sucess";
+    // setcookie("myToken", $data->data->accessToken, $exp + (60 * 60 * 24), "/", "", 0);
+    setcookie("myToken", $data->data->accessToken, $exp, "/", "", 0);
+    // echo "login sucess";
   }
 }

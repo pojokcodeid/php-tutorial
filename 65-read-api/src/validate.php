@@ -1,5 +1,5 @@
 <?php
-header('content-type: application/json');
+// header('content-type: application/json');
 $token = "";
 if (isset($_COOKIE['myToken'])) {
   $tokenPart = explode(".", $_COOKIE['myToken']);

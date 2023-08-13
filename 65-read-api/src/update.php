@@ -1,5 +1,10 @@
 <?php
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+$id = isset($_POST['id']) ? $_POST['id'] : '';
+$nama = isset($_POST['nama_barang']) ? $_POST['nama_barang'] : '';
+$jumlah = isset($_POST['jumlah']) ? $_POST['jumlah'] : '';
+$harga = isset($_POST['harga']) ? $_POST['harga'] : '';
+$kadaluarsa = isset($_POST['kadaluarsa']) ? $_POST['kadaluarsa'] : '';
+
 include 'validate.php';
 
 $curl = curl_init();
@@ -9,10 +14,10 @@ $header = [
 ];
 
 $data = '{
-  "nama_barang": "Sarung Tenun",
-   "jumlah": 1,
-   "harga_satuan": 20000,
-   "kadaluarsa": null
+  "nama_barang": "' . $nama . '",
+   "jumlah": "' . $jumlah . '",
+   "harga_satuan": "' . $harga . '",
+   "kadaluarsa": "' . $kadaluarsa . '"
 }';
 
 curl_setopt_array($curl, [
@@ -35,5 +40,12 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
+  $response = json_decode($response, true);
+  if ($response['error'] == null) {
+    echo 'Data berhasil diubah<br>';
+    echo '<a href="index.php">Kembali</a>';
+  } else {
+    echo $response['message'] . '<br>';
+    echo '<a href="index.php">Kembali</a>';
+  }
 }

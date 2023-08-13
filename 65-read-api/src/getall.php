@@ -23,16 +23,20 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 curl_close($curl);
 
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  if (!$response) {
-    $data = [
-      "message" => "data kosong atau anda tidak memiliki akses"
-    ];
-    echo json_encode($data);
-    unset($_COOKIE['myToken']);
-  } else {
-    echo $response;
-  }
-}
+$response = json_decode($response, true);
+$response = $response['data'];
+
+
+// if ($err) {
+//   echo "cURL Error #:" . $err;
+// } else {
+//   if (!$response) {
+//     $data = [
+//       "message" => "data kosong atau anda tidak memiliki akses"
+//     ];
+//     echo json_encode($data);
+//     unset($_COOKIE['myToken']);
+//   } else {
+//     echo $response;
+//   }
+// }
