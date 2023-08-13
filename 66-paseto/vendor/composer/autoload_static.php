@@ -15,8 +15,6 @@ class ComposerStaticInit961df9612ba9a0c6bc7c84095cc40958
         'P' => 
         array (
             'ParagonIE\\Paseto\\' => 17,
-            'ParagonIE\\Paserk\\' => 17,
-            'ParagonIE\\HiddenString\\' => 23,
             'ParagonIE\\EasyECC\\' => 18,
             'ParagonIE\\Corner\\' => 17,
             'ParagonIE\\ConstantTime\\' => 23,
@@ -43,14 +41,6 @@ class ComposerStaticInit961df9612ba9a0c6bc7c84095cc40958
         'ParagonIE\\Paseto\\' => 
         array (
             0 => __DIR__ . '/..' . '/paragonie/paseto/src',
-        ),
-        'ParagonIE\\Paserk\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/paragonie/paserk/src',
-        ),
-        'ParagonIE\\HiddenString\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/paragonie/hidden-string/src',
         ),
         'ParagonIE\\EasyECC\\' => 
         array (

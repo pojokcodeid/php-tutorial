@@ -7,8 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ParagonIE\\Paseto\\' => array($vendorDir . '/paragonie/paseto/src'),
-    'ParagonIE\\Paserk\\' => array($vendorDir . '/paragonie/paserk/src'),
-    'ParagonIE\\HiddenString\\' => array($vendorDir . '/paragonie/hidden-string/src'),
     'ParagonIE\\EasyECC\\' => array($vendorDir . '/paragonie/easy-ecc/src'),
     'ParagonIE\\Corner\\' => array($vendorDir . '/paragonie/corner/src'),
     'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),

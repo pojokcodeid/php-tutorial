@@ -12,6 +12,6 @@
         }
     ],
     "require": {
-        "paragonie/paserk": "^2.2"
+        "paragonie/paseto": "^3.1"
     }
 }
