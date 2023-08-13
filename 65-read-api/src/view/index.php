@@ -1,4 +1,5 @@
 <?php
+$response = [];
 include "../getall.php";
 ?>
 <!DOCTYPE html>
