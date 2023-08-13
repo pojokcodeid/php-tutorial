@@ -1,5 +1,5 @@
 <?php
-include "./getall.php";
+include "../getall.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@ include "./getall.php";
         </td>
         <td>
           <a href="ubah.php?id=<?= $row['barang_id'] ?>">Ubah</a>&nbsp;
-          <a href="delete.php?id=<?= $row['barang_id'] ?>">Hapus</a>
+          <a href="../delete.php?id=<?= $row['barang_id'] ?>">Hapus</a>
         </td>
       </tr>
       <?php

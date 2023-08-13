@@ -1,6 +1,6 @@
 <?php
 
-include 'validate.php';
+include '../validate.php';
 
 $curl = curl_init();
 $header = [

@@ -1,3 +1,6 @@
+<?php
+include '../getByid.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,35 +11,36 @@
 </head>
 
 <body>
-  <h3>Input barang</h3>
-  <form action="insert.php" method="post">
+  <h3>Edit barang</h3>
+  <form action="../update.php" method="post">
     <table width="50%" border="0" cellpadding="3" cellspacing="0">
+      <input type="hidden" name="id" value="<?= $data['barang_id'] ?>">
       <tr>
         <td width="30%">Nama Banrag</td>
         <td>:</td>
         <td>
-          <input type="text" name="nama_barang" id="nama_barang">
+          <input type="text" name="nama_barang" id="nama_barang" value="<?= $data['nama_barang'] ?>">
         </td>
       </tr>
       <tr>
         <td>jumlah</td>
         <td>:</td>
         <td>
-          <input type="text" name="jumlah" id="jumlah">
+          <input type="text" name="jumlah" id="jumlah" value="<?= $data['jumlah'] ?>">
         </td>
       </tr>
       <tr>
         <td>Harga</td>
         <td>:</td>
         <td>
-          <input type="text" name="harga" id="harga">
+          <input type="text" name="harga" id="harga" value="<?= $data['harga_satuan'] ?>">
         </td>
       </tr>
       <tr>
         <td>Kadaluarsa</td>
         <td>:</td>
         <td>
-          <input type="date" name="kadaluarsa" id="kadaluarsa">
+          <input type="date" name="kadaluarsa" id="kadaluarsa" value="<?= $data['expire_date'] ?>">
         </td>
       </tr>
       <tr>

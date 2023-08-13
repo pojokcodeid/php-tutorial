@@ -31,9 +31,9 @@ if ($err) {
   $response = json_decode($response, true);
   if ($response['error'] == null) {
     echo 'Data berhasil dihapus<br>';
-    echo '<a href="index.php">Kembali</a>';
+    echo '<a href="./view/index.php">Kembali</a>';
   } else {
     echo $response['message'] . '<br>';
-    echo '<a href="index.php">Kembali</a>';
+    echo '<a href="./view/index.php">Kembali</a>';
   }
 }
