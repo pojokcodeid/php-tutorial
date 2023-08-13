@@ -124,13 +124,14 @@ class Validation
     return preg_match($pattern, $data[$field]);
   }
 
-  function is_unique(array $data, string $field, string $table, string $column): bool
+  public function is_unique(array $data, string $field, string $table, string $column): bool
   {
     if (!isset($data[$field])) {
       return true;
     }
-    $uniqueMOdel = new UniqueModel();
-    $stmt = $uniqueMOdel->check($table, $column, $data[$field]);
+    // disini cek ke database
+    $uniqueModel = new UniqueModel();
+    $stmt = $uniqueModel->check($table, $column, $data[$field]);
     return $stmt->fetchColumn() === false;
   }
 

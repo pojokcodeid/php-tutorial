@@ -18,7 +18,8 @@ class Routes
 
     $router->post('/register', ['AutentikasiController', 'register']);
     $router->post('/login', ['AutentikasiController', 'login']);
-    $router->get('/refresh', ['AutentikasiController', 'refresh']);
+
+    $router->get('/kategori', ['KategoriController', 'index']);
 
 
     $router->run();

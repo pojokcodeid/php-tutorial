@@ -19,11 +19,10 @@ class BarangController extends BaseController
   {
     $headers = getallheaders();
     if (!isset($headers['Authorization']) || $headers['Authorization'] == "") {
-      http_response_code(401);
       $data = [
         'status' => '401',
         'error' => '401',
-        'message' => 'Access tidak di berikan',
+        'message' => 'Acess tidak diberikan',
         'data' => null
       ];
       $this->view('template/header');
@@ -31,14 +30,13 @@ class BarangController extends BaseController
       echo json_encode($data);
       exit();
     }
-    // Mengambil token
+    // mengambil token
     list(, $token) = explode(' ', $headers['Authorization']);
     try {
-      // Men-decode token. Dalam library ini juga sudah sekaligus memverfikasinya
       $decodedToken = JWT::decode($token, new Key(getenv('JWT_SECRET_KEY'), 'HS256'));
       $authModel = new AutentikasiModel();
-      $data = $authModel->getByEmail($decodedToken->email);
-      return $data;
+      $dataModel = $authModel->getByEmail($decodedToken->email);
+      return $dataModel;
     } catch (\Exception $e) {
       $data = [
         'status' => '401',
@@ -236,7 +234,7 @@ class BarangController extends BaseController
           $data = [
             'status' => '400',
             'error' => '400',
-            'message' => 'Tidak ada data yang diperbarui',
+            'message' => 'Data gagal diperbarui',
             'data' => null
           ];
           $this->view('template/header');

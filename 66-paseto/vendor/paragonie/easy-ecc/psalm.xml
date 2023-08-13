@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<psalm
+    name="Easy-ECC"
+    useDocblockTypes="true"
+>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <PropertyNotSetInConstructor errorLevel="suppress" />
+    </issueHandlers>
+</psalm>

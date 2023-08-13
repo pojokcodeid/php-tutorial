@@ -11,7 +11,6 @@ class AutentikasiModel extends Database
     parent::__construct();
     $this->setTableName('autentikasi');
     $this->setColumn([
-      'id',
       'email',
       'password'
     ]);
@@ -30,5 +29,4 @@ class AutentikasiModel extends Database
   {
     return $this->get(['email' => $email])->fetch(PDO::FETCH_ASSOC);
   }
-
 }

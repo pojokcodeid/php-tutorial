@@ -9,6 +9,7 @@ class UniqueModel extends Database
   {
     parent::__construct();
   }
+
   public function check($table, $column, $value)
   {
     $sql = "SELECT $column FROM $table WHERE $column = ? ";

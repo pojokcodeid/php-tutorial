@@ -1,0 +1,48 @@
+{
+  "name": "paragonie/easy-ecc",
+  "description": "Usabiliy Wrapper for mdanter/ecc",
+  "authors": [
+    {
+      "name": "Paragon Initiative Enterprises",
+      "email": "info@paragonie.com",
+      "homepage": "https://paragonie.com",
+      "role": "Development Team"
+    }
+  ],
+  "config": {
+    "preferred-install": "dist",
+    "optimize-autoloader": true
+  },
+  "license": "ISC",
+  "autoload": {
+    "files": ["autoload-shim.php"],
+    "psr-4": {
+      "ParagonIE\\EasyECC\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ParagonIE\\EasyECC\\Tests\\": "./tests"
+    }
+  },
+  "require": {
+    "php": "^7.1|^8",
+    "ext-gmp": "*",
+    "defuse/php-encryption": "^2.1",
+    "mdanter/ecc": "^1",
+    "paragonie/sodium_compat": "^1.16",
+    "paragonie/constant_time_encoding": "^2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7|^8|^9",
+    "vimeo/psalm": "^1|^3|^4"
+  },
+  "scripts": {
+    "test": ["phpunit", "psalm"]
+  },
+  "support": {
+    "email": "security@paragonie.com",
+    "issues": "https://github.com/paragonie/ionizer/issues",
+    "source": "https://github.com/paragonie/ionizer"
+  }
+}
