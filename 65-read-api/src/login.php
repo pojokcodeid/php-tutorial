@@ -4,7 +4,7 @@ use Dotenv\Dotenv;
 require_once('../../vendor/autoload.php');
 
 // Load dotenv
-$dotenv = Dotenv::createImmutable('../' . __DIR__);
+$dotenv = Dotenv::createImmutable('../../');
 $dotenv->load();
 
 $curl = curl_init();
