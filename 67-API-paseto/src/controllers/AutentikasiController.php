@@ -137,6 +137,11 @@ class AutentikasiController extends BaseController
           ];
           // $acess_token = JWT::encode($payload, getenv('JWT_SECRET_KEY'), 'HS256');
           // generate random key
+          // **** untuk generate screret key gunakan script di bawah ini ****
+          // $sharedKey = new SymmetricKey(random_bytes(32));
+          // $data = $sharedKey->encode();
+          // var_dump($data);
+
           $sharedKey = SymmetricKey::fromEncodedString(getenv('JWT_SECRET_KEY'));
           // Membuat token Paseto versi 4 local dengan data
           $builder = Builder::getLocal($sharedKey)
