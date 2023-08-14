@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {
+      "MyApp\\": "src/"
+    }
+  },
+  "require": {
+    "firebase/php-jwt": "^6.8",
+    "paragonie/paseto": "3.1.1"
+  }
+}
