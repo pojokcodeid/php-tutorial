@@ -1,0 +1,17 @@
+{
+    "name": "asep/65-read-api",
+    "autoload": {
+        "psr-4": {
+            "Asep\\65ReadApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "asep komarudin",
+            "email": "pojokcodeid@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
