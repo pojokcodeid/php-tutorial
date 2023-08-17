@@ -23,6 +23,12 @@ class Routes
     $router->get('/kategori/(:id)', ['Kategori', 'edit']);
     $router->post('/kategori', ['Kategori', 'edit_kategori']);
 
+    $router->get('/lokasi', ['Lokasi', 'index']);
+    $router->get('/lokasi/insert', ['Lokasi', 'insert']);
+    $router->post('/lokasi/insert', ['Lokasi', 'insert_lokasi']);
+    $router->get('/lokasi/(:id)', ['Lokasi', 'edit']);
+    $router->post('/lokasi', ['Lokasi', 'edit']);
+
     $router->run();
   }
 }

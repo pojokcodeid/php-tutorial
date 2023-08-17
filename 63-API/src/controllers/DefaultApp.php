@@ -15,7 +15,8 @@ class DefaultApp extends BaseController
       'data' => null
     ];
     $this->view('template/header');
-    header('HTTP/1.0 404 Not Found');
+    // header('HTTP/1.0 404 Not Found');
     echo json_encode($data);
+    exit();
   }
 }

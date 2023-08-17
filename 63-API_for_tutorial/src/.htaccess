@@ -1,2 +1,0 @@
-Options -Indexes
-SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1

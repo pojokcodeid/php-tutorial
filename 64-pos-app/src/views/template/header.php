@@ -157,6 +157,11 @@
                     </a>
                   </li>
                   <li>
+                    <a class="link-body-emphasis" href="<?= BASEURL . '/lokasi' ?>">
+                      <i class="fa-solid fa-location-dot"></i> Lokasi
+                    </a>
+                  </li>
+                  <li>
                     <a class="link-body-emphasis" href="<?= BASEURL . '/barang' ?>">
                       <i class="fa-solid fa-list-check"></i> Barang
                     </a>
@@ -164,11 +169,6 @@
                   <li>
                     <a class="link-body-emphasis" href="<?= BASEURL . '/supplier' ?>">
                       <i class="fa-solid fa-users-rectangle"></i> Supplier
-                    </a>
-                  </li>
-                  <li>
-                    <a class="link-body-emphasis" href="<?= BASEURL . '/lokasi' ?>">
-                      <i class="fa-solid fa-location-dot"></i> Lokasi
                     </a>
                   </li>
                 </ul>

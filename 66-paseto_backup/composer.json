@@ -1,0 +1,17 @@
+{
+    "name": "asep/66-paseto",
+    "autoload": {
+        "psr-4": {
+            "Asep\\66Paseto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "asep komarudin",
+            "email": "pojokcodeid@gmail.com"
+        }
+    ],
+    "require": {
+        "paragonie/paseto": "^3.1"
+    }
+}
