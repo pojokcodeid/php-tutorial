@@ -150,7 +150,7 @@ class AutentikasiController extends BaseController
               // (new DateTime())->add(new DateInterval('PT1H'))
               $timestamp
             )
-            ->setClaims($data);
+            ->setClaims($payload);
 
           $acess_token = $builder->toString();
           // update key_token di database

@@ -3,7 +3,7 @@
         'name' => 'asep/66-paseto',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3274b80ef4e0aff34ffd30fbd1e5df72be6f86d7',
+        'reference' => '74c6c5379943e0c022e9d72ecb63539fc3cf316f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'asep/66-paseto' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3274b80ef4e0aff34ffd30fbd1e5df72be6f86d7',
+            'reference' => '74c6c5379943e0c022e9d72ecb63539fc3cf316f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
