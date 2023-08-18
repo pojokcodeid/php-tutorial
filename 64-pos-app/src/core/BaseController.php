@@ -14,7 +14,7 @@ class BaseController extends Filter
 
   public function redirect($url)
   {
-    header('Location: ' . BASEURL . '/' . $url);
+    header('Location: ' . BASEURL . '/' . ltrim($url, '/'));
     exit;
   }
 
