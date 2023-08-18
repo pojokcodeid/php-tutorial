@@ -27,7 +27,13 @@ class Routes
     $router->get('/lokasi/insert', ['Lokasi', 'insert']);
     $router->post('/lokasi/insert', ['Lokasi', 'insert_lokasi']);
     $router->get('/lokasi/(:id)', ['Lokasi', 'edit']);
-    $router->post('/lokasi', ['Lokasi', 'edit']);
+    $router->post('/lokasi', ['Lokasi', 'edit_lokasi']);
+
+    $router->get('/supplier', ['Supplier', 'index']);
+    $router->get('/supplier/insert', ['Supplier', 'insert']);
+    $router->post('/supplier/insert', ['Supplier', 'insert_supplier']);
+    $router->get('/supplier/(:id)', ['Supplier', 'edit']);
+    $router->post('/supplier', ['Supplier', 'edit_supplier']);
 
     $router->run();
   }

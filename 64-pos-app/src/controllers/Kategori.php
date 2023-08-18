@@ -21,7 +21,7 @@ class Kategori extends BaseController
 
   public function __construct()
   {
-    $this->kategoriModel = $this->model('KategoriModel');
+    $this->kategoriModel = $this->model('MyApp\Models\KategoriModel');
   }
   public function index()
   {

@@ -12,13 +12,13 @@ class Routes
 
     $router->get('/barang', ['BarangController', 'index']);
     $router->get('/barang/(:id)', ['BarangController', 'index']);
-    $router->patch('/barang/(:id)', ['BarangController', 'edit']);
+    $router->put('/barang/(:id)', ['BarangController', 'edit']);
     $router->post('/barang', ['BarangController', 'insert']);
     $router->delete('/barang/(:id)', ['BarangController', 'delete']);
 
     $router->post('/register', ['AutentikasiController', 'register']);
     $router->post('/login', ['AutentikasiController', 'login']);
-    $router->post('/refresh', ['AutentikasiController', 'refreshToken']);
+    $router->get('/refresh', ['AutentikasiController', 'refreshToken']);
 
     $router->get('/kategori', ['KategoriController', 'index']);
 

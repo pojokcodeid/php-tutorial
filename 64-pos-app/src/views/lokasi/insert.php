@@ -22,7 +22,7 @@ Message::flash();
         <li class="breadcrumb-item active" aria-current="page">Input Lokasi</li>
       </ol>
     </nav>
-    <form class="bg-body rounded shadow-sm p-3" id="form" action="<?= BASEURL . '/kategori/insert' ?>" method="post">
+    <form class="bg-body rounded shadow-sm p-3" id="form" action="<?= BASEURL . '/lokasi/insert' ?>" method="post">
       <div class="mb-3 row">
         <label for="kode_lokasi" class="col-md-2 col-form-label">Kode Lokasi</label>
         <div class="col-md-4">

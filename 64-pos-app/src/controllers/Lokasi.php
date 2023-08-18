@@ -8,9 +8,24 @@ class Lokasi extends BaseController
 {
 
   private $lokasi;
+  private const FIELDS = [
+    'kode_lokasi' => 'string | required',
+    'nama_lokasi' => 'string | required',
+    'keterangan' => 'string',
+    'id_lokasi' => 'int',
+    'mode' => 'string'
+  ];
+  private const MESSAGES = [
+    'kode_lokasi' => [
+      'required' => 'Kode lokasi harus diisi',
+    ],
+    'nama_lokasi' => [
+      'required' => 'Nama lokasi harus diisi',
+    ]
+  ];
   public function __construct()
   {
-    $this->lokasi = $this->model('LokasiModel');
+    $this->lokasi = $this->model('MyApp\Models\LokasiModel');
   }
 
   public function index()
@@ -37,21 +52,7 @@ class Lokasi extends BaseController
 
   public function insert_lokasi()
   {
-    $fields = [
-      'kode_lokasi' => 'string | required',
-      'nama_lokasi' => 'string | required',
-      'keterangan' => 'string',
-    ];
-
-    $messages = [
-      'kode_lokasi' => [
-        'required' => 'Kode lokasi harus diisi',
-      ],
-      'nama_lokasi' => [
-        'required' => 'Nama lokasi harus diisi',
-      ]
-    ];
-    [$inputs, $errors] = $this->filter($_POST, $fields, $messages);
+    [$inputs, $errors] = $this->filter($_POST, self::FIELDS, self::MESSAGES);
     if ($errors) {
       Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
       $this->redirect('/lokasi/insert');
@@ -73,6 +74,34 @@ class Lokasi extends BaseController
     $this->view('template/header', $data);
     $this->view('lokasi/edit', $data);
     $this->view('template/footer');
+  }
+
+  public function edit_lokasi()
+  {
+    [$inputs, $errors] = $this->filter($_POST, self::FIELDS, self::MESSAGES);
+    if ($errors) {
+      Message::setFlash('error', 'Gagal !', $errors[0], $inputs);
+      $this->redirect('/lokasi/' . $inputs['id_lokasi']);
+    }
+    if ($inputs['mode'] == "update") {
+      $proc = $this->lokasi->edit($inputs);
+      if ($proc) {
+        Message::setFlash('success', 'Berhasil !', 'Data Berhasil Diubah');
+        $this->redirect('lokasi');
+      } else {
+        Message::setFlash('error', 'Gagal !', 'Data Gagal Diubah');
+        $this->redirect('/lokasi/' . $inputs['id_lokasi']);
+      }
+    } else {
+      $proc = $this->lokasi->delete($inputs['id_lokasi']);
+      if ($proc) {
+        Message::setFlash('success', 'Berhasil !', 'Data Berhasil Dihapus');
+        $this->redirect('lokasi');
+      } else {
+        Message::setFlash('error', 'Gagal !', 'Data Gagal Dihapus');
+        $this->redirect('/lokasi/' . $inputs['id_lokasi']);
+      }
+    }
   }
 
 }

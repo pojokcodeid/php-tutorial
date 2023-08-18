@@ -20,7 +20,7 @@ Message::flash();
       </ol>
     </nav>
     <form name="form" class="bg-body rounded shadow-sm p-3" id="form" action="<?= BASEURL . '/lokasi' ?>" method="post">
-      <input type="hidden" name="id_kategori" value="<?= $data['id_lokasi'] ?>">
+      <input type="hidden" name="id_lokasi" value="<?= $data['id_lokasi'] ?>">
       <input type="hidden" name="mode" id="mode" value="update">
       <div class="mb-3 row">
         <label for="kode_lokasi" class="col-md-2 col-form-label">Kode Lokasi</label>
