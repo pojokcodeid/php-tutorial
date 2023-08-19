@@ -8,13 +8,13 @@ Message::flash();
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Master</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Barang</li>
+        <li class="breadcrumb-item active" aria-current="page">Pembelian</li>
       </ol>
     </nav>
     <div class="row">
       <div class="bg-body p-3 shadow-sm rounded">
         <div class="mb-2">
-          <button onclick=" location.href='<?= BASEURL . '/barang/insert' ?>'" class=" btn btn-sm btn-primary"><i
+          <button onclick=" location.href='<?= BASEURL . '/pembelian/insert' ?>'" class=" btn btn-sm btn-primary"><i
               class="fa-solid fa-plus"></i> Tanbah
             Data</button>
         </div>
@@ -23,41 +23,36 @@ Message::flash();
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama Barang</th>
-                <th>Jumlah</th>
-                <th>Harga Jual</th>
-                <th>Harga Beli</th>
-                <th>Kadaluarsa</th>
+                <th>Nama Pembelian</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Total</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody>
               <?php
               $no = 1;
-              foreach ($allBarang as $row):
+              foreach ($pembelian as $row):
                 ?>
                 <tr>
                   <td>
                     <?= $no++ ?>
                   </td>
                   <td>
-                    <?= $row['nama_barang'] ?>
+                    <?= $row['nama_pembelian'] ?>
                   </td>
                   <td>
-                    <?= $row['jumlah'] ?>
+                    <?= $row['tanggal'] ?>
                   </td>
                   <td>
-                    <?= number_format($row['harga_jual']) ?>
+                    <?= $row['status'] ?>
                   </td>
                   <td>
-                    <?= number_format($row['harga_beli']) ?>
+                    <?= $row['total'] ?>
                   </td>
-                  <td>
-                    <?php
-                    if ($row['tgl_kadaluarsa'] != "0000-00-00")
-                      echo $row['tgl_kadaluarsa'] ?>
-                    </td>
-                    <td><a href="<?= BASEURL . '/barang/' . $row['id_barang'] ?>"><i class="fa-solid fa-pen-to-square"></i>
+                  <td><a href="<?= BASEURL . '/pembelian/' . $row['id_pembelian'] ?>"><i
+                        class="fa-solid fa-pen-to-square"></i>
                       Edit</a></td>
                 </tr>
               <?php endforeach; ?>

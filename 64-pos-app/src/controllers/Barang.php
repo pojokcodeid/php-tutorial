@@ -3,16 +3,56 @@ namespace MyApp\Controllers;
 
 use MyApp\Core\BaseController;
 use MyApp\Core\Message;
+use MyApp\Models\KategoriModel;
+use MyApp\Models\LokasiModel;
+use MyApp\Models\SupplierModel;
 
 
 class Barang extends BaseController
 {
 
   private $barang;
+  private const FIELDS = [
+    'nama_barang' => 'string | required',
+    'jumlah' => 'int | required',
+    'harga_beli' => 'float | required',
+    'harga_jual' => 'float | required',
+    'kadaluarsa' => 'string',
+    'supplier' => 'string | required',
+    'kategori' => 'string | required',
+    'lokasi' => 'string | required',
+    'id' => 'int',
+    'mode' => 'string'
+  ];
+
+  private const MESSAGES = [
+    'nama_barang' => [
+      'required' => 'Nama barang harus diisi',
+      'alphanumeric' => 'Masukan Huruf dan angka saja',
+    ],
+    'jumlah' => [
+      'required' => 'Jumlah barang harus diisi',
+    ],
+    'harga_beli' => [
+      'required' => 'Harga beli barang harus diisi',
+    ],
+    'harga_jual' => [
+      'required' => 'Harga jual barang harus diisi',
+    ],
+    'supplier' => [
+      'required' => 'Supplier harus dipilih',
+    ],
+    'kategori' => [
+      'required' => 'Kategori harus dipilih',
+    ],
+    'lokasi' => [
+      'required' => 'Lokasi harus dipilih',
+    ]
+  ];
 
   public function __construct()
   {
-    $this->barang = $this->model('BarangModel');
+    $this->barang = $this->model('MyApp\Models\BarangModel');
   }
 
   public function index()
@@ -29,8 +69,14 @@ class Barang extends BaseController
 
   public function insert()
   {
+    $kategori = new KategoriModel();
+    $lokasi = new LokasiModel();
+    $supplier = new SupplierModel();
     $data = [
-      'judul' => 'Insert Barang'
+      'judul' => 'Insert Barang',
+      'kategori' => $kategori->getAll(),
+      'lokasi' => $lokasi->getAll(),
+      'supplier' => $supplier->getAll()
     ];
     $this->view('template/header', $data);
     $this->view('barang/insert', $data);
@@ -39,9 +85,15 @@ class Barang extends BaseController
 
   public function edit($id)
   {
+    $kategori = new KategoriModel();
+    $lokasi = new LokasiModel();
+    $supplier = new SupplierModel();
     $data = [
       'judul' => 'Edit Barang',
-      'data' => $this->barang->getById($id)
+      'data' => $this->barang->getById($id),
+      'kategori' => $kategori->getAll(),
+      'lokasi' => $lokasi->getAll(),
+      'supplier' => $supplier->getAll()
     ];
     $this->view('template/header', $data);
     $this->view('barang/edit', $data);
@@ -50,27 +102,7 @@ class Barang extends BaseController
 
   public function insert_barang()
   {
-    $fields = [
-      // 'nama_barang' => 'string | required | alphanumeric | between: 3, 25',  -> ini untk contoh between
-      'nama_barang' => 'string | required',
-      'jumlah' => 'int | required',
-      'harga_satuan' => 'float | required',
-      'kadaluarsa' => 'string'
-    ];
-
-    $messages = [
-      'nama_barang' => [
-        'required' => 'Nama barang harus diisi',
-        'alphanumeric' => 'Masukan Huruf dan angka saja',
-      ],
-      'jumlah' => [
-        'required' => 'Jumlah barang harus diisi',
-      ],
-      'harga_satuan' => [
-        'required' => 'Harga barang harus diisi',
-      ]
-    ];
-    [$inputs, $errors] = $this->filter($_POST, $fields, $messages);
+    [$inputs, $errors] = $this->filter($_POST, self::FIELDS, self::MESSAGES);
     if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }
@@ -89,28 +121,8 @@ class Barang extends BaseController
 
   public function edit_barang()
   {
-    $fields = [
-      'nama_barang' => 'string | required',
-      'jumlah' => 'int | required',
-      'harga_satuan' => 'float | required',
-      'kadaluarsa' => 'string',
-      'mode' => 'string',
-      'id' => 'int'
-    ];
 
-    $messages = [
-      'nama_barang' => [
-        'required' => 'Nama barang harus diisi',
-        'alphanumeric' => 'Masukan Huruf dan angka saja',
-      ],
-      'jumlah' => [
-        'required' => 'Jumlah barang harus diisi',
-      ],
-      'harga_satuan' => [
-        'required' => 'Harga barang harus diisi',
-      ]
-    ];
-    [$inputs, $errors] = $this->filter($_POST, $fields, $messages);
+    [$inputs, $errors] = $this->filter($_POST, self::FIELDS, self::MESSAGES);
     if ($inputs['kadaluarsa'] == "") {
       $inputs['kadaluarsa'] = "0000-00-00";
     }

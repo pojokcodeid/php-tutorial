@@ -49,7 +49,7 @@
     <div class="container-fluid">
       <div class="d-flex justify-content-cnter title-content">
         <a class="navbar-brand" href="./index.html">
-          <img id="logo" src="#" alt="Pojok Code" width="180">
+          Pojok Code
         </a>
         <span></span>
       </div>
@@ -169,6 +169,23 @@
                   <li>
                     <a class="link-body-emphasis" href="<?= BASEURL . '/barang' ?>">
                       <i class="fa-solid fa-list-check"></i> Barang
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a class="nav-link link-body-emphasis" href="">
+                  Transaksi
+                </a>
+                <ul>
+                  <li>
+                    <a class="link-body-emphasis" href="<?= BASEURL . '/pembelian' ?>">
+                      <i class="fa-solid fa-cart-shopping "></i> Pembelian
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-body-emphasis" href="<?= BASEURL . '/penjualan' ?>">
+                      <i class="fa-solid fa-cash-register"></i> Penjualan
                     </a>
                   </li>
                 </ul>

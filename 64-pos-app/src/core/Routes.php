@@ -13,8 +13,8 @@ class Routes
     // $router->get('/',['DefaultApp','index']);
     $router->get('/barang', ['Barang', 'index']);
     $router->get('/barang/insert', ['Barang', 'insert']);
-    $router->get('/barang/(:id)', ['Barang', 'edit']);
     $router->post('/barang/insert', ['Barang', 'insert_barang']);
+    $router->get('/barang/(:id)', ['Barang', 'edit']);
     $router->post('/barang', ['Barang', 'edit_barang']);
 
     $router->get('/kategori', ['Kategori', 'index']);
@@ -34,6 +34,9 @@ class Routes
     $router->post('/supplier/insert', ['Supplier', 'insert_supplier']);
     $router->get('/supplier/(:id)', ['Supplier', 'edit']);
     $router->post('/supplier', ['Supplier', 'edit_supplier']);
+
+    $router->get('/pembelian', ['Pembelian', 'index']);
+    $router->get('/pembelian/insert', ['Pembelian', 'insert']);
 
     $router->run();
   }

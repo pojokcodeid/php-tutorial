@@ -2,6 +2,7 @@
 namespace MyApp\Models;
 
 use MyApp\Core\Database;
+use PDO;
 
 class BarangModel extends Database
 {
@@ -10,7 +11,20 @@ class BarangModel extends Database
   {
     parent::__construct();
     $this->setTableName('barang');
-    $this->setColumn(['barang_id', 'nama_barang', 'jumlah', 'harga_satuan', 'expire_date']);
+    $this->setColumn([
+      'id_barang',
+      'barcode',
+      'nama_barang',
+      'jumlah',
+      'harga_beli',
+      'harga_jual',
+      'tgl_kadaluarsa',
+      'id_supplier',
+      'id_kategori',
+      'id_lokasi',
+      'tgl_dibuat',
+      'tgl_diubah',
+    ]);
   }
 
 
@@ -21,7 +35,7 @@ class BarangModel extends Database
 
   public function getById($id)
   {
-    return $this->get(['barang_id' => $id])->fetch();
+    return $this->get(['id_barang' => $id])->fetch(PDO::FETCH_ASSOC);
   }
 
   // insert data
@@ -30,8 +44,14 @@ class BarangModel extends Database
     $table = [
       'nama_barang' => $data['nama_barang'],
       'jumlah' => $data['jumlah'],
-      'harga_satuan' => $data['harga_satuan'],
-      'expire_date' => $data['kadaluarsa']
+      'harga_beli' => $data['harga_beli'],
+      'harga_jual' => $data['harga_jual'],
+      'tgl_kadaluarsa' => $data['kadaluarsa'],
+      'id_supplier' => $data['supplier'],
+      'id_kategori' => $data['kategori'],
+      'id_lokasi' => $data['lokasi'],
+      'tgl_dibuat' => date('Y-m-d'),
+      'tgl_diubah' => date('Y-m-d')
     ];
     return $this->insertData($table);
   }
@@ -42,11 +62,16 @@ class BarangModel extends Database
     $table = [
       'nama_barang' => $data['nama_barang'],
       'jumlah' => $data['jumlah'],
-      'harga_satuan' => $data['harga_satuan'],
-      'expire_date' => $data['kadaluarsa']
+      'harga_beli' => $data['harga_beli'],
+      'harga_jual' => $data['harga_jual'],
+      'tgl_kadaluarsa' => $data['kadaluarsa'],
+      'id_supplier' => $data['supplier'],
+      'id_kategori' => $data['kategori'],
+      'id_lokasi' => $data['lokasi'],
+      'tgl_diubah' => date('Y-m-d')
     ];
     $key = [
-      'barang_id' => $data['id']
+      'id_barang' => $data['id']
     ];
     return $this->updateData($table, $key);
   }
@@ -54,6 +79,6 @@ class BarangModel extends Database
   // delete data
   public function delete($id)
   {
-    return $this->deleteData(['barang_id' => $id]);
+    return $this->deleteData(['id_barang' => $id]);
   }
 }
