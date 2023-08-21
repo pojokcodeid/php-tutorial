@@ -1,4 +1,4 @@
-<div class="row" style="padding-left: 10px; padding-right:10px;">
+<div class="row">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#" class="text-decoration-none link-body-emphasis">Home</a></li>
