@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <div class="row" style="padding-left: 10px; padding-right:10px;">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -87,90 +86,36 @@
   </div>
 </div>
 
-<!-- start grafik -->
-<div class="container-fluid justify-content-start">
-  <canvas class="bg-body shadow-sm rounded" id="barChart"
-    style="width:100%;height: 400px;max-width: 100%;min-width: 100%;"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="bg-body container-fluid justify-content-start shadow-sm rounded">
+  <canvas id="myChart" style="width:100%;height: 500px;max-width: 100%;min-width: 100%;"></canvas>
 </div>
-<!-- end grafik -->
+
 <script>
-  const lightGridLineColor = 'black';
-  const darkGridLineColor = 'yellow'
-
-  // bar chart start
-  const chartData = {
-    labels: ['Januwari', 'Februari', 'Mart', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-    datasets: [{
-      label: "Penjualan",
-      backgroundColor: "#1355FF",
-      borderWidth: 0,
-      borderRadius: 5,
-      data: [20423, 40123, 60313, 80412, 40414, 1932, 40131, 10124, 30578, 50421, 60124, 14512]
-    }, {
-      label: "Pembelian",
-      backgroundColor: "#57D3DD",
-      borderRadius: 5,
-      borderWidth: 0,
-      data: [60732, 30125, 20712, 50252, 30689, 50234, 20464, 30123, 10245, 15123, 40126, 60126]
+  const ctx = document.getElementById('myChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Januwari', 'Februari', 'Mart', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+      datasets: [{
+        label: "Penjualan",
+        backgroundColor: "#1355FF",
+        borderWidth: 0,
+        borderRadius: 5,
+        data: [20423, 40123, 60313, 80412, 40414, 1932, 40131, 10124, 30578, 50421, 60124, 14512]
+      }, {
+        label: "Pembelian",
+        backgroundColor: "#57D3DD",
+        borderRadius: 5,
+        borderWidth: 0,
+        data: [60732, 30125, 20712, 50252, 30689, 50234, 20464, 30123, 10245, 15123, 40126, 60126]
+      }
+      ]
     },
-
-    ]
-  };
-
-  let value = 80000;
-  const ctx = document.getElementById('barChart');
-  const myBarChart = new Chart(ctx, {
-
-    type: "bar",
-    data: chartData,
-    drawBorder: false,
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
       scales: {
-        x: {
-          title: {
-            display: false
-          },
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: "#718096"
-          }
-        },
         y: {
-          title: {
-            display: false
-          },
-          min: 0,
-          max: 80000,
-          ticks: {
-            stepSize: 20000,
-            color: "#718096",
-            callback: function (value, index, values) {
-              return value * 0.001 + " K";
-            }
-          },
-          grid: {
-            color: '#EDF2F7'
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          position: "top",
-          labels: {
-            font: {
-              size: 12,
-              weight: 500
-            },
-            color: "#2D3748",
-            boxWidth: 8,
-            boxHeight: 8,
-            usePointStyle: true,
-            pointStyle: "circle"
-          }
+          beginAtZero: true
         }
       }
     }

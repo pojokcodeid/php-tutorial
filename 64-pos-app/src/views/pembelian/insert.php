@@ -131,7 +131,9 @@ Message::flash();
                 <td colspan="5" class="text-center fw-bold">Total</td>
                 <td class="fw-bold">
                   <?php
-                  $_SESSION['pembelian']['total'] = $total;
+                  if ($total != 0) {
+                    $_SESSION['pembelian']['total'] = $total;
+                  }
                   echo number_format($total);
                   ?>
                 </td>
