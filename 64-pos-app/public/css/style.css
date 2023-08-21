@@ -287,3 +287,13 @@ body {
   .select2-selection__rendered {
   color: var(--bs-secondary) !important;
 }
+
+.select2-container--bootstrap-5
+  .select2-results__option--highlighted[aria-selected] {
+  background-color: #5897fb !important;
+  color: white !important;
+}
+
+.select2-container--bootstrap-5 .select2-results__option {
+  color: var(--bs-secondary) !important;
+}
