@@ -15,6 +15,7 @@ class PembelianModel extends Database
     $this->setTableName('pembelian');
     $this->setColumn([
       'id_pembelian',
+      'kode_pembelian',
       'nama_pembelian',
       'tanggal',
       'total',
@@ -49,7 +50,7 @@ class PembelianModel extends Database
         1, #nanti harus diisi dengan session user
         $_SESSION['pembelian']['keterangan'],
         $_SESSION['pembelian']['total'],
-        1
+        0 # 0 artinya masih new belum ada penerimaan barang
       ]);
       $id = $pdo->lastInsertId();
       foreach ($_SESSION['pembelian']['detail'] as $key => $value) {

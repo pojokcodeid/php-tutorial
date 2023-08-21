@@ -23,11 +23,11 @@ Message::flash();
             <thead>
               <tr>
                 <th>No</th>
+                <th>Kode Pembelian</th>
                 <th>Nama Pembelian</th>
                 <th>Tanggal</th>
                 <th>Status</th>
                 <th>Total</th>
-                <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody>
@@ -40,20 +40,20 @@ Message::flash();
                     <?= $no++ ?>
                   </td>
                   <td>
+                    <?= $row['kode_pembelian'] ?>
+                  </td>
+                  <td>
                     <?= $row['nama_pembelian'] ?>
                   </td>
                   <td>
                     <?= $row['tanggal'] ?>
                   </td>
                   <td>
-                    <?= $row['status'] ?>
+                    <?= $row['status'] == 0 ? 'Baru' : 'Barang Diterima' ?>
                   </td>
                   <td>
-                    <?= $row['total'] ?>
+                    <?= number_format($row['total']) ?>
                   </td>
-                  <td><a href="<?= BASEURL . '/pembelian/' . $row['id_pembelian'] ?>"><i
-                        class="fa-solid fa-pen-to-square"></i>
-                      Edit</a></td>
                 </tr>
               <?php endforeach; ?>
           </table>

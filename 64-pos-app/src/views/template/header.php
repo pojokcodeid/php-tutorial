@@ -205,29 +205,39 @@
                       <i class="fa-solid fa-arrow-rotate-left"></i> Retur Penjualan
                     </a>
                   </li>
+                  <li>
+                    <a class="link-body-emphasis" href="#">
+                      <i class="fa-solid fa-window-restore"></i> Stock Opname
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li id="li2">
                 <a class="link-body-emphasis">
-                  Collapse 1
+                  Laporan
                 </a>
                 <ul>
                   <li id="li4">
                     <a class="link-body-emphasis">
-                      Collapse 2
+                      Pembelian
                     </a>
                     <ul>
                       <li id="li6">
                         <a href="#" class="link-body-emphasis">
-                          <i class="fa-solid fa-users"></i> Personal Data
+                          <i class="fa-solid fa-chart-simple"></i> Pembelian Periode
                         </a>
                       </li>
                       <li id="li7">
                         <a href="#" class="link-body-emphasis">
-                          <i class="fa-regular fa-clock"></i> Attendance
+                          <i class="fa-solid fa-chart-simple"></i> Penerimaan Pembelian
                         </a>
                       </li>
-                      <li id="li8">
+                      <li id="li7">
+                        <a href="#" class="link-body-emphasis">
+                          <i class="fa-solid fa-chart-simple"></i> Retur Pembelian
+                        </a>
+                      </li>
+                      <!-- <li id="li8">
                         <a class="link-body-emphasis">
                           Collapse 3
                         </a>
@@ -243,15 +253,33 @@
                             </a>
                           </li>
                         </ul>
-                      </li>
+                      </li> -->
                     </ul>
                   </li>
-                  <li id="li5">
-                    <a href="#" class="link-body-emphasis">
-                      Link 6
-                    </a>
-                  </li>
-                </ul>
+                  <ul>
+                    <li id="li4">
+                      <a class="link-body-emphasis">
+                        Penjualan
+                      </a>
+                      <ul>
+                        <li id="li6">
+                          <a href="#" class="link-body-emphasis">
+                            <i class="fa-solid fa-chart-simple"></i> Penjualan Periode
+                          </a>
+                        </li>
+                        <li id="li7">
+                          <a href="#" class="link-body-emphasis">
+                            <i class="fa-solid fa-chart-simple"></i> Retur Penjualan
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li id="li5">
+                      <a href="#" class="link-body-emphasis">
+                        Link 6
+                      </a>
+                    </li>
+                  </ul>
               </li>
             </ul>
           </div>
