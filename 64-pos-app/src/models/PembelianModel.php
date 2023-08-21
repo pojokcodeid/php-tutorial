@@ -31,6 +31,30 @@ class PembelianModel extends Database
     return $this->get()->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function getByStatus($status)
+  {
+    return $this->get(['status' => $status])->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getPembelianDtl($id)
+  {
+    $sql = "select
+      pd.id_pembeliandtl,
+      b.id_barang,
+      b.kode_barang,
+      b.nama_barang,
+      pd.jumlah,
+      pd.harga_satuan
+    from
+      pembelian_dtl pd
+    inner join barang b 
+    on
+      (pd.id_barang = b.id_barang)
+    where
+      id_pembelian = ?";
+    return $this->qry($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function insert($data)
   {
     try {

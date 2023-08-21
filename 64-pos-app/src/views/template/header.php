@@ -186,7 +186,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="link-body-emphasis" href="#">
+                    <a class="link-body-emphasis" href="<?= BASEURL . '/penerimaan' ?>">
                       <i class="fa-solid fa-arrow-right-arrow-left"></i> Penerimaan Pembelian
                     </a>
                   </li>
