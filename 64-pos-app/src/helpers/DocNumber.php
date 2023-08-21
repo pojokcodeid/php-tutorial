@@ -98,7 +98,6 @@ class DocNumber
         $strCode = $strCode . $value['value'];
       }
     }
-    var_dump($strCode);
     return $strCode;
   }
 }

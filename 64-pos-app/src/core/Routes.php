@@ -37,6 +37,14 @@ class Routes
 
     $router->get('/pembelian', ['Pembelian', 'index']);
     $router->get('/pembelian/insert', ['Pembelian', 'insert']);
+    $router->post('/pembelian/add-barang', ['Pembelian', 'add_barang']);
+    $router->get('/pembelian/add-barang', ['Pembelian', 'add_data']);
+    $router->get('/pembelian/edit-barang/(:id)', ['Pembelian', 'edit_barang']);
+    $router->post('/pembelian/edit-barang/(:id)', ['Pembelian', 'edit_data']);
+    $router->get('/pembelian/delete-barang/(:id)', ['Pembelian', 'delete_barang']);
+    $router->post('/pembelian/insertdata', ['Pembelian', 'add_item']);
+    $router->get('/pembelian/delete', ['Pembelian', 'delete']);
+    $router->post('/pembelian', ['Pembelian', 'save']);
 
     $router->run();
   }

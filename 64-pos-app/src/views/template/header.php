@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="<?= BASEURL . '/datatable/css/dataTables.bootstrap5.min.css' ?>">
   <link rel="stylesheet" href="<?= BASEURL . '/font-awesome/css/all.min.css' ?>">
   <script src="<?= BASEURL . '/swal/dist/sweetalert2.all.min.js' ?>"></script>
+  <link rel="stylesheet" href="<?= BASEURL . '/select2/dist/css/select2.min.css' ?>" />
+  <link rel="stylesheet" href="<?= BASEURL . '/select2boostrap/dist/select2-bootstrap-5-theme.min.css' ?>" />
   <link rel="stylesheet" href="<?= BASEURL . '/css/tree.css' ?>">
   <link rel="stylesheet" href="<?= BASEURL . '/css/style.css' ?>">
 </head>
@@ -184,8 +186,23 @@
                     </a>
                   </li>
                   <li>
+                    <a class="link-body-emphasis" href="#">
+                      <i class="fa-solid fa-arrow-right-arrow-left"></i> Penerimaan Pembelian
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-body-emphasis" href="#">
+                      <i class="fa-solid fa-rotate-left"></i> Retur Pembelian
+                    </a>
+                  </li>
+                  <li>
                     <a class="link-body-emphasis" href="<?= BASEURL . '/penjualan' ?>">
                       <i class="fa-solid fa-cash-register"></i> Penjualan
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-body-emphasis" href="#">
+                      <i class="fa-solid fa-arrow-rotate-left"></i> Retur Penjualan
                     </a>
                   </li>
                 </ul>

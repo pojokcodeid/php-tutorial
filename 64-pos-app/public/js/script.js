@@ -266,3 +266,9 @@ window.onclick = function (event) {
     }
   }
 };
+
+function addData(form, action) {
+  let frm = document.getElementById(form);
+  frm.action = action;
+  frm.submit();
+}

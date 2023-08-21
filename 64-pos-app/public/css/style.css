@@ -188,33 +188,33 @@ body {
 }
 
 .border-left-primary {
-  border-left: 3px solid #3B71CA !important;
+  border-left: 3px solid #3b71ca !important;
 }
 
 .border-left-secondary {
-  border-left: 3px solid #9FA6B2 !important;
+  border-left: 3px solid #9fa6b2 !important;
 }
 
 .border-left-success {
-  border-left: 3px solid #14A44D !important;
+  border-left: 3px solid #14a44d !important;
 }
 
 .border-left-danger {
-  border-left: 3px solid #DC4C64 !important;
+  border-left: 3px solid #dc4c64 !important;
 }
 
 .border-left-warning {
-  border-left: 3px solid #E4A11B !important;
+  border-left: 3px solid #e4a11b !important;
 }
 
 .border-left-info {
-  border-left: 3px solid #54B4D3 !important;
+  border-left: 3px solid #54b4d3 !important;
 }
 
 .selected {
-  border-left: 2px solid #3B71CA;
-  background-color: rgba(var(--bs-emphasis-color-rgb), .04);
-  color: #3B71CA;
+  border-left: 2px solid #3b71ca;
+  background-color: rgba(var(--bs-emphasis-color-rgb), 0.04);
+  color: #3b71ca;
   width: 100%;
 }
 
@@ -223,8 +223,8 @@ body {
 }
 
 .nav-item a:hover {
-  background-color: rgba(var(--bs-emphasis-color-rgb), .04);
-  color: #3B71CA;
+  background-color: rgba(var(--bs-emphasis-color-rgb), 0.04);
+  color: #3b71ca;
   width: 100%;
   margin: 0;
 }
@@ -235,7 +235,7 @@ body {
 
 /* sweet alet custom */
 .swal-title {
-  color: #3B71CA !important;
+  color: #3b71ca !important;
 }
 
 .swal-text {
@@ -247,9 +247,43 @@ body {
 }
 
 .swal-button-container button:hover {
-  background-color: #3B71CA !important;
+  background-color: #3b71ca !important;
 }
 
 .swal-footer {
   text-align: center !important;
+}
+
+/* select2 dark support */
+.select2-search {
+  background-color: var(--bs-body-bg) !important;
+}
+/* Change the appearence of the search input field */
+.select2-search input {
+  color: var(--bs-secondary) !important;
+  background-color: var(--bs-body-bg) !important;
+}
+
+/* Change the appearence of the search results container */
+.select2-results {
+  background-color: var(--bs-body-bg) !important;
+}
+
+/* Change the appearence of the dropdown select container */
+.select2-container--bootstrap-5 .select2-selection {
+  border-color: var(--bs-secondary) !important;
+  color: var(--bs-secondary) !important;
+  background-color: var(--bs-body-bg) !important;
+}
+
+/* Change the caret down arrow symbol to white */
+.select2-container--bootstrap-5 .select2-selection--single {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+/* Change the color of the default selected item i.e. the first option */
+.select2-container--bootstrap-5
+  .select2-selection--single
+  .select2-selection__rendered {
+  color: var(--bs-secondary) !important;
 }

@@ -55,6 +55,14 @@
     });
   });
 </script>
+<script src="<?= BASEURL . '/select2/dist/js/select2.min.js' ?>"></script>
+<script>
+  $(document).ready(function () {
+    $('.select2').select2({
+      theme: "bootstrap-5",
+    });
+  });
+</script>
 <script src="<?= BASEURL . '/js/script.js' ?>"></script>
 </body>
 

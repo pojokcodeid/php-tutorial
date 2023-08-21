@@ -6,7 +6,9 @@
   },
   "require": {
     "twbs/bootstrap": "5.3.1",
-    "components/font-awesome": "^6.4"
+    "components/font-awesome": "^6.4",
+    "select2/select2": "^4.0",
+    "apalfrey/select2-bootstrap-5-theme": "^1.3"
   },
   "scripts": {
     "test": "phpunit",
@@ -14,7 +16,11 @@
       "rm -rf public/bootstrap",
       "cp -R vendor/twbs/bootstrap/dist public/bootstrap",
       "rm -rf public/font-awesome",
-      "cp -R vendor/components/font-awesome public/font-awesome"
+      "cp -R vendor/components/font-awesome public/font-awesome",
+      "rm -rf public/select2",
+      "cp -R vendor/select2/select2 public/select2",
+      "rm -rf public/select2boostrap",
+      "cp -R vendor/apalfrey/select2-bootstrap-5-theme public/select2boostrap"
     ]
   }
 }
