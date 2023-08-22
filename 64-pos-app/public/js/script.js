@@ -272,3 +272,75 @@ function addData(form, action) {
   frm.action = action;
   frm.submit();
 }
+
+//for popup report
+function ON_Submit(theUrl, WhichOne, tw, th, frompost) {
+  if (frompost == undefined) {
+    var frm = document.frmSearch;
+  } else {
+    var frm = frompost;
+  }
+  var tmpAction = frm.action;
+  var tmpTarget = frm.target;
+
+  //alert(theUrl + WhichOne);
+  if (WhichOne == "Print") {
+    if (tw == undefined) {
+      var theWidth = 600;
+    } else {
+      var theWidth = tw;
+    }
+    if (th == undefined) {
+      var theHeight = 660;
+    } else {
+      var theHeight = th;
+    }
+    var theLeft = (screen.width - theWidth) / 2;
+    var theTop = (screen.height - theHeight) / 2;
+    window.open(
+      "",
+      "winbaru",
+      "width=" +
+        theWidth +
+        ",height=" +
+        theHeight +
+        ",left=" +
+        theLeft +
+        ",top=" +
+        theTop +
+        ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes"
+    );
+    frm.target = "winbaru";
+  } else if (WhichOne != undefined && WhichOne.toUpperCase() == "HIDDEN") {
+    window.open(
+      "",
+      "HIDDEN",
+      "width=100,height=100,left=10,top=10,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no"
+    );
+    frm.target = "HIDDEN";
+  } else {
+    frm.target = "";
+  }
+  frm.action = theUrl;
+  frm.submit();
+  frm.action = tmpAction;
+  frm.target = tmpTarget;
+}
+
+//untuk pop up windows
+function popupwindow(url, title, w, h) {
+  let left = screen.width / 2 - w / 2;
+  let top = screen.height / 2 - h / 2;
+  return window.open(
+    url,
+    title,
+    "scrollbars=1,status=1, resizable=1, copyhistory=no, width=" +
+      w +
+      ", height=" +
+      h +
+      ", top=" +
+      top +
+      ", left=" +
+      left
+  );
+}

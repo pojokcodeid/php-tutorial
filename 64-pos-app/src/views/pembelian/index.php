@@ -28,6 +28,7 @@ Message::flash();
                 <th>Tanggal</th>
                 <th>Status</th>
                 <th>Total</th>
+                <th>Print</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +54,13 @@ Message::flash();
                   </td>
                   <td>
                     <?= number_format($row['total']) ?>
+                  </td>
+                  <td>
+
+                    <a onclick="popupwindow('<?= BASEURL . '/pembelian/print/' . $row['id_pembelian'] ?>', 'Faktur Pembelian', 1000, 600)"
+                      href="javascript:void(0)">
+                      <i class="fa-solid fa-print"></i>
+                    </a>
                   </td>
                 </tr>
               <?php endforeach; ?>

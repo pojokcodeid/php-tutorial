@@ -36,6 +36,11 @@ class PembelianModel extends Database
     return $this->get(['status' => $status])->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function getById($id)
+  {
+    return $this->get(['id_pembelian' => $id])->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function getPembelianDtl($id)
   {
     $sql = "select

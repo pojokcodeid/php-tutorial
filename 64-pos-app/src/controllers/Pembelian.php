@@ -1,9 +1,11 @@
 <?php
 namespace MyApp\Controllers;
 
+use Mpdf\Mpdf;
 use MyApp\Core\BaseController;
 use MyApp\Core\Message;
 use MyApp\Helpers\DocNumber;
+use MyApp\Helpers\Terbilang;
 use MyApp\Models\BarangModel;
 use MyApp\Models\SupplierModel;
 
@@ -217,6 +219,23 @@ class Pembelian extends BaseController
       Message::setFlash('error', 'Gagal !', "Data gagal disimpan");
       $this->redirect('pembelian/insert');
     }
+  }
+
+  public function printPembelian($id)
+  {
+    $mpdf = new Mpdf();
+    $pembelian = $this->pembelianModel->getById($id);
+    $pembeliandtl = $this->pembelianModel->getPembelianDtl($id);
+    $terbilang = new Terbilang();
+    $output = $terbilang->getterbilang((0.11 * $pembelian['total']) + $pembelian['total']);
+    $data = [
+      'pembelian' => $pembelian,
+      'pembeliandtl' => $pembeliandtl,
+      'terbilang' => $output
+    ];
+    $html = $this->view('pembelian/print', $data, true);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('FakrurPembelian.pdf', "I");
   }
 
 }

@@ -45,6 +45,7 @@ class Routes
     $router->post('/pembelian/insertdata', ['Pembelian', 'add_item']);
     $router->get('/pembelian/delete', ['Pembelian', 'delete']);
     $router->post('/pembelian', ['Pembelian', 'save']);
+    $router->get('/pembelian/print/(:id)', ['Pembelian', 'printPembelian']);
 
     $router->get('/penerimaan', ['Penerimaan', 'index']);
     $router->get('/penerimaan/insert', ['Penerimaan', 'insert']);
