@@ -5,52 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slip Penerimaan</title>
-  <style>
-    @page {
-      size: 8.5in 11in;
-      margin: 20mm;
-    }
-
-    .bdr {
-      border: 1px solid black;
-    }
-
-    .bl {
-      border-left: 1px solid black;
-    }
-
-    .blr {
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-    }
-
-    .blb {
-      border-left: 1px solid black;
-      border-bottom: 1px solid black;
-    }
-
-    .blbr {
-      border-left: 1px solid black;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-    }
-
-    .bb {
-      border-bottom: 1px solid black;
-    }
-
-    .text-right {
-      text-align: right;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    table {
-      border-collapse: collapse;
-    }
-  </style>
+  <link rel="stylesheet" href="<?= BASEURL . '/css/report.css' ?>">
 </head>
 
 <body>
