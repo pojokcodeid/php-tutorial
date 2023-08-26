@@ -6,15 +6,15 @@ use MyApp\Helpers\DocNumber;
 use PDO;
 use PDOException;
 
-class PenerimaanModel extends Database
+class ReturPembelianModel extends Database
 {
   public function __construct()
   {
     parent::__construct();
-    $this->setTableName('penerimaan');
+    $this->setTableName('returpembelian');
     $this->setColumn([
-      'id_penerimaan',
-      'kode_penerimaan',
+      'id_returpembelian',
+      'kode_retur',
       'id_pembelian',
       'tanggal',
       'id_user',
@@ -24,33 +24,53 @@ class PenerimaanModel extends Database
 
   public function getAll()
   {
-    $sql = "
-    SELECT p.id_penerimaan,b.kode_pembelian,b.tanggal as tgl_pembelian,p.tanggal tgl_penerimaan, 
-    p.keterangan FROM `penerimaan` p inner join pembelian b on(p.id_pembelian=b.id_pembelian)
-    ";
+    $sql = "select
+        r.id_returpembelian,
+        r.kode_retur,
+        r.tanggal as tgl_retur,
+        r.keterangan,
+        p.nama_pembelian,
+        p.kode_pembelian,
+        p.tanggal as tgl_pembelian
+      from
+        returpembelian r
+      inner join pembelian p on
+        (r.id_pembelian = p.id_pembelian)";
     return $this->qry($sql)->fetchAll(PDO::FETCH_ASSOC);
   }
-
   public function getById($id)
   {
-    return $this->get(['id_penerimaan' => $id])->fetch(PDO::FETCH_ASSOC);
+    $sql = "select
+        r.id_returpembelian,
+        r.kode_retur,
+        r.tanggal as tgl_retur,
+        r.keterangan,
+        p.nama_pembelian,
+        p.kode_pembelian,
+        p.tanggal as tgl_pembelian
+      from
+        returpembelian r
+      inner join pembelian p on
+        (r.id_pembelian = p.id_pembelian)
+      where r.id_returpembelian = ?";
+    return $this->qry($sql, [$id])->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getDetailPenerimaan($id)
+  public function getDetailRetur($id)
   {
     $sql = "select
-        pd.id_penerimaan,
+        pd.id_returpembelian,
         b.kode_barang,
         b.nama_barang,
         b.harga_beli,
         pd.jumlah,
         pd.keterangan
       from
-        penerimaan_dtl pd
+      returpembelian_dtl pd
       inner join barang b on
         (pd.id_barang = b.id_barang)
       where
-        pd.id_penerimaan = ?";
+        pd.id_returpembelian = ?";
     return $this->qry($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -60,9 +80,9 @@ class PenerimaanModel extends Database
       $pdo = $this->setConnection();
       $pdo->beginTransaction();
       $documentModel = new DocNumber();
-      $document = $documentModel->getData('ss');
-      $sql = "insert into penerimaan
-      (kode_penerimaan,id_pembelian,tanggal,id_user,keterangan)
+      $document = $documentModel->getData('RT');
+      $sql = "insert into returpembelian
+      (kode_retur,id_pembelian,tanggal,id_user,keterangan)
       values(?, ?, ?, ?, ?)";
       $stmt = $pdo->prepare($sql);
       $stmt->execute([
@@ -74,8 +94,8 @@ class PenerimaanModel extends Database
       ]);
       $id = $pdo->lastInsertId();
       foreach ($data['detail'] as $row) {
-        $sql = "insert into penerimaan_dtl
-        (id_penerimaan,id_barang,jumlah,keterangan)
+        $sql = "insert into returpembelian_dtl
+        (id_returpembelian,id_barang,jumlah,keterangan)
         values(?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
@@ -85,17 +105,11 @@ class PenerimaanModel extends Database
           $row['keterangan']
         ]);
         // tambah jumlah barang
-        $sql = "update barang set jumlah = jumlah + ? where id_barang = ?";
+        $sql = "update barang set jumlah = jumlah - ? where id_barang = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
           $row['jumlah'],
           $row['barang']
-        ]);
-        // ubah status pembelian jadi close
-        $sql = "update pembelian set status = 1 where id_pembelian = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-          $data['id_pembelian']
         ]);
       }
       return $pdo->commit();

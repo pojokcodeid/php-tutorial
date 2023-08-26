@@ -6,42 +6,43 @@ use MyApp\Core\BaseController;
 use MyApp\Core\Message;
 use MyApp\Models\PembelianModel;
 
-class Penerimaan extends BaseController
+class ReturPembelian extends BaseController
 {
-  private $penerimaanModel;
+
+  private $returPembelian;
   public function __construct()
   {
-    $this->penerimaanModel = $this->model('MyApp\Models\PenerimaanModel');
+    $this->returPembelian = $this->model('MyApp\Models\ReturPembelianModel');
   }
 
   public function index()
   {
     $data = [
-      'judul' => 'Penerimaan Pembelian',
-      'penerimaan' => $this->penerimaanModel->getAll()
+      'judul' => 'Retur Pembelian',
+      'returPembelian' => $this->returPembelian->getAll()
     ];
     $this->view('template/header', $data);
-    $this->view('penerimaan/index', $data);
+    $this->view('returPembelian/index', $data);
     $this->view('template/footer');
   }
 
   public function insert()
   {
-    $pembelianDtl = [];
     $pembelian_id = "";
+    $pembelianDtl = [];
     $pembelianModel = new PembelianModel();
     if (isset($_POST['pembelian'])) {
       $pembelianDtl = $pembelianModel->getPembelianDtl($_POST['pembelian']);
       $pembelian_id = $_POST['pembelian'];
     }
     $data = [
-      'judul' => 'Tambah Data Penerimaan',
-      'pembelianData' => $pembelianModel->getByStatus(0),
-      'pembelianDtl' => $pembelianDtl,
-      'pembelian_id' => $pembelian_id
+      'judul' => 'Tambah Data Retur Pembelian',
+      'pembelianData' => $pembelianModel->getByStatus(1),
+      'pembelian_id' => $pembelian_id,
+      'pembelianDtl' => $pembelianDtl
     ];
     $this->view('template/header', $data);
-    $this->view('penerimaan/insert', $data);
+    $this->view('returPembelian/insert', $data);
     $this->view('template/footer');
   }
 
@@ -56,12 +57,15 @@ class Penerimaan extends BaseController
     }
     $arrayDtl = [];
     foreach ($pembelianDtl as $row) {
-      $data = [
-        "barang" => $row['id_barang'],
-        "jumlah" => intval($_POST['barang'][$row['id_pembeliandtl']]),
-        "keterangan" => strval($_POST['keterangan'][$row['id_pembeliandtl']])
-      ];
-      array_push($arrayDtl, $data);
+      $jumlah = intval($_POST['barang'][$row['id_pembeliandtl']]);
+      if ($jumlah > 0) {
+        $data = [
+          "barang" => $row['id_barang'],
+          "jumlah" => $jumlah,
+          "keterangan" => strval($_POST['keterangan'][$row['id_pembeliandtl']])
+        ];
+        array_push($arrayDtl, $data);
+      }
     }
     $penerimaan = [
       "id_pembelian" => $pembelian_id,
@@ -71,27 +75,27 @@ class Penerimaan extends BaseController
       "detail" => $arrayDtl,
     ];
 
-    $hasil = $this->penerimaanModel->insert($penerimaan);
+    $hasil = $this->returPembelian->insert($penerimaan);
     if ($hasil) {
       Message::setFlash('success', 'Berhasil !', "Data berhasil disimpan");
-      $this->redirect('penerimaan');
+      $this->redirect('retur-pembelian');
     } else {
       Message::setFlash('danger', 'Gagal !', "Data gagal disimpan");
-      $this->redirect('penerimaan/insert');
+      $this->redirect('retur-pembelian/insert');
     }
   }
 
-  public function printPenerimaan($id)
+  public function printRetur($id)
   {
-    $penerimaan = $this->penerimaanModel->getById($id);
-    $penerimaanDtl = $this->penerimaanModel->getDetailPenerimaan($id);
+    $penerimaan = $this->returPembelian->getById($id);
+    $penerimaanDtl = $this->returPembelian->getDetailRetur($id);
     $mpdf = new Mpdf();
     $data = [
       'detail' => 1,
       'penerimaan' => $penerimaan,
       'penerimaanDtl' => $penerimaanDtl
     ];
-    $html = $this->view('penerimaan/print', $data, true);
+    $html = $this->view('returPembelian/print', $data, true);
     $mpdf->WriteHTML($html);
     $mpdf->Output('SlipPenerimaan.pdf', "I");
   }

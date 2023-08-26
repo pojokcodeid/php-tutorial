@@ -7,8 +7,8 @@ Message::flash();
   <div class="col">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Master</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Pembelian</li>
+        <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Transaksi</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Penerimaan</li>
       </ol>
     </nav>
     <div class="row">
@@ -27,6 +27,7 @@ Message::flash();
                 <th>Tanggal Pembelian</th>
                 <th>Tanggal Penerimaan</th>
                 <th>Keterangan</th>
+                <th>Print</th>
               </tr>
             </thead>
             <tbody>
@@ -49,6 +50,12 @@ Message::flash();
                   </td>
                   <td>
                     <?= $row['keterangan'] ?>
+                  </td>
+                  <td>
+                    <a onclick="popupwindow('<?= BASEURL . '/penerimaan/print/' . $row['id_penerimaan'] ?>', 'Slip Penerimaan', 1000, 600)"
+                      href="javascript:void(0)">
+                      <i class="fa-solid fa-print"></i>
+                    </a>
                   </td>
                 </tr>
               <?php endforeach; ?>

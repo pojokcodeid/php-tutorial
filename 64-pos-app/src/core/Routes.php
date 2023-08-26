@@ -51,6 +51,13 @@ class Routes
     $router->get('/penerimaan/insert', ['Penerimaan', 'insert']);
     $router->post('/penerimaan/insert', ['Penerimaan', 'insert']);
     $router->post('/penerimaan/insert-data', ['Penerimaan', 'insert_data']);
+    $router->get('/penerimaan/print/(:id)', ['Penerimaan', 'printPenerimaan']);
+
+    $router->get('/retur-pembelian', ['ReturPembelian', 'index']);
+    $router->get('/retur-pembelian/insert', ['ReturPembelian', 'insert']);
+    $router->post('/retur-pembelian/insert', ['ReturPembelian', 'insert']);
+    $router->post('/retur-pembelian/insert-data', ['ReturPembelian', 'insert_data']);
+    $router->get('/retur-pembelian/print/(:id)', ['ReturPembelian', 'printRetur']);
 
     $router->run();
   }
